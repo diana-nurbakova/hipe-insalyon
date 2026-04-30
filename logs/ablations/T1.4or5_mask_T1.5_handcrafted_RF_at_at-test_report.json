@@ -1,0 +1,123 @@
+{
+  "experiment_id": "T1.4or5_mask_T1.5_handcrafted_RF_at_at-test",
+  "timestamp": "2026-04-30T21:22:05.340526+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.5813422688422689,
+    "macro_recall_at": 0.6626845376845377,
+    "macro_recall_isAt": 0.5,
+    "at_details": {
+      "recall_TRUE": 0.6515151515151515,
+      "recall_PROBABLE": 0.5,
+      "recall_FALSE": 0.8365384615384616,
+      "macro_recall": 0.6626845376845377
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.0,
+      "recall_FALSE": 1.0,
+      "macro_recall": 0.5
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.7049180327868853,
+      "recall": 0.6515151515151515,
+      "f1-score": 0.6771653543307087,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.75,
+      "recall": 0.5,
+      "f1-score": 0.6,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.7565217391304347,
+      "recall": 0.8365384615384616,
+      "f1-score": 0.7945205479452055,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.7371465906391067,
+      "recall": 0.6626845376845377,
+      "f1-score": 0.6905619674253046,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.737781122518615,
+      "recall": 0.7393617021276596,
+      "f1-score": 0.7346970764474902,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.7978723404255319,
+      "recall": 1.0,
+      "f1-score": 0.8875739644970414,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.39893617021276595,
+      "recall": 0.5,
+      "f1-score": 0.4437869822485207,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6366002716161159,
+      "recall": 0.7978723404255319,
+      "f1-score": 0.7081707163540224,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      43,
+      2,
+      21
+    ],
+    [
+      2,
+      9,
+      7
+    ],
+    [
+      16,
+      1,
+      87
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      0,
+      38
+    ],
+    [
+      0,
+      150
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "name": "T1.5_handcrafted_RF",
+    "n_train": 1063,
+    "n_test": 188,
+    "input_dim": 36,
+    "target": "at",
+    "task": "at"
+  }
+}

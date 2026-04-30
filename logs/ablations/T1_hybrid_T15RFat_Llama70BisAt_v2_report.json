@@ -1,0 +1,123 @@
+{
+  "experiment_id": "T1_hybrid_T15RFat_Llama70BisAt_v2",
+  "timestamp": "2026-04-30T21:39:14.594296+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.7120440232282337,
+    "macro_recall_at": 0.6626845376845377,
+    "macro_recall_isAt": 0.7614035087719297,
+    "at_details": {
+      "recall_TRUE": 0.6515151515151515,
+      "recall_PROBABLE": 0.5,
+      "recall_FALSE": 0.8365384615384616,
+      "macro_recall": 0.6626845376845377
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.7894736842105263,
+      "recall_FALSE": 0.7333333333333333,
+      "macro_recall": 0.7614035087719297
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.7049180327868853,
+      "recall": 0.6515151515151515,
+      "f1-score": 0.6771653543307087,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.75,
+      "recall": 0.5,
+      "f1-score": 0.6,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.7565217391304347,
+      "recall": 0.8365384615384616,
+      "f1-score": 0.7945205479452055,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.7371465906391067,
+      "recall": 0.6626845376845377,
+      "f1-score": 0.6905619674253046,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.737781122518615,
+      "recall": 0.7393617021276596,
+      "f1-score": 0.7346970764474902,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.42857142857142855,
+      "recall": 0.7894736842105263,
+      "f1-score": 0.5555555555555555,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.9322033898305084,
+      "recall": 0.7333333333333333,
+      "f1-score": 0.8208955223880597,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.6803874092009685,
+      "recall": 0.7614035087719297,
+      "f1-score": 0.6882255389718076,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8304054402143115,
+      "recall": 0.7446808510638298,
+      "f1-score": 0.7672629759006387,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      43,
+      2,
+      21
+    ],
+    [
+      2,
+      9,
+      7
+    ],
+    [
+      16,
+      1,
+      87
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      30,
+      8
+    ],
+    [
+      40,
+      110
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "source_pa": "logs\\ablations\\T1.4or5_mask_T1.5_handcrafted_RF_at_at-test_predictions.jsonl",
+    "source_pb": "logs\\ablations\\T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test_predictions.jsonl",
+    "n_pa": 188,
+    "n_pb": 188,
+    "n_overlap": 188,
+    "n_combined": 188
+  }
+}

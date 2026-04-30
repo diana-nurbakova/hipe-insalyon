@@ -1,0 +1,150 @@
+{
+  "experiment_id": "T2_ksweep_full_k8_div_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+  "timestamp": "2026-04-30T16:02:13.929066+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.5799909690699165,
+    "macro_recall_at": 0.4403328153328154,
+    "macro_recall_isAt": 0.7196491228070176,
+    "at_details": {
+      "recall_TRUE": 0.6212121212121212,
+      "recall_PROBABLE": 0.5555555555555556,
+      "recall_FALSE": 0.14423076923076922,
+      "macro_recall": 0.4403328153328154
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.5526315789473685,
+      "recall_FALSE": 0.8866666666666667,
+      "macro_recall": 0.7196491228070176
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.5942028985507246,
+      "recall": 0.6212121212121212,
+      "f1-score": 0.6074074074074075,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.10101010101010101,
+      "recall": 0.5555555555555556,
+      "f1-score": 0.17094017094017094,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.75,
+      "recall": 0.14423076923076922,
+      "f1-score": 0.24193548387096775,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.4817376665202752,
+      "recall": 0.4403328153328154,
+      "f1-score": 0.3400943540728487,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6331679421411152,
+      "recall": 0.35106382978723405,
+      "f1-score": 0.3634420334488969,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.5526315789473685,
+      "recall": 0.5526315789473685,
+      "f1-score": 0.5526315789473685,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.8866666666666667,
+      "recall": 0.8866666666666667,
+      "f1-score": 0.8866666666666667,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.7196491228070176,
+      "recall": 0.7196491228070176,
+      "f1-score": 0.7196491228070176,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8191489361702128,
+      "recall": 0.8191489361702128,
+      "f1-score": 0.8191489361702128,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      41,
+      20,
+      5
+    ],
+    [
+      8,
+      10,
+      0
+    ],
+    [
+      20,
+      69,
+      15
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      21,
+      17
+    ],
+    [
+      17,
+      133
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 188,
+    "total_time_seconds": 993.7248799002846,
+    "avg_latency_ms": 5285.770637767471,
+    "predictor_config": {
+      "variant": "R",
+      "provider": "deepinfra",
+      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "temperature": 0.0,
+      "k_retrieved": 8,
+      "diversify_retrieved_labels": true,
+      "retriever_dir": "runs/retriever_at_bgem3",
+      "retriever_prefer_language": "auto",
+      "include_wikidata": false,
+      "include_temporal": false
+    },
+    "data_split": {
+      "task": "at",
+      "n_test": 188,
+      "limit": null
+    },
+    "predictor_stats": {
+      "n_calls": 188,
+      "parse_ok": 180,
+      "parse_partial": 8,
+      "parse_fail": 0,
+      "prompt_tokens": 543732,
+      "completion_tokens": 38379,
+      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "provider": "deepinfra",
+      "variant": "R",
+      "k_retrieved": 8,
+      "avg_retrieved_per_call": 8.0
+    }
+  }
+}

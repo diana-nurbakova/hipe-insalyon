@@ -1,0 +1,85 @@
+{
+  "runs": [
+    {
+      "stack": "base",
+      "exp_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_base",
+      "n_features": 2319,
+      "global_score": 0.6679083343557028,
+      "macro_recall_at": 0.570027195027195,
+      "macro_recall_isAt": 0.7657894736842106,
+      "classifier": "lr"
+    },
+    {
+      "stack": "base",
+      "exp_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_base",
+      "n_features": 2319,
+      "global_score": 0.4887539361223572,
+      "macro_recall_at": 0.43803418803418803,
+      "macro_recall_isAt": 0.5394736842105263,
+      "classifier": "rf"
+    },
+    {
+      "stack": "base",
+      "exp_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_base",
+      "n_features": 2319,
+      "global_score": 0.6740488897067844,
+      "macro_recall_at": 0.5754662004662005,
+      "macro_recall_isAt": 0.7726315789473683,
+      "classifier": "mlp"
+    },
+    {
+      "stack": "+evidence",
+      "exp_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_evidence",
+      "n_features": 2346,
+      "global_score": 0.6672553129132077,
+      "macro_recall_at": 0.5885457135457136,
+      "macro_recall_isAt": 0.7459649122807017,
+      "classifier": "lr"
+    },
+    {
+      "stack": "+evidence",
+      "exp_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_evidence",
+      "n_features": 2346,
+      "global_score": 0.5035143949617633,
+      "macro_recall_at": 0.4412393162393162,
+      "macro_recall_isAt": 0.5657894736842105,
+      "classifier": "rf"
+    },
+    {
+      "stack": "+evidence",
+      "exp_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_evidence",
+      "n_features": 2346,
+      "global_score": 0.662621798279693,
+      "macro_recall_at": 0.5592786842786843,
+      "macro_recall_isAt": 0.7659649122807017,
+      "classifier": "mlp"
+    },
+    {
+      "stack": "+sd",
+      "exp_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_sd+SD-H_full_at_v2",
+      "n_features": 2362,
+      "global_score": 0.662123870281765,
+      "macro_recall_at": 0.5782828282828283,
+      "macro_recall_isAt": 0.7459649122807017,
+      "classifier": "lr"
+    },
+    {
+      "stack": "+sd",
+      "exp_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_sd+SD-H_full_at_v2",
+      "n_features": 2362,
+      "global_score": 0.49220187707029817,
+      "macro_recall_at": 0.44493006993006995,
+      "macro_recall_isAt": 0.5394736842105263,
+      "classifier": "rf"
+    },
+    {
+      "stack": "+sd",
+      "exp_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_sd+SD-H_full_at_v2",
+      "n_features": 2362,
+      "global_score": 0.6629610886189834,
+      "macro_recall_at": 0.5566239316239315,
+      "macro_recall_isAt": 0.7692982456140351,
+      "classifier": "mlp"
+    }
+  ]
+}

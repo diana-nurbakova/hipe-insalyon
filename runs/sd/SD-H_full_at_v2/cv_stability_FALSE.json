@@ -1,0 +1,9 @@
+{
+  "target": "FALSE",
+  "n_folds": 5,
+  "min_precision": 0.3,
+  "min_folds": 3,
+  "elapsed_seconds": 143.38,
+  "stable_patterns": [],
+  "n_stable": 0
+}

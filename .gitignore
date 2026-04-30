@@ -1,0 +1,42 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Secrets
+.env
+
+# Data: keep CSV split + reference; ignore downloaded raw files
+data/newspapers/
+data/sandbox/
+data/cache/
+
+# Logs and run artefacts
+#logs/
+#runs/
+outputs/
+*.log
+
+# Models / embeddings
+models/
+*.bin
+*.pt
+*.npy
+*.faiss
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
+
+specs/
+

@@ -1,0 +1,123 @@
+{
+  "experiment_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_evidence",
+  "timestamp": "2026-04-30T21:33:38.752157+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.662621798279693,
+    "macro_recall_at": 0.5592786842786843,
+    "macro_recall_isAt": 0.7659649122807017,
+    "at_details": {
+      "recall_TRUE": 0.6212121212121212,
+      "recall_PROBABLE": 0.2777777777777778,
+      "recall_FALSE": 0.7788461538461539,
+      "macro_recall": 0.5592786842786843
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.6052631578947368,
+      "recall_FALSE": 0.9266666666666666,
+      "macro_recall": 0.7659649122807017
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.640625,
+      "recall": 0.6212121212121212,
+      "f1-score": 0.6307692307692307,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.5555555555555556,
+      "recall": 0.2777777777777778,
+      "f1-score": 0.3703703703703704,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.7043478260869566,
+      "recall": 0.7788461538461539,
+      "f1-score": 0.7397260273972603,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.6335094605475041,
+      "recall": 0.5592786842786843,
+      "f1-score": 0.5802885428456205,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6677309782608696,
+      "recall": 0.675531914893617,
+      "f1-score": 0.6661113975891009,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.6764705882352942,
+      "recall": 0.6052631578947368,
+      "f1-score": 0.6388888888888888,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.9025974025974026,
+      "recall": 0.9266666666666666,
+      "f1-score": 0.9144736842105262,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.7895339954163484,
+      "recall": 0.7659649122807017,
+      "f1-score": 0.7766812865497075,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8568909188433594,
+      "recall": 0.8617021276595744,
+      "f1-score": 0.8587703745178548,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      41,
+      2,
+      23
+    ],
+    [
+      2,
+      5,
+      11
+    ],
+    [
+      21,
+      2,
+      81
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      23,
+      15
+    ],
+    [
+      11,
+      139
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 188,
+    "stack": "+evidence",
+    "classifier": "mlp",
+    "n_features": 2346,
+    "sd_run": "SD-H_full_at_v2",
+    "timestamp": "2026-04-30T23:33:38"
+  }
+}

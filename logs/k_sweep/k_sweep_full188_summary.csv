@@ -1,0 +1,3 @@
+experiment_id,k,diversify_labels,global_score,macro_recall_at,macro_recall_isAt,n_calls,parse_ok,parse_partial,parse_fail,avg_latency_ms,avg_retrieved_per_call,model,provider
+T2_ksweep_full_k8_nodiv_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,8,False,0.5921652421652421,0.48433048433048437,0.7,188,179,9,0,7027.238315426772,8.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra
+T2_ksweep_full_k8_div_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,8,True,0.5799909690699165,0.4403328153328154,0.7196491228070176,188,180,8,0,5285.770637767471,8.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra

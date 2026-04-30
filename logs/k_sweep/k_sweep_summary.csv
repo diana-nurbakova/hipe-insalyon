@@ -1,0 +1,9 @@
+experiment_id,k,diversify_labels,global_score,macro_recall_at,macro_recall_isAt,n_calls,parse_ok,parse_partial,parse_fail,avg_latency_ms,avg_retrieved_per_call,model,provider
+T2_ksweep_k8_nodiv_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,8,False,0.666407867494824,0.6304347826086957,0.7023809523809523,50,49,1,0,3908.223895999836,8.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra
+T2_ksweep_k8_div_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,8,True,0.6373949118514336,0.5862977602108037,0.6884920634920635,50,49,1,0,3155.672553993063,8.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra
+T2_ksweep_k3_div_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,3,True,0.614722535918188,0.5131752305665349,0.7162698412698413,50,49,1,0,5370.715940002119,3.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra
+T2_ksweep_k1_div_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,1,True,0.6126207729468599,0.572463768115942,0.6527777777777778,50,49,1,0,3355.9924959996715,1.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra
+T2_ksweep_k5_div_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,5,True,0.5874898048811092,0.5718050065876153,0.6031746031746031,50,49,1,0,4780.609858003445,5.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra
+T2_ksweep_k1_nodiv_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,1,False,0.5729970512579208,0.5428194993412384,0.6031746031746031,50,49,1,0,5503.453756002709,1.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra
+T2_ksweep_k5_nodiv_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,5,False,0.5662682727900119,0.6007905138339921,0.5317460317460317,50,49,1,0,4444.840302004013,5.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra
+T2_ksweep_k3_nodiv_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test,3,False,0.5508697220653742,0.52832674571805,0.5734126984126984,50,50,0,0,3570.4584580042865,3.0,meta-llama/Meta-Llama-3.1-8B-Instruct,deepinfra

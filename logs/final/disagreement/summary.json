@@ -1,0 +1,405 @@
+{
+  "log_dir": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\logs\\ablations",
+  "n_configurations": 27,
+  "configurations": [
+    "T1.1_llm_zeroshot_PA+PB_split_v2",
+    "T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+    "T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+    "T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test_reparsed",
+    "T1.1_llm_zeroshot_PA_v2_fixed_prompt",
+    "T1.1_llm_zeroshot_PB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+    "T1.1_llm_zeroshot_PB_deepinfra_Meta-Llama-31-8B-Instruct_at-test_reparsed",
+    "T1.1_llm_zeroshot_PB_v2_fixed_prompt",
+    "T1.1_llm_zeroshot_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+    "T1.4or5_mask_C1_mask_LR_at_at-test",
+    "T1.4or5_mask_C1_mask_LR_isAt_at-test",
+    "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test",
+    "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_isAt_at-test",
+    "T1.4or5_mask_T1.4_temporal_only_LR_at_at-test",
+    "T1.4or5_mask_T1.4_temporal_only_LR_isAt_at-test",
+    "T1.4or5_mask_T1.5_handcrafted_RF_at_at-test",
+    "T1.4or5_mask_T1.5_handcrafted_RF_isAt_at-test",
+    "T1_hybrid_RFat_MASKC4isAt_at-test",
+    "T1_llm_hybrid_PA-rag3_PB-zeroshot_at-test_v3",
+    "T1_llm_rag3_PA_at-test_v3_adjustable",
+    "T1_llm_rag3_PR_at-test",
+    "T1_llm_rag3_PR_at-test_v2",
+    "T1_llm_rag3_wd_temp_PR_at-test_v2",
+    "T1_llm_rag3_wd_temp_PR_at-test_v3_adjustable",
+    "T1_llm_zeroshot_wd_temp_PR_at-test",
+    "T1_llm_zeroshot_wd_temp_PR_at-test_v2",
+    "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable"
+  ],
+  "at": {
+    "task": "at",
+    "n_instances": 188,
+    "configs": [
+      "T1.1_llm_zeroshot_PA+PB_split_v2",
+      "T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test_reparsed",
+      "T1.1_llm_zeroshot_PA_v2_fixed_prompt",
+      "T1.1_llm_zeroshot_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "T1.4or5_mask_C1_mask_LR_at_at-test",
+      "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test",
+      "T1.4or5_mask_T1.4_temporal_only_LR_at_at-test",
+      "T1.4or5_mask_T1.5_handcrafted_RF_at_at-test",
+      "T1_hybrid_RFat_MASKC4isAt_at-test",
+      "T1_llm_hybrid_PA-rag3_PB-zeroshot_at-test_v3",
+      "T1_llm_rag3_PA_at-test_v3_adjustable",
+      "T1_llm_rag3_PR_at-test",
+      "T1_llm_rag3_PR_at-test_v2",
+      "T1_llm_rag3_wd_temp_PR_at-test_v2",
+      "T1_llm_rag3_wd_temp_PR_at-test_v3_adjustable",
+      "T1_llm_zeroshot_wd_temp_PR_at-test",
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v2",
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable"
+    ],
+    "n_configs": 20,
+    "n_all_wrong": 1,
+    "n_all_right": 2,
+    "frac_all_wrong": 0.005319148936170213,
+    "frac_all_right": 0.010638297872340425,
+    "hardness_histogram": {
+      "0": 1,
+      "1": 3,
+      "2": 7,
+      "3": 5,
+      "4": 10,
+      "5": 15,
+      "6": 14,
+      "7": 20,
+      "8": 14,
+      "9": 20,
+      "10": 18,
+      "11": 16,
+      "12": 12,
+      "13": 8,
+      "14": 10,
+      "15": 4,
+      "16": 2,
+      "17": 4,
+      "18": 3,
+      "20": 2
+    },
+    "by_language": {
+      "de": {
+        "n": 70,
+        "all_wrong": 0,
+        "all_right": 1
+      },
+      "fr": {
+        "n": 64,
+        "all_wrong": 0,
+        "all_right": 1
+      },
+      "en": {
+        "n": 54,
+        "all_wrong": 1,
+        "all_right": 0
+      }
+    },
+    "by_gold_class": {
+      "FALSE": {
+        "n": 104,
+        "all_wrong": 0,
+        "all_right": 1
+      },
+      "TRUE": {
+        "n": 66,
+        "all_wrong": 1,
+        "all_right": 1
+      },
+      "PROBABLE": {
+        "n": 18,
+        "all_wrong": 0,
+        "all_right": 0
+      }
+    },
+    "per_config_accuracy": {
+      "T1.1_llm_zeroshot_PA+PB_split_v2": {
+        "n_seen": 188,
+        "n_correct": 88,
+        "accuracy": 0.46808510638297873
+      },
+      "T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 69,
+        "accuracy": 0.3670212765957447
+      },
+      "T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 101,
+        "accuracy": 0.5372340425531915
+      },
+      "T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test_reparsed": {
+        "n_seen": 188,
+        "n_correct": 96,
+        "accuracy": 0.5106382978723404
+      },
+      "T1.1_llm_zeroshot_PA_v2_fixed_prompt": {
+        "n_seen": 188,
+        "n_correct": 88,
+        "accuracy": 0.46808510638297873
+      },
+      "T1.1_llm_zeroshot_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 54,
+        "accuracy": 0.2872340425531915
+      },
+      "T1.4or5_mask_C1_mask_LR_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 118,
+        "accuracy": 0.6276595744680851
+      },
+      "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_T1.4_temporal_only_LR_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 87,
+        "accuracy": 0.4627659574468085
+      },
+      "T1.4or5_mask_T1.5_handcrafted_RF_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 139,
+        "accuracy": 0.7393617021276596
+      },
+      "T1_hybrid_RFat_MASKC4isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 139,
+        "accuracy": 0.7393617021276596
+      },
+      "T1_llm_hybrid_PA-rag3_PB-zeroshot_at-test_v3": {
+        "n_seen": 188,
+        "n_correct": 102,
+        "accuracy": 0.5425531914893617
+      },
+      "T1_llm_rag3_PA_at-test_v3_adjustable": {
+        "n_seen": 188,
+        "n_correct": 102,
+        "accuracy": 0.5425531914893617
+      },
+      "T1_llm_rag3_PR_at-test": {
+        "n_seen": 188,
+        "n_correct": 58,
+        "accuracy": 0.30851063829787234
+      },
+      "T1_llm_rag3_PR_at-test_v2": {
+        "n_seen": 188,
+        "n_correct": 56,
+        "accuracy": 0.2978723404255319
+      },
+      "T1_llm_rag3_wd_temp_PR_at-test_v2": {
+        "n_seen": 188,
+        "n_correct": 55,
+        "accuracy": 0.2925531914893617
+      },
+      "T1_llm_rag3_wd_temp_PR_at-test_v3_adjustable": {
+        "n_seen": 188,
+        "n_correct": 49,
+        "accuracy": 0.26063829787234044
+      },
+      "T1_llm_zeroshot_wd_temp_PR_at-test": {
+        "n_seen": 188,
+        "n_correct": 47,
+        "accuracy": 0.25
+      },
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v2": {
+        "n_seen": 188,
+        "n_correct": 40,
+        "accuracy": 0.2127659574468085
+      },
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable": {
+        "n_seen": 188,
+        "n_correct": 48,
+        "accuracy": 0.2553191489361702
+      }
+    },
+    "all_wrong_modal_pred_distribution": {
+      "FALSE": 1
+    },
+    "all_wrong_gold_distribution": {
+      "TRUE": 1
+    }
+  },
+  "isAt": {
+    "task": "isAt",
+    "n_instances": 188,
+    "configs": [
+      "T1.1_llm_zeroshot_PA+PB_split_v2",
+      "T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "T1.1_llm_zeroshot_PB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "T1.1_llm_zeroshot_PB_deepinfra_Meta-Llama-31-8B-Instruct_at-test_reparsed",
+      "T1.1_llm_zeroshot_PB_v2_fixed_prompt",
+      "T1.1_llm_zeroshot_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "T1.4or5_mask_C1_mask_LR_isAt_at-test",
+      "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_isAt_at-test",
+      "T1.4or5_mask_T1.4_temporal_only_LR_isAt_at-test",
+      "T1.4or5_mask_T1.5_handcrafted_RF_isAt_at-test",
+      "T1_hybrid_RFat_MASKC4isAt_at-test",
+      "T1_llm_hybrid_PA-rag3_PB-zeroshot_at-test_v3",
+      "T1_llm_rag3_PR_at-test",
+      "T1_llm_rag3_PR_at-test_v2",
+      "T1_llm_rag3_wd_temp_PR_at-test_v2",
+      "T1_llm_rag3_wd_temp_PR_at-test_v3_adjustable",
+      "T1_llm_zeroshot_wd_temp_PR_at-test",
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v2",
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable"
+    ],
+    "n_configs": 19,
+    "n_all_wrong": 0,
+    "n_all_right": 25,
+    "frac_all_wrong": 0.0,
+    "frac_all_right": 0.13297872340425532,
+    "hardness_histogram": {
+      "1": 1,
+      "3": 3,
+      "5": 5,
+      "6": 4,
+      "7": 5,
+      "8": 7,
+      "9": 7,
+      "10": 7,
+      "11": 3,
+      "12": 9,
+      "13": 13,
+      "14": 13,
+      "15": 21,
+      "16": 19,
+      "17": 16,
+      "18": 30,
+      "19": 25
+    },
+    "by_language": {
+      "de": {
+        "n": 70,
+        "all_wrong": 0,
+        "all_right": 14
+      },
+      "fr": {
+        "n": 64,
+        "all_wrong": 0,
+        "all_right": 3
+      },
+      "en": {
+        "n": 54,
+        "all_wrong": 0,
+        "all_right": 8
+      }
+    },
+    "by_gold_class": {
+      "FALSE": {
+        "n": 150,
+        "all_wrong": 0,
+        "all_right": 25
+      },
+      "TRUE": {
+        "n": 38,
+        "all_wrong": 0,
+        "all_right": 0
+      }
+    },
+    "per_config_accuracy": {
+      "T1.1_llm_zeroshot_PA+PB_split_v2": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 151,
+        "accuracy": 0.8031914893617021
+      },
+      "T1.1_llm_zeroshot_PB_deepinfra_Meta-Llama-31-8B-Instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 140,
+        "accuracy": 0.7446808510638298
+      },
+      "T1.1_llm_zeroshot_PB_deepinfra_Meta-Llama-31-8B-Instruct_at-test_reparsed": {
+        "n_seen": 188,
+        "n_correct": 107,
+        "accuracy": 0.5691489361702128
+      },
+      "T1.1_llm_zeroshot_PB_v2_fixed_prompt": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.1_llm_zeroshot_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 148,
+        "accuracy": 0.7872340425531915
+      },
+      "T1.4or5_mask_C1_mask_LR_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 146,
+        "accuracy": 0.776595744680851
+      },
+      "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_T1.4_temporal_only_LR_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 109,
+        "accuracy": 0.5797872340425532
+      },
+      "T1.4or5_mask_T1.5_handcrafted_RF_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 158,
+        "accuracy": 0.8404255319148937
+      },
+      "T1_hybrid_RFat_MASKC4isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1_llm_hybrid_PA-rag3_PB-zeroshot_at-test_v3": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1_llm_rag3_PR_at-test": {
+        "n_seen": 188,
+        "n_correct": 146,
+        "accuracy": 0.776595744680851
+      },
+      "T1_llm_rag3_PR_at-test_v2": {
+        "n_seen": 188,
+        "n_correct": 145,
+        "accuracy": 0.7712765957446809
+      },
+      "T1_llm_rag3_wd_temp_PR_at-test_v2": {
+        "n_seen": 188,
+        "n_correct": 147,
+        "accuracy": 0.7819148936170213
+      },
+      "T1_llm_rag3_wd_temp_PR_at-test_v3_adjustable": {
+        "n_seen": 188,
+        "n_correct": 149,
+        "accuracy": 0.7925531914893617
+      },
+      "T1_llm_zeroshot_wd_temp_PR_at-test": {
+        "n_seen": 188,
+        "n_correct": 150,
+        "accuracy": 0.7978723404255319
+      },
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v2": {
+        "n_seen": 188,
+        "n_correct": 151,
+        "accuracy": 0.8031914893617021
+      },
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable": {
+        "n_seen": 188,
+        "n_correct": 153,
+        "accuracy": 0.8138297872340425
+      }
+    },
+    "all_wrong_modal_pred_distribution": {},
+    "all_wrong_gold_distribution": {}
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "task": "at",
+  "variant": "R",
+  "n_test": 188,
+  "limit": null,
+  "k_values": [
+    8
+  ],
+  "diversify_settings": [
+    false,
+    true
+  ],
+  "rows": [
+    {
+      "experiment_id": "T2_ksweep_full_k8_nodiv_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "k": 8,
+      "diversify_labels": false,
+      "global_score": 0.5921652421652421,
+      "macro_recall_at": 0.48433048433048437,
+      "macro_recall_isAt": 0.7,
+      "n_calls": 188,
+      "parse_ok": 179,
+      "parse_partial": 9,
+      "parse_fail": 0,
+      "avg_latency_ms": 7027.238315426772,
+      "avg_retrieved_per_call": 8.0,
+      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "provider": "deepinfra"
+    },
+    {
+      "experiment_id": "T2_ksweep_full_k8_div_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "k": 8,
+      "diversify_labels": true,
+      "global_score": 0.5799909690699165,
+      "macro_recall_at": 0.4403328153328154,
+      "macro_recall_isAt": 0.7196491228070176,
+      "n_calls": 188,
+      "parse_ok": 180,
+      "parse_partial": 8,
+      "parse_fail": 0,
+      "avg_latency_ms": 5285.770637767471,
+      "avg_retrieved_per_call": 8.0,
+      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "provider": "deepinfra"
+    }
+  ],
+  "elapsed_seconds": 2314.914119800029
+}

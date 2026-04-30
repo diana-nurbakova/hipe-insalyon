@@ -1,0 +1,157 @@
+{
+  "experiment_id": "rules_PAB_70b_isAt",
+  "timestamp": "2026-04-30T21:44:59.883325+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.6475355579262765,
+    "macro_recall_at": 0.5628467192445946,
+    "macro_recall_isAt": 0.7322243966079582,
+    "at_details": {
+      "recall_TRUE": 0.9666666666666667,
+      "recall_PROBABLE": 0.2631578947368421,
+      "recall_FALSE": 0.45871559633027525,
+      "macro_recall": 0.5628467192445946
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.6904761904761905,
+      "recall_FALSE": 0.773972602739726,
+      "macro_recall": 0.7322243966079582
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.5420560747663551,
+      "recall": 0.9666666666666667,
+      "f1-score": 0.6946107784431138,
+      "support": 60
+    },
+    "PROBABLE": {
+      "precision": 0.1724137931034483,
+      "recall": 0.2631578947368421,
+      "f1-score": 0.20833333333333334,
+      "support": 19
+    },
+    "FALSE": {
+      "precision": 0.9615384615384616,
+      "recall": 0.45871559633027525,
+      "f1-score": 0.6211180124223603,
+      "support": 109
+    },
+    "macro avg": {
+      "precision": 0.5586694431360884,
+      "recall": 0.5628467192445946,
+      "f1-score": 0.5080207080662692,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.7479091428863783,
+      "recall": 0.601063829787234,
+      "f1-score": 0.6028555499678587,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.46774193548387094,
+      "recall": 0.6904761904761905,
+      "f1-score": 0.5576923076923077,
+      "support": 42
+    },
+    "FALSE": {
+      "precision": 0.8968253968253969,
+      "recall": 0.773972602739726,
+      "f1-score": 0.8308823529411765,
+      "support": 146
+    },
+    "macro avg": {
+      "precision": 0.6822836661546339,
+      "recall": 0.7322243966079582,
+      "f1-score": 0.6942873303167421,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8009663256746306,
+      "recall": 0.7553191489361702,
+      "f1-score": 0.7698505343217484,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      58,
+      1,
+      1
+    ],
+    [
+      13,
+      5,
+      1
+    ],
+    [
+      36,
+      23,
+      50
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      29,
+      13
+    ],
+    [
+      33,
+      113
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 188,
+    "total_time_seconds": 255.6136881004786,
+    "avg_latency_ms": 1359.6472771302053,
+    "predictor_config": {
+      "variant": "AB",
+      "provider": "openrouter",
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "temperature": 0.0,
+      "max_tokens": 512,
+      "text_field": "text",
+      "include_wikidata": false,
+      "include_temporal": false,
+      "k_retrieved": 0,
+      "retriever_dir": null,
+      "retriever_prefer_language": "auto",
+      "diversify_retrieved_labels": false,
+      "zero_shot": true
+    },
+    "data_split": {
+      "task": "isAt",
+      "n_test": 188,
+      "limit": null
+    },
+    "predictor_stats": {
+      "n_calls": 188,
+      "parse_ok": 180,
+      "parse_partial": 8,
+      "parse_fail": 0,
+      "prompt_tokens": 599162,
+      "completion_tokens": 4060,
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "provider": "openrouter",
+      "fallback_provider": "deepinfra",
+      "n_fallback_calls": 0,
+      "variant": "AB",
+      "k_retrieved": 0,
+      "avg_retrieved_per_call": 0.0,
+      "n_samples": 1,
+      "sample_temperature": 0.7
+    }
+  }
+}

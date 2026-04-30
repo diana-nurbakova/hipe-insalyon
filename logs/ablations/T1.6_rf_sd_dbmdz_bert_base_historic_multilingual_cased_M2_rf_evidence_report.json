@@ -1,0 +1,123 @@
+{
+  "experiment_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_evidence",
+  "timestamp": "2026-04-30T21:33:27.907908+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.5035143949617633,
+    "macro_recall_at": 0.4412393162393162,
+    "macro_recall_isAt": 0.5657894736842105,
+    "at_details": {
+      "recall_TRUE": 0.3333333333333333,
+      "recall_PROBABLE": 0.0,
+      "recall_FALSE": 0.9903846153846154,
+      "macro_recall": 0.4412393162393162
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.13157894736842105,
+      "recall_FALSE": 1.0,
+      "macro_recall": 0.5657894736842105
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.9565217391304348,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.4943820224719101,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.6242424242424243,
+      "recall": 0.9903846153846154,
+      "f1-score": 0.7657992565055762,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.526921387790953,
+      "recall": 0.4412393162393162,
+      "f1-score": 0.42006042632582874,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6811257814033023,
+      "recall": 0.6648936170212766,
+      "f1-score": 0.597193277445351,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 1.0,
+      "recall": 0.13157894736842105,
+      "f1-score": 0.23255813953488372,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.819672131147541,
+      "recall": 1.0,
+      "f1-score": 0.9009009009009009,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.9098360655737705,
+      "recall": 0.5657894736842105,
+      "f1-score": 0.5667295202178924,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8561213812347402,
+      "recall": 0.824468085106383,
+      "f1-score": 0.7658103427524506,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      22,
+      0,
+      44
+    ],
+    [
+      0,
+      0,
+      18
+    ],
+    [
+      1,
+      0,
+      103
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      5,
+      33
+    ],
+    [
+      0,
+      150
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 188,
+    "stack": "+evidence",
+    "classifier": "rf",
+    "n_features": 2346,
+    "sd_run": "SD-H_full_at_v2",
+    "timestamp": "2026-04-30T23:33:27"
+  }
+}

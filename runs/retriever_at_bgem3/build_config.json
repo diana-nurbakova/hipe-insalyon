@@ -1,0 +1,9 @@
+{
+  "model": "BAAI/bge-m3",
+  "field": "context",
+  "task": "at",
+  "n_instances": 1063,
+  "dim": 1024,
+  "max_seq_length": null,
+  "batch_size": 16
+}

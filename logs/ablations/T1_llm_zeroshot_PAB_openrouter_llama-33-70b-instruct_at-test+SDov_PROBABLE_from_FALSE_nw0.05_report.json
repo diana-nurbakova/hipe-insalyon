@@ -1,0 +1,131 @@
+{
+  "experiment_id": "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test+SDov_PROBABLE_from_FALSE_nw0.05",
+  "timestamp": "2026-04-30T21:31:26.748396+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.6293743780585885,
+    "macro_recall_at": 0.4973452473452474,
+    "macro_recall_isAt": 0.7614035087719297,
+    "at_details": {
+      "recall_TRUE": 0.8787878787878788,
+      "recall_PROBABLE": 0.05555555555555555,
+      "recall_FALSE": 0.5576923076923077,
+      "macro_recall": 0.4973452473452474
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.7894736842105263,
+      "recall_FALSE": 0.7333333333333333,
+      "macro_recall": 0.7614035087719297
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.5631067961165048,
+      "recall": 0.8787878787878788,
+      "f1-score": 0.6863905325443787,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.05555555555555555,
+      "recall": 0.05555555555555555,
+      "f1-score": 0.05555555555555555,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.8656716417910447,
+      "recall": 0.5576923076923077,
+      "f1-score": 0.6783625730994152,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.494777997821035,
+      "recall": 0.4973452473452474,
+      "f1-score": 0.4734362203997831,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6818877621806274,
+      "recall": 0.6223404255319149,
+      "f1-score": 0.6215504401610009,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.42857142857142855,
+      "recall": 0.7894736842105263,
+      "f1-score": 0.5555555555555555,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.9322033898305084,
+      "recall": 0.7333333333333333,
+      "f1-score": 0.8208955223880597,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.6803874092009685,
+      "recall": 0.7614035087719297,
+      "f1-score": 0.6882255389718076,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8304054402143115,
+      "recall": 0.7446808510638298,
+      "f1-score": 0.7672629759006387,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      58,
+      3,
+      5
+    ],
+    [
+      13,
+      1,
+      4
+    ],
+    [
+      32,
+      14,
+      58
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      30,
+      8
+    ],
+    [
+      40,
+      110
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 188,
+    "source_predictions": "logs\\ablations\\T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test_predictions.jsonl",
+    "sd_run": "runs\\sd\\SD-H_full_at_v2",
+    "sd_config": "SD-H",
+    "target": "PROBABLE",
+    "only_from": [
+      "FALSE"
+    ],
+    "min_nwracc": 0.05,
+    "min_precision": 0.4,
+    "n_overrides": 3,
+    "n_eligible_subgroups": 13,
+    "task": "at",
+    "timestamp": "2026-04-30T23:31:26"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "config": {
+    "provider": "deepinfra",
+    "model": null,
+    "temperature": 0.0,
+    "max_tokens": 512,
+    "text_field": "text",
+    "include_wikidata": false,
+    "include_temporal": false,
+    "task": "at",
+    "limit": null,
+    "log_dir": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\logs\\ablations"
+  },
+  "results": [
+    {
+      "variant": "A",
+      "experiment_id": "T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "provider": "deepinfra",
+      "scores": {
+        "global_score": 0.439539627039627,
+        "macro_recall_at": 0.3790792540792541,
+        "macro_recall_isAt": 0.5,
+        "at_details": {
+          "recall_TRUE": 0.45454545454545453,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.6826923076923077,
+          "macro_recall": 0.3790792540792541
+        },
+        "isAt_details": {
+          "recall_TRUE": 0.0,
+          "recall_FALSE": 1.0,
+          "macro_recall": 0.5
+        }
+      },
+      "predictor_stats": {
+        "n_calls": 188,
+        "parse_ok": 112,
+        "parse_partial": 6,
+        "parse_fail": 70,
+        "prompt_tokens": 350687,
+        "completion_tokens": 6891,
+        "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+        "provider": "deepinfra",
+        "variant": "A"
+      },
+      "report_path": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\logs\\ablations\\T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test_report.json"
+    },
+    {
+      "variant": "B",
+      "experiment_id": "T1.1_llm_zeroshot_PB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "provider": "deepinfra",
+      "scores": {
+        "global_score": 0.4196491228070175,
+        "macro_recall_at": 0.3333333333333333,
+        "macro_recall_isAt": 0.5059649122807017,
+        "at_details": {
+          "recall_TRUE": 0.0,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 1.0,
+          "macro_recall": 0.3333333333333333
+        },
+        "isAt_details": {
+          "recall_TRUE": 0.10526315789473684,
+          "recall_FALSE": 0.9066666666666666,
+          "macro_recall": 0.5059649122807017
+        }
+      },
+      "predictor_stats": {
+        "n_calls": 188,
+        "parse_ok": 0,
+        "parse_partial": 21,
+        "parse_fail": 167,
+        "prompt_tokens": 382271,
+        "completion_tokens": 18505,
+        "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+        "provider": "deepinfra",
+        "variant": "B"
+      },
+      "report_path": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\logs\\ablations\\T1.1_llm_zeroshot_PB_deepinfra_Meta-Llama-31-8B-Instruct_at-test_report.json"
+    },
+    {
+      "variant": "AB",
+      "experiment_id": "T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "provider": "deepinfra",
+      "scores": {
+        "global_score": 0.4489239561607983,
+        "macro_recall_at": 0.33556721056721056,
+        "macro_recall_isAt": 0.5622807017543859,
+        "at_details": {
+          "recall_TRUE": 0.9393939393939394,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.0673076923076923,
+          "macro_recall": 0.33556721056721056
+        },
+        "isAt_details": {
+          "recall_TRUE": 0.15789473684210525,
+          "recall_FALSE": 0.9666666666666667,
+          "macro_recall": 0.5622807017543859
+        }
+      },
+      "predictor_stats": {
+        "n_calls": 188,
+        "parse_ok": 188,
+        "parse_partial": 0,
+        "parse_fail": 0,
+        "prompt_tokens": 315343,
+        "completion_tokens": 4194,
+        "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+        "provider": "deepinfra",
+        "variant": "AB"
+      },
+      "report_path": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\logs\\ablations\\T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test_report.json"
+    },
+    {
+      "variant": "R",
+      "experiment_id": "T1.1_llm_zeroshot_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
+      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "provider": "deepinfra",
+      "scores": {
+        "global_score": 0.5374752927384506,
+        "macro_recall_at": 0.4538979538979539,
+        "macro_recall_isAt": 0.6210526315789474,
+        "at_details": {
+          "recall_TRUE": 0.5454545454545454,
+          "recall_PROBABLE": 0.7777777777777778,
+          "recall_FALSE": 0.038461538461538464,
+          "macro_recall": 0.4538979538979539
+        },
+        "isAt_details": {
+          "recall_TRUE": 0.34210526315789475,
+          "recall_FALSE": 0.9,
+          "macro_recall": 0.6210526315789474
+        }
+      },
+      "predictor_stats": {
+        "n_calls": 188,
+        "parse_ok": 188,
+        "parse_partial": 0,
+        "parse_fail": 0,
+        "prompt_tokens": 322487,
+        "completion_tokens": 42095,
+        "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+        "provider": "deepinfra",
+        "variant": "R"
+      },
+      "report_path": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\logs\\ablations\\T1.1_llm_zeroshot_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test_report.json"
+    }
+  ]
+}

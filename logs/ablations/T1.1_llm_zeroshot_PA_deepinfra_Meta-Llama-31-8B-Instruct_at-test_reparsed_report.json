@@ -1,0 +1,124 @@
+{
+  "experiment_id": "T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test_reparsed",
+  "timestamp": "2026-04-30T05:58:31.128604+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.43152680652680653,
+    "macro_recall_at": 0.36305361305361306,
+    "macro_recall_isAt": 0.5,
+    "at_details": {
+      "recall_TRUE": 0.45454545454545453,
+      "recall_PROBABLE": 0.0,
+      "recall_FALSE": 0.6346153846153846,
+      "macro_recall": 0.36305361305361306
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.0,
+      "recall_FALSE": 1.0,
+      "macro_recall": 0.5
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.4411764705882353,
+      "recall": 0.45454545454545453,
+      "f1-score": 0.4477611940298507,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.5945945945945946,
+      "recall": 0.6346153846153846,
+      "f1-score": 0.613953488372093,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.3452570217276099,
+      "recall": 0.36305361305361306,
+      "f1-score": 0.35390489413398124,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.4838057707269222,
+      "recall": 0.5106382978723404,
+      "f1-score": 0.4968266042375948,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.7978723404255319,
+      "recall": 1.0,
+      "f1-score": 0.8875739644970414,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.39893617021276595,
+      "recall": 0.5,
+      "f1-score": 0.4437869822485207,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6366002716161159,
+      "recall": 0.7978723404255319,
+      "f1-score": 0.7081707163540224,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      30,
+      0,
+      36
+    ],
+    [
+      9,
+      0,
+      9
+    ],
+    [
+      29,
+      9,
+      66
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      0,
+      38
+    ],
+    [
+      0,
+      150
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "reparse_statuses": {
+      "ok": 112,
+      "fail": 61,
+      "partial": 15
+    },
+    "source": "logs\\ablations\\T1.1_llm_zeroshot_PA_deepinfra_Meta-Llama-31-8B-Instruct_at-test_predictions.jsonl",
+    "variant": "A"
+  }
+}

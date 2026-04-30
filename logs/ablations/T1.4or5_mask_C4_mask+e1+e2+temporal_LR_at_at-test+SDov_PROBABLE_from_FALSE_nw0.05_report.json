@@ -1,0 +1,131 @@
+{
+  "experiment_id": "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test+SDov_PROBABLE_from_FALSE_nw0.05",
+  "timestamp": "2026-04-30T21:14:47.542609+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.7910677285677286,
+    "macro_recall_at": 0.5821354571354571,
+    "macro_recall_isAt": 1.0,
+    "at_details": {
+      "recall_TRUE": 0.6363636363636364,
+      "recall_PROBABLE": 0.3888888888888889,
+      "recall_FALSE": 0.7211538461538461,
+      "macro_recall": 0.5821354571354571
+    },
+    "isAt_details": {
+      "recall_TRUE": null,
+      "recall_FALSE": 1.0,
+      "macro_recall": 1.0
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.6,
+      "recall": 0.6363636363636364,
+      "f1-score": 0.6176470588235293,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.4117647058823529,
+      "recall": 0.3888888888888889,
+      "f1-score": 0.39999999999999997,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.7425742574257426,
+      "recall": 0.7211538461538461,
+      "f1-score": 0.7317073170731707,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.5847796544360319,
+      "recall": 0.5821354571354571,
+      "f1-score": 0.5831181252989001,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.660848337649785,
+      "recall": 0.6595744680851063,
+      "f1-score": 0.6599056747763973,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0
+    },
+    "FALSE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 188
+    },
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      42,
+      5,
+      19
+    ],
+    [
+      4,
+      7,
+      7
+    ],
+    [
+      24,
+      5,
+      75
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      188
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 188,
+    "source_predictions": "logs\\ablations\\T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test_predictions.jsonl",
+    "sd_run": "runs\\sd\\SD-H_20260430_175226",
+    "sd_config": "SD-H",
+    "target": "PROBABLE",
+    "only_from": [
+      "FALSE"
+    ],
+    "min_nwracc": 0.05,
+    "min_precision": 0.0,
+    "n_overrides": 3,
+    "n_eligible_subgroups": 5,
+    "task": "at",
+    "timestamp": "2026-04-30T23:14:47"
+  }
+}

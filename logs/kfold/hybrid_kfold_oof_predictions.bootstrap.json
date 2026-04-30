@@ -1,0 +1,27 @@
+{
+  "n_instances": 1251,
+  "n_bootstrap": 1000,
+  "ci": 0.95,
+  "global_score": {
+    "point": 0.644148575313283,
+    "bootstrap_mean": 0.6444010270254728,
+    "bootstrap_std": 0.012667379103693753,
+    "ci_lower": 0.6205870798703976,
+    "ci_upper": 0.670098198695512
+  },
+  "macro_recall_at": {
+    "point": 0.5797315061290217,
+    "bootstrap_mean": 0.580060226246467,
+    "bootstrap_std": 0.017262227665118042,
+    "ci_lower": 0.5464815046880098,
+    "ci_upper": 0.613861199719767
+  },
+  "macro_recall_isAt": {
+    "point": 0.7085656444975441,
+    "bootstrap_mean": 0.7087418278044786,
+    "bootstrap_std": 0.016262533660785637,
+    "ci_lower": 0.6753395711203195,
+    "ci_upper": 0.7404629337232288
+  },
+  "source_file": "logs\\kfold\\hybrid_kfold_oof_predictions.jsonl"
+}

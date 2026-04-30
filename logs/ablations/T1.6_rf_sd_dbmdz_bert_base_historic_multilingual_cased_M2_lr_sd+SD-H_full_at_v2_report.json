@@ -1,0 +1,123 @@
+{
+  "experiment_id": "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_sd+SD-H_full_at_v2",
+  "timestamp": "2026-04-30T21:33:40.263245+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.662123870281765,
+    "macro_recall_at": 0.5782828282828283,
+    "macro_recall_isAt": 0.7459649122807017,
+    "at_details": {
+      "recall_TRUE": 0.6515151515151515,
+      "recall_PROBABLE": 0.3333333333333333,
+      "recall_FALSE": 0.75,
+      "macro_recall": 0.5782828282828283
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.6052631578947368,
+      "recall_FALSE": 0.8866666666666667,
+      "macro_recall": 0.7459649122807017
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.6323529411764706,
+      "recall": 0.6515151515151515,
+      "f1-score": 0.6417910447761194,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.42857142857142855,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.375,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.7358490566037735,
+      "recall": 0.75,
+      "f1-score": 0.7428571428571428,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.5989244754505575,
+      "recall": 0.5782828282828283,
+      "f1-score": 0.586549395877754,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6700951155251342,
+      "recall": 0.675531914893617,
+      "f1-score": 0.6721561266615251,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.575,
+      "recall": 0.6052631578947368,
+      "f1-score": 0.5897435897435896,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.8986486486486487,
+      "recall": 0.8866666666666667,
+      "f1-score": 0.8926174496644295,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.7368243243243243,
+      "recall": 0.7459649122807017,
+      "f1-score": 0.7411805197040096,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8332303047728579,
+      "recall": 0.8297872340425532,
+      "f1-score": 0.8313982652123448,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      43,
+      4,
+      19
+    ],
+    [
+      3,
+      6,
+      9
+    ],
+    [
+      22,
+      4,
+      78
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      23,
+      15
+    ],
+    [
+      17,
+      133
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 188,
+    "stack": "+sd",
+    "classifier": "lr",
+    "n_features": 2362,
+    "sd_run": "SD-H_full_at_v2",
+    "timestamp": "2026-04-30T23:33:40"
+  }
+}
