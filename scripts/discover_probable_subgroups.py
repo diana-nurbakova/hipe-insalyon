@@ -120,6 +120,7 @@ def _build_features(
     spectral_neighbors: int,
     hierarchy_cache,
     random_state: int,
+    qa_features=None,
 ):
     if config == "SD-P":
         # v1 backward-compat: handcrafted_matrix ⊕ PCA-MASK
@@ -140,6 +141,7 @@ def _build_features(
         spectral_n_components=spectral_components,
         spectral_n_neighbors=spectral_neighbors,
         pca_n_components=n_pca,
+        qa_features=qa_features,
         random_state=random_state,
         verbose=True,
     )
@@ -154,8 +156,12 @@ def main() -> int:
                     help="MASK cache (used for spectral / PCA blocks)")
     ap.add_argument("--split-csv", default=str(DEFAULT_SPLIT_CSV))
     ap.add_argument("--config", default="SD-HS",
-                    choices=("SD-H", "SD-HS", "SD-HSP", "SD-P"),
-                    help="Feature configuration (Specs v2 §4.3)")
+                    choices=("SD-H", "SD-HS", "SD-HSP", "SD-HQ", "SD-HQS", "SD-P"),
+                    help="Feature configuration (Specs v2 §4.3 + Dateline/QA §4.2)")
+    ap.add_argument("--qa-npz", default=None,
+                    help="Path to a cached QA-evidence .npz with 'X' = (N, 14|15) "
+                         "for configs SD-HQ / SD-HQS. The cache is aligned by row "
+                         "order with the dataset (after train-only filtering).")
     ap.add_argument("--target", nargs="+", default=["PROBABLE"])
     ap.add_argument("--train-only", action=argparse.BooleanOptionalAction, default=True)
     ap.add_argument("--hierarchy-cache", default=None,
@@ -196,7 +202,7 @@ def main() -> int:
         print(f"  restricting to baseline train split: {len(instances)}")
 
     mask_embeddings = None
-    if args.config in ("SD-HS", "SD-HSP", "SD-P"):
+    if args.config in ("SD-HS", "SD-HSP", "SD-HQS", "SD-P"):
         npz_path = Path(args.npz)
         if not npz_path.exists():
             raise SystemExit(f"config {args.config} requires --npz that exists: {npz_path}")
@@ -221,6 +227,46 @@ def main() -> int:
         hierarchy_cache = load_hierarchy_cache(args.hierarchy_cache)
         print(f"  loaded hierarchy cache: {len(hierarchy_cache)} target QIDs")
 
+    qa_features = None
+    if args.config in ("SD-HQ", "SD-HQS"):
+        if not args.qa_npz:
+            raise SystemExit(
+                f"config {args.config} requires --qa-npz pointing at a cached "
+                "QA-evidence matrix. Run notebook Cell D5 to produce one."
+            )
+        qa_path = Path(args.qa_npz)
+        if not qa_path.exists():
+            raise SystemExit(f"--qa-npz does not exist: {qa_path}")
+        qa_z = np.load(qa_path, allow_pickle=True)
+        qa_full = np.asarray(qa_z["X"], dtype=np.float32)
+        if qa_full.shape[0] != len(sample_ids) and qa_full.shape[0] not in (
+            len(instances), len(instances) + 0,
+        ):
+            # The cache may have been generated before train-only filtering;
+            # build an alignment via sample_id if the npz exposes it.
+            if "sample_id" in qa_z.files:
+                cache_ids = list(qa_z["sample_id"].astype(str))
+                idx = {sid: i for i, sid in enumerate(cache_ids)}
+                rows = [idx.get(sid) for sid in sample_ids]
+                if any(r is None for r in rows):
+                    missing = [s for s, r in zip(sample_ids, rows) if r is None]
+                    raise SystemExit(
+                        f"{len(missing)} instances absent from QA cache "
+                        f"(first: {missing[:2]})."
+                    )
+                qa_full = qa_full[rows]
+            else:
+                raise SystemExit(
+                    f"QA cache row count {qa_full.shape[0]} does not match "
+                    f"{len(sample_ids)} (cache has no 'sample_id' for re-alignment)."
+                )
+        else:
+            # Aligned cache or full-corpus cache covering all rows; just slice
+            # to the (already filtered) instance order.
+            qa_full = qa_full[: len(sample_ids)]
+        qa_features = qa_full
+        print(f"  QA cache (aligned): {qa_features.shape}")
+
     X, feature_names, _legacy_pca, meta = _build_features(
         instances,
         config=args.config,
@@ -229,6 +275,7 @@ def main() -> int:
         spectral_components=args.spectral_components,
         spectral_neighbors=args.spectral_neighbors,
         hierarchy_cache=hierarchy_cache,
+        qa_features=qa_features,
         random_state=args.seed,
     )
     print(f"Feature matrix: {X.shape}")

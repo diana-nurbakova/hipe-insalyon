@@ -54,6 +54,14 @@ QA_FEATURE_NAMES: Final[tuple[str, ...]] = (
 # Cross-check feature, populated only when dateline metadata is supplied.
 QA_DATELINE_CROSS_FEATURE: Final[str] = "qa_evidence_is_dateline"
 
+# Full 15-d QA block including the dateline cross-check. This is what
+# ``QAEvidenceExtractor.extract_matrix`` and ``build_sd_feature_matrix``
+# both consume so the column count stays consistent end-to-end.
+QA_FULL_FEATURE_NAMES: Final[tuple[str, ...]] = (
+    *QA_FEATURE_NAMES,
+    QA_DATELINE_CROSS_FEATURE,
+)
+
 
 QA_TEMPLATES: Final[dict[str, dict[str, str]]] = {
     "at": {
@@ -202,11 +210,13 @@ class QAEvidenceExtractor:
     ) -> tuple[np.ndarray, list[dict[str, Any]]]:
         """Run QA extraction over a list of instances.
 
-        Returns ``(X, raw_features)`` where ``X`` is the 14-d numeric
-        matrix (``QA_FEATURE_NAMES``) and ``raw_features`` is a list of
+        Returns ``(X, raw_features)`` where ``X`` is the 15-d numeric
+        matrix (``QA_FULL_FEATURE_NAMES`` — ``QA_FEATURE_NAMES`` plus the
+        dateline cross-check column) and ``raw_features`` is a list of
         dicts including the span strings for inspection / prompt
-        injection. When ``cross_check_dateline`` is True, the dateline
-        cross-check (§3.8) is applied in place on each row.
+        injection. When ``cross_check_dateline`` is True the cross-check
+        (§3.8) is applied in place on each row before stacking; when
+        False the cross-check column is left at its default 0.0.
         """
         rows: list[dict[str, Any]] = []
         iterator: Iterable[RelationInstance] = instances
@@ -225,7 +235,7 @@ class QAEvidenceExtractor:
             rows.append(feats)
 
         X = np.array(
-            [[float(r[name]) for name in QA_FEATURE_NAMES] for r in rows],
+            [[float(r[name]) for name in QA_FULL_FEATURE_NAMES] for r in rows],
             dtype=np.float32,
         )
         return X, rows

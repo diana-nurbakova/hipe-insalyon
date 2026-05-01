@@ -42,6 +42,7 @@ from hipe.subgroup_discovery.hierarchy import (
 from hipe.subgroup_discovery.qa_evidence import (
     QA_DATELINE_CROSS_FEATURE,
     QA_FEATURE_NAMES,
+    QA_FULL_FEATURE_NAMES,
     QAEvidenceExtractor,
 )
 
@@ -254,9 +255,9 @@ _VALID_SD_CONFIGS: tuple[str, ...] = (
 )
 
 # QA feature block always includes the dateline cross-check (§3.8).
-_QA_FULL_FEATURE_NAMES: tuple[str, ...] = tuple(QA_FEATURE_NAMES) + (
-    QA_DATELINE_CROSS_FEATURE,
-)
+# Re-exported under a private name for backward compatibility with earlier
+# callers; ``QA_FULL_FEATURE_NAMES`` is the canonical public symbol.
+_QA_FULL_FEATURE_NAMES: tuple[str, ...] = QA_FULL_FEATURE_NAMES
 
 
 def build_sd_feature_matrix(
@@ -388,16 +389,34 @@ def _resolve_qa_block(
     qa_extractor: QAEvidenceExtractor | None,
     verbose: bool,
 ) -> tuple[np.ndarray, dict[str, Any]]:
-    """Return the (N, 15) QA block plus metadata for the SD config builder."""
+    """Return the (N, 15) QA block plus metadata for the SD config builder.
+
+    Caches generated before the matrix layout was canonicalised may be
+    14-dimensional (missing the trailing ``qa_evidence_is_dateline``
+    column). Such caches are accepted and zero-padded — callers that care
+    about the cross-check signal should re-extract.
+    """
     expected_dim = len(_QA_FULL_FEATURE_NAMES)
     if qa_features is not None:
         arr = np.asarray(qa_features, dtype=np.float32)
-        if arr.ndim != 2 or arr.shape[0] != len(insts) or arr.shape[1] != expected_dim:
+        if arr.ndim != 2 or arr.shape[0] != len(insts):
             raise ValueError(
-                f"qa_features must have shape (N={len(insts)}, {expected_dim}); "
-                f"got {arr.shape}"
+                f"qa_features must have shape (N={len(insts)}, "
+                f"{expected_dim}); got {arr.shape}"
             )
-        if verbose:
+        if arr.shape[1] == expected_dim - 1:
+            arr = np.hstack([arr, np.zeros((arr.shape[0], 1), dtype=np.float32)])
+            if verbose:
+                print(
+                    f"  QA evidence (cached) : padded {arr.shape[1] - 1} -> "
+                    f"{arr.shape[1]}-d (cross-check column missing in cache)"
+                )
+        elif arr.shape[1] != expected_dim:
+            raise ValueError(
+                f"qa_features must have shape (N={len(insts)}, "
+                f"{expected_dim}); got {arr.shape}"
+            )
+        elif verbose:
             print(f"  QA evidence (cached) : {arr.shape[1]}-d")
         return arr, {"source": "cached", "shape": tuple(arr.shape)}
 
