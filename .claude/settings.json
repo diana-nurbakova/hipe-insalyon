@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(python -m pytest tests/test_sd_dateline_qa.py -x -q)",
+      "Bash(python -m pytest tests/test_sd_evidence_features.py tests/test_subgroup_discovery.py -x -q)",
+      "Bash(python -c \"from hipe.data import load_jsonl; insts=load_jsonl\\('data/dataset_reference.jsonl'\\); print\\(len\\(insts\\), 'total'\\); print\\(insts[0].sample_id\\)\")"
+    ]
+  }
+}

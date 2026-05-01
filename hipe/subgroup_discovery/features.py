@@ -1,15 +1,18 @@
 """Feature-space builders for MCMC subgroup discovery.
 
-Three configurations are supported (Specs v2 §4.3):
+Configurations supported (Specs v2 §4.3 + Dateline/QA Specs §4.2):
 
-    SD-H    handcrafted only (~41 dims)
-    SD-HS   handcrafted + spectral eigenvectors (~51 dims)
-    SD-HSP  handcrafted + spectral + PCA-MASK (~61 dims)
+    SD-H    handcrafted only (~47 dims, incl. dateline)
+    SD-HS   handcrafted + spectral eigenvectors (~57 dims)
+    SD-HSP  handcrafted + spectral + PCA-MASK (~67 dims)
+    SD-HQ   handcrafted + QA evidence (~61 dims)        — GPU
+    SD-HQS  handcrafted + QA + spectral (~71 dims)      — GPU
 
 The handcrafted block is composed of the existing temporal block plus the
-new evidence-strength, verb-type, optional location-hierarchy, and language
-metadata features. ``build_hybrid_features`` is kept for backward compatibility
-with the v1 SD-P configuration (handcrafted ⊕ PCA-MASK, no evidence block).
+evidence-strength, verb-type, optional location-hierarchy, dateline, and
+language metadata features. ``build_hybrid_features`` is kept for backward
+compatibility with the v1 SD-P configuration (handcrafted ⊕ PCA-MASK, no
+evidence block).
 """
 
 from __future__ import annotations
@@ -22,6 +25,10 @@ import numpy as np
 from hipe.data import RelationInstance
 from hipe.features import HANDCRAFTED_FEATURE_NAMES
 from hipe.features.temporal import TEMPORAL_FEATURE_NAMES, temporal_matrix
+from hipe.subgroup_discovery.dateline import (
+    DATELINE_FEATURE_NAMES,
+    dateline_matrix,
+)
 from hipe.subgroup_discovery.evidence import (
     EVIDENCE_FEATURE_NAMES,
     VERB_TYPE_FEATURE_NAMES,
@@ -31,6 +38,11 @@ from hipe.subgroup_discovery.evidence import (
 from hipe.subgroup_discovery.hierarchy import (
     HIERARCHY_FEATURE_NAMES,
     hierarchy_matrix,
+)
+from hipe.subgroup_discovery.qa_evidence import (
+    QA_DATELINE_CROSS_FEATURE,
+    QA_FEATURE_NAMES,
+    QAEvidenceExtractor,
 )
 
 
@@ -233,6 +245,20 @@ def _language_matrix(instances: Iterable[RelationInstance]) -> np.ndarray:
     return rows
 
 
+_VALID_SD_CONFIGS: tuple[str, ...] = (
+    "SD-H",
+    "SD-HS",
+    "SD-HSP",
+    "SD-HQ",
+    "SD-HQS",
+)
+
+# QA feature block always includes the dateline cross-check (§3.8).
+_QA_FULL_FEATURE_NAMES: tuple[str, ...] = tuple(QA_FEATURE_NAMES) + (
+    QA_DATELINE_CROSS_FEATURE,
+)
+
+
 def build_sd_feature_matrix(
     instances: Sequence[RelationInstance],
     mask_embeddings: np.ndarray | None = None,
@@ -243,22 +269,34 @@ def build_sd_feature_matrix(
     spectral_n_neighbors: int = 15,
     pca_n_components: int = 10,
     random_state: int = 42,
+    qa_features: np.ndarray | None = None,
+    qa_extractor: QAEvidenceExtractor | None = None,
     verbose: bool = True,
 ):
-    """Build the SD feature matrix for the requested config (Specs v2 §4.5).
+    """Build the SD feature matrix for the requested config (Specs v2 §4.5
+    + Dateline/QA Specs §4.2).
 
     Parameters
     ----------
     instances : sequence of RelationInstance
     mask_embeddings : (N, D) array or None
-        Required for ``SD-HS`` and ``SD-HSP``. Ignored for ``SD-H``.
-    config : {'SD-H', 'SD-HS', 'SD-HSP'}
+        Required for ``SD-HS``, ``SD-HSP`` and ``SD-HQS``. Ignored otherwise.
+    config : {'SD-H', 'SD-HS', 'SD-HSP', 'SD-HQ', 'SD-HQS'}
     hierarchy_cache : optional Wikidata P131 hierarchy cache. If None, the
         hierarchy block contributes only the direct mention count plus zeros.
+    qa_features : (N, 15) precomputed QA matrix
+        Used for ``SD-HQ`` / ``SD-HQS`` to avoid loading the QA model when a
+        cache is already on disk. Columns must follow ``_QA_FULL_FEATURE_NAMES``.
+    qa_extractor : QAEvidenceExtractor, optional
+        Used to compute QA features on the fly when ``qa_features`` is not
+        provided. If neither is given for a QA config, a default extractor
+        is instantiated (loads ``deepset/xlm-roberta-base-squad2``).
     """
     config = config.upper()
-    if config not in {"SD-H", "SD-HS", "SD-HSP"}:
-        raise ValueError(f"unknown config {config!r}; choose SD-H / SD-HS / SD-HSP")
+    if config not in _VALID_SD_CONFIGS:
+        raise ValueError(
+            f"unknown config {config!r}; choose one of {_VALID_SD_CONFIGS}"
+        )
 
     insts = list(instances)
     blocks: list[np.ndarray] = []
@@ -280,7 +318,11 @@ def build_sd_feature_matrix(
     blocks.append(hierarchy_matrix(insts, hierarchy_cache))
     feature_names.extend(HIERARCHY_FEATURE_NAMES)
 
-    # 5. Language one-hot (4)
+    # 5. Dateline (5) — always on, zero cost (Dateline/QA Specs §4.2).
+    blocks.append(dateline_matrix(insts))
+    feature_names.extend(DATELINE_FEATURE_NAMES)
+
+    # 6. Language one-hot (4)
     blocks.append(_language_matrix(insts))
     feature_names.extend(_LANG_FEATURE_NAMES)
 
@@ -288,8 +330,19 @@ def build_sd_feature_matrix(
     if verbose:
         print(f"  handcrafted block    : {X.shape[1]}-d")
 
+    qa_meta: dict[str, Any] | None = None
+    if config in ("SD-HQ", "SD-HQS"):
+        qa_block, qa_meta = _resolve_qa_block(
+            insts,
+            qa_features=qa_features,
+            qa_extractor=qa_extractor,
+            verbose=verbose,
+        )
+        X = np.hstack([X, qa_block]).astype(np.float32, copy=False)
+        feature_names.extend(_QA_FULL_FEATURE_NAMES)
+
     spectral_meta: dict[str, Any] | None = None
-    if config in ("SD-HS", "SD-HSP"):
+    if config in ("SD-HS", "SD-HSP", "SD-HQS"):
         if mask_embeddings is None:
             raise ValueError(f"config {config!r} requires --mask-embeddings")
         spectral_meta = spectral_preprocessing_for_sd(
@@ -321,4 +374,40 @@ def build_sd_feature_matrix(
     if verbose:
         print(f"Config {config}: {X.shape[1]} total features (rows: {X.shape[0]})")
 
-    return X, feature_names, {"spectral": spectral_meta, "pca": pca_meta}
+    return X, feature_names, {
+        "spectral": spectral_meta,
+        "pca": pca_meta,
+        "qa": qa_meta,
+    }
+
+
+def _resolve_qa_block(
+    insts: Sequence[RelationInstance],
+    *,
+    qa_features: np.ndarray | None,
+    qa_extractor: QAEvidenceExtractor | None,
+    verbose: bool,
+) -> tuple[np.ndarray, dict[str, Any]]:
+    """Return the (N, 15) QA block plus metadata for the SD config builder."""
+    expected_dim = len(_QA_FULL_FEATURE_NAMES)
+    if qa_features is not None:
+        arr = np.asarray(qa_features, dtype=np.float32)
+        if arr.ndim != 2 or arr.shape[0] != len(insts) or arr.shape[1] != expected_dim:
+            raise ValueError(
+                f"qa_features must have shape (N={len(insts)}, {expected_dim}); "
+                f"got {arr.shape}"
+            )
+        if verbose:
+            print(f"  QA evidence (cached) : {arr.shape[1]}-d")
+        return arr, {"source": "cached", "shape": tuple(arr.shape)}
+
+    extractor = qa_extractor if qa_extractor is not None else QAEvidenceExtractor()
+    if verbose:
+        print(f"  QA evidence (live)   : running '{extractor.model_name}'")
+    arr, raw = extractor.extract_matrix(insts, cross_check_dateline=True, progress=verbose)
+    return arr, {
+        "source": "live",
+        "model": extractor.model_name,
+        "shape": tuple(arr.shape),
+        "raw": raw,
+    }

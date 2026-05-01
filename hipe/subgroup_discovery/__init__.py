@@ -8,13 +8,16 @@ Public surface
 --------------
 - :class:`Subgroup`                — one discovered interval pattern
 - :class:`MCMCSubgroupDiscovery`   — MCMC sampler with COTP closure + MEET
-- :func:`build_sd_feature_matrix`  — v2 unified feature builder (SD-H/HS/HSP)
+- :func:`build_sd_feature_matrix`  — unified feature builder
+                                     (SD-H/HS/HSP/HQ/HQS)
 - :func:`build_hybrid_features`    — v1 SD-P (handcrafted ⊕ PCA-MASK)
 - :func:`spectral_preprocessing_for_sd` — spectral diagnostics + features
 - :func:`extract_evidence_features`, :func:`evidence_matrix`
 - :func:`classify_verb_type`,       :func:`verb_type_matrix`
 - :func:`expand_mentions`           — pronoun + title coreference heuristic
 - :func:`hierarchy_matrix`,         :func:`build_location_hierarchy`
+- :func:`detect_dateline`,          :func:`dateline_matrix` (Dateline/QA §2)
+- :class:`QAEvidenceExtractor`,     :func:`cross_check_qa_dateline` (§3)
 - :func:`add_subgroup_features`    — Option A: append match indicators to X
 - :func:`apply_overrides`          — Option B: post-hoc class-flip from rules
 - :func:`subgroup_to_prompt_rule`  — Option C: NL rule for LLM prompts
@@ -22,6 +25,11 @@ Public surface
 - :func:`semantic_stability`       — Jaccard-on-extent stability over fold groups (v3 §7.1)
 """
 
+from hipe.subgroup_discovery.dateline import (
+    DATELINE_FEATURE_NAMES,
+    dateline_matrix,
+    detect_dateline,
+)
 from hipe.subgroup_discovery.evidence import (
     EVIDENCE_FEATURE_NAMES,
     VERB_LEXICON,
@@ -56,6 +64,15 @@ from hipe.subgroup_discovery.mcmc import (
     MCMCSubgroupDiscovery,
     Subgroup,
 )
+from hipe.subgroup_discovery.qa_evidence import (
+    DEFAULT_QA_MODEL,
+    QA_DATELINE_CROSS_FEATURE,
+    QA_FEATURE_NAMES,
+    QA_TEMPLATES,
+    QAEvidenceExtractor,
+    cross_check_qa_dateline,
+    qa_threshold_classifier,
+)
 from hipe.subgroup_discovery.stability import cv_stability, semantic_stability
 
 __all__ = [
@@ -81,6 +98,17 @@ __all__ = [
     "compute_hierarchical_mention_count",
     "hierarchy_matrix",
     "load_hierarchy_cache",
+    # Dateline / QA evidence
+    "DATELINE_FEATURE_NAMES",
+    "detect_dateline",
+    "dateline_matrix",
+    "DEFAULT_QA_MODEL",
+    "QA_FEATURE_NAMES",
+    "QA_DATELINE_CROSS_FEATURE",
+    "QA_TEMPLATES",
+    "QAEvidenceExtractor",
+    "cross_check_qa_dateline",
+    "qa_threshold_classifier",
     # Integration
     "add_subgroup_features",
     "apply_overrides",

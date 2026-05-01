@@ -1,6 +1,6 @@
 {
-  "log_dir": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\logs\\ablations",
-  "n_configurations": 27,
+  "log_dir": "/content/HIPE/logs/ablations",
+  "n_configurations": 213,
   "configurations": [
     "T1.1_llm_zeroshot_PA+PB_split_v2",
     "T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
@@ -14,25 +14,211 @@
     "T1.4or5_mask_C1_mask_LR_at_at-test",
     "T1.4or5_mask_C1_mask_LR_isAt_at-test",
     "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test",
+    "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test+SDov_PROBABLE_from_FALSE_nw0.05",
     "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_isAt_at-test",
     "T1.4or5_mask_T1.4_temporal_only_LR_at_at-test",
     "T1.4or5_mask_T1.4_temporal_only_LR_isAt_at-test",
     "T1.4or5_mask_T1.5_handcrafted_RF_at_at-test",
     "T1.4or5_mask_T1.5_handcrafted_RF_isAt_at-test",
+    "T1.4or5_mask_contrastive_CEonly_at-test",
+    "T1.4or5_mask_contrastive_CEonly_at-test_30d",
+    "T1.4or5_mask_contrastive_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_a070_at-ordinal_isAt-supcon_at-test",
+    "T1.4or5_mask_contrastive_ordinal_m1_at-test",
+    "T1.4or5_mask_contrastive_ordinal_m1_at-test_30d",
+    "T1.4or5_mask_contrastive_supcon_at-test",
+    "T1.4or5_mask_contrastive_supcon_at-test_30d",
+    "T1.4or5_mask_grid_handcrafted_rf_at_at-test",
+    "T1.4or5_mask_grid_handcrafted_rf_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_spec_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_spectral_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_spectral_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_spec_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_spectral_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_spectral_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_spec_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_spec_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_spectral_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_spectral_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_spec_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_spectral_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_spectral_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_spec_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_spectral_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_spectral_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_spec_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_spectral_at_at-test",
+    "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_spectral_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_spec_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_spectral_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_spectral_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_spec_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_t_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_layers_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_spectral_at_at-test",
+    "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_spectral_isAt_at-test",
+    "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_base",
+    "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_evidence",
+    "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_sd+SD-H_full_at_v2",
+    "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_base",
+    "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_evidence",
+    "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_sd+SD-H_full_at_v2",
+    "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_base",
+    "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_evidence",
+    "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_sd+SD-H_full_at_v2",
     "T1_hybrid_RFat_MASKC4isAt_at-test",
+    "T1_hybrid_T15RFat_Llama70BisAt",
+    "T1_hybrid_T15RFat_Llama70BisAt_v2",
+    "T1_hybrid_T15RFat_Llama70BrulesIsAt",
     "T1_llm_hybrid_PA-rag3_PB-zeroshot_at-test_v3",
     "T1_llm_rag3_PA_at-test_v3_adjustable",
     "T1_llm_rag3_PR_at-test",
     "T1_llm_rag3_PR_at-test_v2",
     "T1_llm_rag3_wd_temp_PR_at-test_v2",
     "T1_llm_rag3_wd_temp_PR_at-test_v3_adjustable",
+    "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test",
+    "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test+SDov_PROBABLE_from_FALSE_nw0.05",
+    "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_isAt-test",
+    "T1_llm_zeroshot_PA_openrouter_llama-33-70b-instruct_at-test",
+    "T1_llm_zeroshot_PA_openrouter_llama-33-70b-instruct_isAt-test",
+    "T1_llm_zeroshot_PB_openrouter_llama-33-70b-instruct_at-test",
+    "T1_llm_zeroshot_PB_openrouter_llama-33-70b-instruct_isAt-test",
+    "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_at-test",
+    "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_isAt-test",
     "T1_llm_zeroshot_wd_temp_PR_at-test",
     "T1_llm_zeroshot_wd_temp_PR_at-test_v2",
-    "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable"
+    "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable",
+    "rules_PAB_70b_at",
+    "rules_PAB_70b_isAt",
+    "sc3_PAB_70b_at"
   ],
   "at": {
     "task": "at",
-    "n_instances": 188,
+    "n_instances": 352,
     "configs": [
       "T1.1_llm_zeroshot_PA+PB_split_v2",
       "T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
@@ -42,77 +228,259 @@
       "T1.1_llm_zeroshot_PR_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
       "T1.4or5_mask_C1_mask_LR_at_at-test",
       "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test",
+      "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test+SDov_PROBABLE_from_FALSE_nw0.05",
       "T1.4or5_mask_T1.4_temporal_only_LR_at_at-test",
       "T1.4or5_mask_T1.5_handcrafted_RF_at_at-test",
+      "T1.4or5_mask_contrastive_CEonly_at-test",
+      "T1.4or5_mask_contrastive_CEonly_at-test_30d",
+      "T1.4or5_mask_contrastive_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_a070_at-ordinal_isAt-supcon_at-test",
+      "T1.4or5_mask_contrastive_ordinal_m1_at-test",
+      "T1.4or5_mask_contrastive_ordinal_m1_at-test_30d",
+      "T1.4or5_mask_contrastive_supcon_at-test",
+      "T1.4or5_mask_contrastive_supcon_at-test_30d",
+      "T1.4or5_mask_grid_handcrafted_rf_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_spec_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_spectral_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_spec_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_spectral_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_spec_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_spectral_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_spec_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_spectral_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_spec_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_spectral_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_spec_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_spectral_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_spec_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_spectral_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_l_t_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_spec_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_t_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_layers_at_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_spectral_at_at-test",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_base",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_evidence",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_sd+SD-H_full_at_v2",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_base",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_evidence",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_sd+SD-H_full_at_v2",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_base",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_evidence",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_sd+SD-H_full_at_v2",
       "T1_hybrid_RFat_MASKC4isAt_at-test",
+      "T1_hybrid_T15RFat_Llama70BisAt",
+      "T1_hybrid_T15RFat_Llama70BisAt_v2",
+      "T1_hybrid_T15RFat_Llama70BrulesIsAt",
       "T1_llm_hybrid_PA-rag3_PB-zeroshot_at-test_v3",
       "T1_llm_rag3_PA_at-test_v3_adjustable",
       "T1_llm_rag3_PR_at-test",
       "T1_llm_rag3_PR_at-test_v2",
       "T1_llm_rag3_wd_temp_PR_at-test_v2",
       "T1_llm_rag3_wd_temp_PR_at-test_v3_adjustable",
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test",
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test+SDov_PROBABLE_from_FALSE_nw0.05",
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_isAt-test",
+      "T1_llm_zeroshot_PA_openrouter_llama-33-70b-instruct_at-test",
+      "T1_llm_zeroshot_PA_openrouter_llama-33-70b-instruct_isAt-test",
+      "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_at-test",
+      "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_isAt-test",
       "T1_llm_zeroshot_wd_temp_PR_at-test",
       "T1_llm_zeroshot_wd_temp_PR_at-test_v2",
-      "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable"
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable",
+      "rules_PAB_70b_at",
+      "rules_PAB_70b_isAt",
+      "sc3_PAB_70b_at"
     ],
-    "n_configs": 20,
-    "n_all_wrong": 1,
-    "n_all_right": 2,
-    "frac_all_wrong": 0.005319148936170213,
-    "frac_all_right": 0.010638297872340425,
+    "n_configs": 127,
+    "n_all_wrong": 8,
+    "n_all_right": 19,
+    "frac_all_wrong": 0.022727272727272728,
+    "frac_all_right": 0.05397727272727273,
     "hardness_histogram": {
-      "0": 1,
-      "1": 3,
-      "2": 7,
-      "3": 5,
-      "4": 10,
-      "5": 15,
-      "6": 14,
-      "7": 20,
-      "8": 14,
-      "9": 20,
-      "10": 18,
-      "11": 16,
-      "12": 12,
-      "13": 8,
-      "14": 10,
-      "15": 4,
-      "16": 2,
-      "17": 4,
-      "18": 3,
-      "20": 2
+      "0": 8,
+      "1": 41,
+      "2": 18,
+      "3": 29,
+      "4": 50,
+      "5": 19,
+      "7": 2,
+      "12": 1,
+      "13": 1,
+      "14": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 1,
+      "20": 1,
+      "21": 1,
+      "22": 1,
+      "23": 1,
+      "25": 1,
+      "27": 1,
+      "28": 1,
+      "29": 2,
+      "30": 2,
+      "31": 1,
+      "32": 2,
+      "33": 2,
+      "34": 2,
+      "35": 1,
+      "36": 1,
+      "37": 1,
+      "38": 1,
+      "39": 1,
+      "40": 3,
+      "41": 3,
+      "44": 2,
+      "46": 1,
+      "47": 3,
+      "48": 1,
+      "49": 1,
+      "50": 1,
+      "52": 1,
+      "53": 1,
+      "54": 5,
+      "57": 3,
+      "58": 1,
+      "59": 2,
+      "60": 1,
+      "61": 2,
+      "62": 2,
+      "63": 1,
+      "64": 3,
+      "65": 1,
+      "67": 1,
+      "70": 2,
+      "71": 1,
+      "72": 2,
+      "73": 1,
+      "75": 1,
+      "76": 1,
+      "77": 4,
+      "78": 3,
+      "79": 2,
+      "80": 2,
+      "83": 3,
+      "84": 1,
+      "85": 1,
+      "86": 1,
+      "87": 4,
+      "88": 2,
+      "89": 3,
+      "90": 3,
+      "91": 6,
+      "92": 2,
+      "93": 6,
+      "94": 1,
+      "95": 3,
+      "96": 2,
+      "97": 6,
+      "98": 3,
+      "99": 2,
+      "100": 4,
+      "101": 6,
+      "102": 2,
+      "104": 2,
+      "105": 2,
+      "106": 6,
+      "107": 2,
+      "108": 5,
+      "109": 4,
+      "110": 4,
+      "112": 6,
+      "114": 2,
+      "115": 1,
+      "117": 1,
+      "118": 1
     },
     "by_language": {
       "de": {
-        "n": 70,
-        "all_wrong": 0,
-        "all_right": 1
+        "n": 117,
+        "all_wrong": 4,
+        "all_right": 7
       },
       "fr": {
-        "n": 64,
-        "all_wrong": 0,
-        "all_right": 1
+        "n": 135,
+        "all_wrong": 2,
+        "all_right": 6
       },
       "en": {
-        "n": 54,
-        "all_wrong": 1,
-        "all_right": 0
+        "n": 100,
+        "all_wrong": 2,
+        "all_right": 6
       }
     },
     "by_gold_class": {
       "FALSE": {
-        "n": 104,
+        "n": 197,
         "all_wrong": 0,
-        "all_right": 1
+        "all_right": 19
       },
       "TRUE": {
-        "n": 66,
+        "n": 119,
         "all_wrong": 1,
-        "all_right": 1
+        "all_right": 0
       },
       "PROBABLE": {
-        "n": 18,
-        "all_wrong": 0,
+        "n": 36,
+        "all_wrong": 7,
         "all_right": 0
       }
     },
@@ -157,6 +525,11 @@
         "n_correct": 125,
         "accuracy": 0.6648936170212766
       },
+      "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test+SDov_PROBABLE_from_FALSE_nw0.05": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
       "T1.4or5_mask_T1.4_temporal_only_LR_at_at-test": {
         "n_seen": 188,
         "n_correct": 87,
@@ -167,7 +540,487 @@
         "n_correct": 139,
         "accuracy": 0.7393617021276596
       },
+      "T1.4or5_mask_contrastive_CEonly_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_contrastive_CEonly_at-test_30d": {
+        "n_seen": 188,
+        "n_correct": 129,
+        "accuracy": 0.6861702127659575
+      },
+      "T1.4or5_mask_contrastive_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_a070_at-ordinal_isAt-supcon_at-test": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
+      "T1.4or5_mask_contrastive_ordinal_m1_at-test": {
+        "n_seen": 188,
+        "n_correct": 120,
+        "accuracy": 0.6382978723404256
+      },
+      "T1.4or5_mask_contrastive_ordinal_m1_at-test_30d": {
+        "n_seen": 188,
+        "n_correct": 123,
+        "accuracy": 0.6542553191489362
+      },
+      "T1.4or5_mask_contrastive_supcon_at-test": {
+        "n_seen": 188,
+        "n_correct": 120,
+        "accuracy": 0.6382978723404256
+      },
+      "T1.4or5_mask_contrastive_supcon_at-test_30d": {
+        "n_seen": 188,
+        "n_correct": 131,
+        "accuracy": 0.6968085106382979
+      },
+      "T1.4or5_mask_grid_handcrafted_rf_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 139,
+        "accuracy": 0.7393617021276596
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 111,
+        "accuracy": 0.5904255319148937
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 114,
+        "accuracy": 0.6063829787234043
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 102,
+        "accuracy": 0.5425531914893617
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 110,
+        "accuracy": 0.5851063829787234
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 111,
+        "accuracy": 0.5904255319148937
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_spec_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 116,
+        "accuracy": 0.6170212765957447
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 114,
+        "accuracy": 0.6063829787234043
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 102,
+        "accuracy": 0.5425531914893617
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 110,
+        "accuracy": 0.5851063829787234
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_spectral_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 79,
+        "accuracy": 0.42021276595744683
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 120,
+        "accuracy": 0.6382978723404256
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 131,
+        "accuracy": 0.6968085106382979
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_spec_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 120,
+        "accuracy": 0.6382978723404256
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 131,
+        "accuracy": 0.6968085106382979
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_spectral_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 60,
+        "accuracy": 0.3191489361702128
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 118,
+        "accuracy": 0.6276595744680851
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_spec_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 118,
+        "accuracy": 0.6276595744680851
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_spectral_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 70,
+        "accuracy": 0.3723404255319149
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 131,
+        "accuracy": 0.6968085106382979
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 130,
+        "accuracy": 0.6914893617021277
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 128,
+        "accuracy": 0.6808510638297872
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 131,
+        "accuracy": 0.6968085106382979
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_spec_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 130,
+        "accuracy": 0.6914893617021277
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 128,
+        "accuracy": 0.6808510638297872
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_spectral_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 58,
+        "accuracy": 0.30851063829787234
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 123,
+        "accuracy": 0.6542553191489362
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 127,
+        "accuracy": 0.675531914893617
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_spec_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 123,
+        "accuracy": 0.6542553191489362
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 123,
+        "accuracy": 0.6542553191489362
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 127,
+        "accuracy": 0.675531914893617
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_spectral_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 46,
+        "accuracy": 0.24468085106382978
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 128,
+        "accuracy": 0.6808510638297872
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 123,
+        "accuracy": 0.6542553191489362
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 128,
+        "accuracy": 0.6808510638297872
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_spec_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 123,
+        "accuracy": 0.6542553191489362
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_spectral_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 57,
+        "accuracy": 0.30319148936170215
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 123,
+        "accuracy": 0.6542553191489362
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_spec_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 123,
+        "accuracy": 0.6542553191489362
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 123,
+        "accuracy": 0.6542553191489362
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_spectral_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 68,
+        "accuracy": 0.3617021276595745
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 131,
+        "accuracy": 0.6968085106382979
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 132,
+        "accuracy": 0.7021276595744681
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 119,
+        "accuracy": 0.6329787234042553
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 132,
+        "accuracy": 0.7021276595744681
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_l_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 131,
+        "accuracy": 0.6968085106382979
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_spec_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 130,
+        "accuracy": 0.6914893617021277
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_t_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 132,
+        "accuracy": 0.7021276595744681
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 119,
+        "accuracy": 0.6329787234042553
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_layers_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 132,
+        "accuracy": 0.7021276595744681
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_spectral_at_at-test": {
+        "n_seen": 188,
+        "n_correct": 80,
+        "accuracy": 0.425531914893617
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_base": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_evidence": {
+        "n_seen": 188,
+        "n_correct": 126,
+        "accuracy": 0.6702127659574468
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_sd+SD-H_full_at_v2": {
+        "n_seen": 188,
+        "n_correct": 127,
+        "accuracy": 0.675531914893617
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_base": {
+        "n_seen": 188,
+        "n_correct": 129,
+        "accuracy": 0.6861702127659575
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_evidence": {
+        "n_seen": 188,
+        "n_correct": 127,
+        "accuracy": 0.675531914893617
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_sd+SD-H_full_at_v2": {
+        "n_seen": 188,
+        "n_correct": 134,
+        "accuracy": 0.7127659574468085
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_base": {
+        "n_seen": 188,
+        "n_correct": 124,
+        "accuracy": 0.6595744680851063
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_evidence": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_sd+SD-H_full_at_v2": {
+        "n_seen": 188,
+        "n_correct": 125,
+        "accuracy": 0.6648936170212766
+      },
       "T1_hybrid_RFat_MASKC4isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 139,
+        "accuracy": 0.7393617021276596
+      },
+      "T1_hybrid_T15RFat_Llama70BisAt": {
+        "n_seen": 352,
+        "n_correct": 232,
+        "accuracy": 0.6590909090909091
+      },
+      "T1_hybrid_T15RFat_Llama70BisAt_v2": {
+        "n_seen": 188,
+        "n_correct": 139,
+        "accuracy": 0.7393617021276596
+      },
+      "T1_hybrid_T15RFat_Llama70BrulesIsAt": {
         "n_seen": 188,
         "n_correct": 139,
         "accuracy": 0.7393617021276596
@@ -202,6 +1055,41 @@
         "n_correct": 49,
         "accuracy": 0.26063829787234044
       },
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 120,
+        "accuracy": 0.6382978723404256
+      },
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test+SDov_PROBABLE_from_FALSE_nw0.05": {
+        "n_seen": 188,
+        "n_correct": 117,
+        "accuracy": 0.6223404255319149
+      },
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_isAt-test": {
+        "n_seen": 188,
+        "n_correct": 117,
+        "accuracy": 0.6223404255319149
+      },
+      "T1_llm_zeroshot_PA_openrouter_llama-33-70b-instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 110,
+        "accuracy": 0.5851063829787234
+      },
+      "T1_llm_zeroshot_PA_openrouter_llama-33-70b-instruct_isAt-test": {
+        "n_seen": 188,
+        "n_correct": 95,
+        "accuracy": 0.5053191489361702
+      },
+      "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 107,
+        "accuracy": 0.5691489361702128
+      },
+      "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_isAt-test": {
+        "n_seen": 188,
+        "n_correct": 104,
+        "accuracy": 0.5531914893617021
+      },
       "T1_llm_zeroshot_wd_temp_PR_at-test": {
         "n_seen": 188,
         "n_correct": 47,
@@ -216,18 +1104,35 @@
         "n_seen": 188,
         "n_correct": 48,
         "accuracy": 0.2553191489361702
+      },
+      "rules_PAB_70b_at": {
+        "n_seen": 188,
+        "n_correct": 110,
+        "accuracy": 0.5851063829787234
+      },
+      "rules_PAB_70b_isAt": {
+        "n_seen": 188,
+        "n_correct": 113,
+        "accuracy": 0.601063829787234
+      },
+      "sc3_PAB_70b_at": {
+        "n_seen": 188,
+        "n_correct": 121,
+        "accuracy": 0.6436170212765957
       }
     },
     "all_wrong_modal_pred_distribution": {
-      "FALSE": 1
+      "TRUE": 6,
+      "FALSE": 2
     },
     "all_wrong_gold_distribution": {
+      "PROBABLE": 7,
       "TRUE": 1
     }
   },
   "isAt": {
     "task": "isAt",
-    "n_instances": 188,
+    "n_instances": 352,
     "configs": [
       "T1.1_llm_zeroshot_PA+PB_split_v2",
       "T1.1_llm_zeroshot_PAB_deepinfra_Meta-Llama-31-8B-Instruct_at-test",
@@ -239,67 +1144,236 @@
       "T1.4or5_mask_C4_mask+e1+e2+temporal_LR_isAt_at-test",
       "T1.4or5_mask_T1.4_temporal_only_LR_isAt_at-test",
       "T1.4or5_mask_T1.5_handcrafted_RF_isAt_at-test",
+      "T1.4or5_mask_contrastive_CEonly_at-test",
+      "T1.4or5_mask_contrastive_CEonly_at-test_30d",
+      "T1.4or5_mask_contrastive_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_a070_at-ordinal_isAt-supcon_at-test",
+      "T1.4or5_mask_contrastive_ordinal_m1_at-test",
+      "T1.4or5_mask_contrastive_ordinal_m1_at-test_30d",
+      "T1.4or5_mask_contrastive_supcon_at-test",
+      "T1.4or5_mask_contrastive_supcon_at-test_30d",
+      "T1.4or5_mask_grid_handcrafted_rf_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_spectral_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_spectral_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_spec_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_spectral_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_spectral_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_spectral_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_spectral_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_spectral_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_l_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_spec_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_t_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_layers_isAt_at-test",
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_spectral_isAt_at-test",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_base",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_evidence",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_sd+SD-H_full_at_v2",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_base",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_evidence",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_sd+SD-H_full_at_v2",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_base",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_evidence",
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_sd+SD-H_full_at_v2",
       "T1_hybrid_RFat_MASKC4isAt_at-test",
+      "T1_hybrid_T15RFat_Llama70BisAt",
+      "T1_hybrid_T15RFat_Llama70BisAt_v2",
+      "T1_hybrid_T15RFat_Llama70BrulesIsAt",
       "T1_llm_hybrid_PA-rag3_PB-zeroshot_at-test_v3",
       "T1_llm_rag3_PR_at-test",
       "T1_llm_rag3_PR_at-test_v2",
       "T1_llm_rag3_wd_temp_PR_at-test_v2",
       "T1_llm_rag3_wd_temp_PR_at-test_v3_adjustable",
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test",
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test+SDov_PROBABLE_from_FALSE_nw0.05",
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_isAt-test",
+      "T1_llm_zeroshot_PB_openrouter_llama-33-70b-instruct_at-test",
+      "T1_llm_zeroshot_PB_openrouter_llama-33-70b-instruct_isAt-test",
+      "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_at-test",
+      "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_isAt-test",
       "T1_llm_zeroshot_wd_temp_PR_at-test",
       "T1_llm_zeroshot_wd_temp_PR_at-test_v2",
-      "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable"
+      "T1_llm_zeroshot_wd_temp_PR_at-test_v3_adjustable",
+      "rules_PAB_70b_at",
+      "rules_PAB_70b_isAt",
+      "sc3_PAB_70b_at"
     ],
-    "n_configs": 19,
-    "n_all_wrong": 0,
-    "n_all_right": 25,
-    "frac_all_wrong": 0.0,
-    "frac_all_right": 0.13297872340425532,
+    "n_configs": 125,
+    "n_all_wrong": 17,
+    "n_all_right": 100,
+    "frac_all_wrong": 0.048295454545454544,
+    "frac_all_right": 0.2840909090909091,
     "hardness_histogram": {
-      "1": 1,
-      "3": 3,
-      "5": 5,
-      "6": 4,
-      "7": 5,
-      "8": 7,
-      "9": 7,
-      "10": 7,
-      "11": 3,
-      "12": 9,
-      "13": 13,
-      "14": 13,
-      "15": 21,
-      "16": 19,
-      "17": 16,
-      "18": 30,
-      "19": 25
+      "0": 17,
+      "1": 9,
+      "2": 15,
+      "3": 14,
+      "4": 12,
+      "5": 97,
+      "6": 1,
+      "10": 1,
+      "11": 1,
+      "16": 1,
+      "18": 1,
+      "20": 1,
+      "27": 1,
+      "28": 1,
+      "33": 1,
+      "37": 1,
+      "43": 1,
+      "45": 2,
+      "47": 1,
+      "48": 1,
+      "49": 1,
+      "51": 2,
+      "52": 1,
+      "59": 1,
+      "60": 1,
+      "61": 3,
+      "62": 1,
+      "63": 1,
+      "64": 1,
+      "66": 1,
+      "68": 1,
+      "73": 2,
+      "74": 2,
+      "75": 1,
+      "77": 1,
+      "78": 2,
+      "79": 1,
+      "81": 2,
+      "82": 1,
+      "83": 4,
+      "84": 4,
+      "85": 1,
+      "86": 1,
+      "87": 1,
+      "89": 2,
+      "90": 2,
+      "91": 1,
+      "92": 2,
+      "93": 1,
+      "94": 2,
+      "95": 2,
+      "96": 1,
+      "97": 1,
+      "98": 7,
+      "99": 6,
+      "100": 5,
+      "101": 4,
+      "102": 2,
+      "103": 6,
+      "104": 5,
+      "105": 5,
+      "106": 4,
+      "107": 8,
+      "108": 2,
+      "109": 2,
+      "110": 6,
+      "111": 2,
+      "112": 2,
+      "113": 4,
+      "114": 8,
+      "115": 8,
+      "116": 6,
+      "117": 3,
+      "118": 7,
+      "119": 7,
+      "120": 7,
+      "121": 3,
+      "122": 1,
+      "123": 1,
+      "124": 1
     },
     "by_language": {
       "de": {
-        "n": 70,
+        "n": 117,
         "all_wrong": 0,
-        "all_right": 14
+        "all_right": 39
       },
       "fr": {
-        "n": 64,
-        "all_wrong": 0,
-        "all_right": 3
+        "n": 135,
+        "all_wrong": 11,
+        "all_right": 37
       },
       "en": {
-        "n": 54,
-        "all_wrong": 0,
-        "all_right": 8
+        "n": 100,
+        "all_wrong": 6,
+        "all_right": 24
       }
     },
     "by_gold_class": {
       "FALSE": {
-        "n": 150,
-        "all_wrong": 0,
-        "all_right": 25
+        "n": 276,
+        "all_wrong": 12,
+        "all_right": 82
       },
       "TRUE": {
-        "n": 38,
-        "all_wrong": 0,
-        "all_right": 0
+        "n": 76,
+        "all_wrong": 5,
+        "all_right": 18
       }
     },
     "per_config_accuracy": {
@@ -353,10 +1427,490 @@
         "n_correct": 158,
         "accuracy": 0.8404255319148937
       },
+      "T1.4or5_mask_contrastive_CEonly_at-test": {
+        "n_seen": 188,
+        "n_correct": 151,
+        "accuracy": 0.8031914893617021
+      },
+      "T1.4or5_mask_contrastive_CEonly_at-test_30d": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_contrastive_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_a070_at-ordinal_isAt-supcon_at-test": {
+        "n_seen": 188,
+        "n_correct": 157,
+        "accuracy": 0.8351063829787234
+      },
+      "T1.4or5_mask_contrastive_ordinal_m1_at-test": {
+        "n_seen": 188,
+        "n_correct": 156,
+        "accuracy": 0.8297872340425532
+      },
+      "T1.4or5_mask_contrastive_ordinal_m1_at-test_30d": {
+        "n_seen": 188,
+        "n_correct": 158,
+        "accuracy": 0.8404255319148937
+      },
+      "T1.4or5_mask_contrastive_supcon_at-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
+      "T1.4or5_mask_contrastive_supcon_at-test_30d": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_grid_handcrafted_rf_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 158,
+        "accuracy": 0.8404255319148937
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 150,
+        "accuracy": 0.7978723404255319
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 146,
+        "accuracy": 0.776595744680851
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 142,
+        "accuracy": 0.7553191489361702
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 145,
+        "accuracy": 0.7712765957446809
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 150,
+        "accuracy": 0.7978723404255319
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_spec_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 143,
+        "accuracy": 0.7606382978723404
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 146,
+        "accuracy": 0.776595744680851
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 142,
+        "accuracy": 0.7553191489361702
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 145,
+        "accuracy": 0.7712765957446809
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M1_L-1_-4_-7_spec10_spectral_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 112,
+        "accuracy": 0.5957446808510638
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 158,
+        "accuracy": 0.8404255319148937
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 149,
+        "accuracy": 0.7925531914893617
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 149,
+        "accuracy": 0.7925531914893617
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 158,
+        "accuracy": 0.8404255319148937
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_spec_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 149,
+        "accuracy": 0.7925531914893617
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 149,
+        "accuracy": 0.7925531914893617
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_spec10_spectral_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 97,
+        "accuracy": 0.5159574468085106
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 146,
+        "accuracy": 0.776595744680851
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_spec_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 146,
+        "accuracy": 0.776595744680851
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_spec10_spectral_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 99,
+        "accuracy": 0.526595744680851
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 160,
+        "accuracy": 0.851063829787234
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 152,
+        "accuracy": 0.8085106382978723
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 152,
+        "accuracy": 0.8085106382978723
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 160,
+        "accuracy": 0.851063829787234
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_spec_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 152,
+        "accuracy": 0.8085106382978723
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 152,
+        "accuracy": 0.8085106382978723
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M3_L-1_-4_-7_spec10_spectral_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 109,
+        "accuracy": 0.5797872340425532
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 147,
+        "accuracy": 0.7819148936170213
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 144,
+        "accuracy": 0.7659574468085106
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_spec_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 147,
+        "accuracy": 0.7819148936170213
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 144,
+        "accuracy": 0.7659574468085106
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M4_L-1_-4_-7_spec10_spectral_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 83,
+        "accuracy": 0.44148936170212766
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 158,
+        "accuracy": 0.8404255319148937
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 150,
+        "accuracy": 0.7978723404255319
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 157,
+        "accuracy": 0.8351063829787234
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 158,
+        "accuracy": 0.8404255319148937
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_spec_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 153,
+        "accuracy": 0.8138297872340425
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 150,
+        "accuracy": 0.7978723404255319
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 157,
+        "accuracy": 0.8351063829787234
+      },
+      "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M5_L-1_-4_-7_spec10_spectral_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 102,
+        "accuracy": 0.5425531914893617
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 138,
+        "accuracy": 0.7340425531914894
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 144,
+        "accuracy": 0.7659574468085106
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_spec_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 138,
+        "accuracy": 0.7340425531914894
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 144,
+        "accuracy": 0.7659574468085106
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_base_M2_L-1_-4_-7_spec10_spectral_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 96,
+        "accuracy": 0.5106382978723404
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 151,
+        "accuracy": 0.8031914893617021
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 130,
+        "accuracy": 0.6914893617021277
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 137,
+        "accuracy": 0.7287234042553191
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_l_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 151,
+        "accuracy": 0.8031914893617021
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_spec_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_t_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 130,
+        "accuracy": 0.6914893617021277
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_mask_layers_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 137,
+        "accuracy": 0.7287234042553191
+      },
+      "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_spectral_isAt_at-test": {
+        "n_seen": 188,
+        "n_correct": 94,
+        "accuracy": 0.5
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_base": {
+        "n_seen": 188,
+        "n_correct": 159,
+        "accuracy": 0.8457446808510638
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_evidence": {
+        "n_seen": 188,
+        "n_correct": 156,
+        "accuracy": 0.8297872340425532
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_lr_sd+SD-H_full_at_v2": {
+        "n_seen": 188,
+        "n_correct": 156,
+        "accuracy": 0.8297872340425532
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_base": {
+        "n_seen": 188,
+        "n_correct": 164,
+        "accuracy": 0.8723404255319149
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_evidence": {
+        "n_seen": 188,
+        "n_correct": 162,
+        "accuracy": 0.8617021276595744
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_mlp_sd+SD-H_full_at_v2": {
+        "n_seen": 188,
+        "n_correct": 163,
+        "accuracy": 0.8670212765957447
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_base": {
+        "n_seen": 188,
+        "n_correct": 153,
+        "accuracy": 0.8138297872340425
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_evidence": {
+        "n_seen": 188,
+        "n_correct": 155,
+        "accuracy": 0.824468085106383
+      },
+      "T1.6_rf_sd_dbmdz_bert_base_historic_multilingual_cased_M2_rf_sd+SD-H_full_at_v2": {
+        "n_seen": 188,
+        "n_correct": 153,
+        "accuracy": 0.8138297872340425
+      },
       "T1_hybrid_RFat_MASKC4isAt_at-test": {
         "n_seen": 188,
         "n_correct": 159,
         "accuracy": 0.8457446808510638
+      },
+      "T1_hybrid_T15RFat_Llama70BisAt": {
+        "n_seen": 352,
+        "n_correct": 303,
+        "accuracy": 0.8607954545454546
+      },
+      "T1_hybrid_T15RFat_Llama70BisAt_v2": {
+        "n_seen": 188,
+        "n_correct": 140,
+        "accuracy": 0.7446808510638298
+      },
+      "T1_hybrid_T15RFat_Llama70BrulesIsAt": {
+        "n_seen": 188,
+        "n_correct": 156,
+        "accuracy": 0.8297872340425532
       },
       "T1_llm_hybrid_PA-rag3_PB-zeroshot_at-test_v3": {
         "n_seen": 188,
@@ -383,6 +1937,41 @@
         "n_correct": 149,
         "accuracy": 0.7925531914893617
       },
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 140,
+        "accuracy": 0.7446808510638298
+      },
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_at-test+SDov_PROBABLE_from_FALSE_nw0.05": {
+        "n_seen": 188,
+        "n_correct": 140,
+        "accuracy": 0.7446808510638298
+      },
+      "T1_llm_zeroshot_PAB_openrouter_llama-33-70b-instruct_isAt-test": {
+        "n_seen": 188,
+        "n_correct": 139,
+        "accuracy": 0.7393617021276596
+      },
+      "T1_llm_zeroshot_PB_openrouter_llama-33-70b-instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 152,
+        "accuracy": 0.8085106382978723
+      },
+      "T1_llm_zeroshot_PB_openrouter_llama-33-70b-instruct_isAt-test": {
+        "n_seen": 188,
+        "n_correct": 147,
+        "accuracy": 0.7819148936170213
+      },
+      "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_at-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
+      "T1_llm_zeroshot_PR_openrouter_llama-33-70b-instruct_isAt-test": {
+        "n_seen": 188,
+        "n_correct": 154,
+        "accuracy": 0.8191489361702128
+      },
       "T1_llm_zeroshot_wd_temp_PR_at-test": {
         "n_seen": 188,
         "n_correct": 150,
@@ -397,9 +1986,30 @@
         "n_seen": 188,
         "n_correct": 153,
         "accuracy": 0.8138297872340425
+      },
+      "rules_PAB_70b_at": {
+        "n_seen": 188,
+        "n_correct": 156,
+        "accuracy": 0.8297872340425532
+      },
+      "rules_PAB_70b_isAt": {
+        "n_seen": 188,
+        "n_correct": 142,
+        "accuracy": 0.7553191489361702
+      },
+      "sc3_PAB_70b_at": {
+        "n_seen": 188,
+        "n_correct": 141,
+        "accuracy": 0.75
       }
     },
-    "all_wrong_modal_pred_distribution": {},
-    "all_wrong_gold_distribution": {}
+    "all_wrong_modal_pred_distribution": {
+      "TRUE": 12,
+      "FALSE": 5
+    },
+    "all_wrong_gold_distribution": {
+      "FALSE": 12,
+      "TRUE": 5
+    }
   }
 }

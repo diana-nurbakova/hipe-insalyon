@@ -149,12 +149,35 @@ def main() -> int:
     ap.add_argument("--device", default=None)
     ap.add_argument("--experiment-id", default=None)
     ap.add_argument("--log-dir", default=str(PROJECT_ROOT / "logs" / "ablations"))
+    ap.add_argument(
+        "--drop-timex-flag", action="store_true",
+        help=(
+            "Zero out the `has_timex_in_window` column (index 10) of the "
+            "cache's temporal block before building features. Use to test "
+            "the contribution of that single bit without changing the rest "
+            "of the 15-d temporal vector. Only meaningful for feature sets "
+            "that include the temporal block (concat_t, concat_l_t)."
+        ),
+    )
     args = ap.parse_args()
 
     npz_path = Path(args.npz)
     print(f"Loading cache {npz_path}")
     z = np.load(npz_path, allow_pickle=True)
     cache = {k: z[k] for k in z.files}
+
+    # Optional ablation: zero out the has_timex_in_window bit (column 10
+    # of the 15-d temporal block) so the spec-window choice no longer
+    # influences training. Other 14 temporal features remain intact.
+    if args.drop_timex_flag and "temporal" in cache:
+        temp = cache["temporal"].copy()
+        before = float(temp[:, 10].sum())
+        temp[:, 10] = 0.0
+        cache["temporal"] = temp
+        print(
+            f"  --drop-timex-flag : zeroed temporal[:,10] "
+            f"({int(before)} ones -> 0)"
+        )
 
     # Resolve features.
     X = build_features(cache, args.feature_set)
