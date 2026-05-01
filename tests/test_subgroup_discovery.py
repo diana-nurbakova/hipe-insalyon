@@ -19,6 +19,8 @@ from hipe.subgroup_discovery import (
     Subgroup,
     add_subgroup_features,
     apply_overrides,
+    cv_stability,
+    semantic_stability,
     subgroup_to_prompt_rule,
 )
 
@@ -304,3 +306,165 @@ def test_fit_rejects_mismatched_feature_names():
     )
     with pytest.raises(ValueError):
         sd.fit(X, y)
+
+
+# --------------------------------------------------- semantic stability (v3 §7.1)
+
+def _make_sg(extent_indices, n_features=2, pattern="p", nwracc=0.5, precision=0.8):
+    """Build a Subgroup whose ``matches`` mask covers exactly ``extent_indices``."""
+    return Subgroup(
+        pattern_desc=pattern,
+        active=np.zeros(n_features, dtype=bool),  # no active constraints -> matches all
+        bounds=np.zeros((n_features, 2), dtype=np.float32),
+        nwracc=float(nwracc),
+        support=int(len(extent_indices)),
+        support_pos=int(len(extent_indices)),
+        precision=float(precision),
+        extent_indices=np.asarray(extent_indices, dtype=int),
+        target_class="POS",
+        feature_names=tuple(f"x{i}" for i in range(n_features)),
+    )
+
+
+class _ConstantExtentSubgroup(Subgroup):
+    """Test double whose ``matches`` returns a fixed mask irrespective of X."""
+
+    def __init__(self, mask: np.ndarray, *, pattern_desc: str, **kwargs):
+        super().__init__(
+            pattern_desc=pattern_desc,
+            active=np.zeros(2, dtype=bool),
+            bounds=np.zeros((2, 2), dtype=np.float32),
+            extent_indices=np.where(mask)[0],
+            target_class="POS",
+            feature_names=("x0", "x1"),
+            **kwargs,
+        )
+        self._fixed = mask.astype(bool)
+
+    def matches(self, X):  # type: ignore[override]
+        return self._fixed[: X.shape[0]].copy()
+
+
+def test_semantic_stability_groups_string_different_extents():
+    """Two subgroups with different pattern_desc but identical full-X extent
+    should be merged into one semantic-stable cluster."""
+    n = 20
+    mask = np.zeros(n, dtype=bool)
+    mask[:8] = True
+
+    fold0 = [
+        _ConstantExtentSubgroup(
+            mask, pattern_desc="x0 in [0,1]",
+            nwracc=0.5, support=8, support_pos=7, precision=0.875,
+        )
+    ]
+    fold1 = [
+        _ConstantExtentSubgroup(
+            mask, pattern_desc="x0 in [0,1.0]",
+            nwracc=0.49, support=8, support_pos=7, precision=0.875,
+        )
+    ]
+    fold2 = [
+        _ConstantExtentSubgroup(
+            mask, pattern_desc="x0 in [0,0.99]",
+            nwracc=0.51, support=8, support_pos=7, precision=0.875,
+        )
+    ]
+    X = np.zeros((n, 2), dtype=np.float32)
+    val_evals = [
+        [{"precision": 0.9, "recall": 0.6, "support": 8, "support_pos": 7}],
+        [{"precision": 0.9, "recall": 0.6, "support": 8, "support_pos": 7}],
+        [{"precision": 0.9, "recall": 0.6, "support": 8, "support_pos": 7}],
+    ]
+    clusters = semantic_stability(
+        [fold0, fold1, fold2], X,
+        threshold=0.5, min_precision=0.3, min_folds=3,
+        val_evals=val_evals,
+    )
+    assert len(clusters) == 1
+    cl = clusters[0]
+    assert cl["n_folds_stable"] == 3
+    assert cl["n_members"] == 3
+    # Member patterns are different strings even though semantics are identical.
+    assert len(cl["member_patterns"]) == 3
+
+
+def test_semantic_stability_separates_disjoint_extents():
+    """Subgroups with disjoint extents must end up in different clusters."""
+    n = 20
+    mask_a = np.zeros(n, dtype=bool); mask_a[:8] = True
+    mask_b = np.zeros(n, dtype=bool); mask_b[10:18] = True
+
+    fold0 = [_ConstantExtentSubgroup(mask_a, pattern_desc="A",
+                                      nwracc=0.5, support=8, support_pos=7,
+                                      precision=0.875)]
+    fold1 = [_ConstantExtentSubgroup(mask_b, pattern_desc="B",
+                                      nwracc=0.5, support=8, support_pos=7,
+                                      precision=0.875)]
+    X = np.zeros((n, 2), dtype=np.float32)
+    val_evals = [
+        [{"precision": 0.9, "recall": 0.6, "support": 8, "support_pos": 7}],
+        [{"precision": 0.9, "recall": 0.6, "support": 8, "support_pos": 7}],
+    ]
+    clusters = semantic_stability(
+        [fold0, fold1], X,
+        threshold=0.5, min_precision=0.3, min_folds=2,
+        val_evals=val_evals,
+    )
+    # Two separate clusters, each from one fold -> neither is stable on >=2 folds.
+    assert clusters == []
+
+
+def test_semantic_stability_filters_low_precision_members():
+    """Members below ``min_precision`` must not count toward fold coverage."""
+    n = 20
+    mask = np.zeros(n, dtype=bool); mask[:8] = True
+    fold0 = [_ConstantExtentSubgroup(mask, pattern_desc="P0",
+                                      nwracc=0.5, support=8, support_pos=2,
+                                      precision=0.25)]
+    fold1 = [_ConstantExtentSubgroup(mask, pattern_desc="P1",
+                                      nwracc=0.5, support=8, support_pos=2,
+                                      precision=0.25)]
+    fold2 = [_ConstantExtentSubgroup(mask, pattern_desc="P2",
+                                      nwracc=0.5, support=8, support_pos=7,
+                                      precision=0.875)]
+    X = np.zeros((n, 2), dtype=np.float32)
+    val_evals = [
+        [{"precision": 0.20, "recall": 0.1, "support": 8, "support_pos": 2}],
+        [{"precision": 0.25, "recall": 0.1, "support": 8, "support_pos": 2}],
+        [{"precision": 0.90, "recall": 0.5, "support": 8, "support_pos": 7}],
+    ]
+    clusters = semantic_stability(
+        [fold0, fold1, fold2], X,
+        threshold=0.5, min_precision=0.3, min_folds=2,
+        val_evals=val_evals,
+    )
+    assert clusters == []  # Only fold2 passes precision -> 1 fold < min_folds.
+
+
+def test_cv_stability_reports_both_metrics():
+    """End-to-end cv_stability returns both string and semantic stability lists."""
+    X, y = _simple_dataset(n_per_class=40, seed=1)
+    report = cv_stability(
+        X, y, feature_names=("x0", "x1"),
+        target_class="POS",
+        n_folds=3,
+        min_precision=0.3,
+        min_folds=2,
+        semantic_threshold=0.5,
+        sd_kwargs={"n_chains": 2, "n_steps": 200, "nwracc_threshold": 0.2, "top_k": 5},
+        random_state=7,
+        verbose=False,
+    )
+    assert isinstance(report.stable_patterns, list)
+    assert isinstance(report.semantic_stable_patterns, list)
+    # Either ledger is allowed to be empty depending on MCMC luck, but both
+    # accessor APIs must work and return non-negative counts.
+    assert report.n_stable() >= 0
+    assert report.n_semantic_stable() >= 0
+    # On a clean synthetic dataset, the v3 metric should typically pick up the
+    # hidden positive box across folds.
+    assert report.n_semantic_stable() >= 1, (
+        f"Expected at least one semantic-stable cluster; "
+        f"got {report.n_semantic_stable()} (string stable: {report.n_stable()})"
+    )

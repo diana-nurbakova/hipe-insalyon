@@ -1,0 +1,362 @@
+{
+  "config": {
+    "npz": "runs/mask_dbmdz_bert_base_historic_multilingual_cased_M2.npz",
+    "out_dir": "/content/HIPE/runs/phase0_mask_diag",
+    "n_splits": 5,
+    "skip_umap": true
+  },
+  "shapes": {
+    "mask": [
+      1251,
+      768
+    ],
+    "concat": [
+      1251,
+      2304
+    ],
+    "temporal": [
+      1251,
+      15
+    ],
+    "handcrafted": [
+      1251,
+      36
+    ]
+  },
+  "silhouette": {
+    "at": "-0.01179505",
+    "isAt": "0.010620108"
+  },
+  "experiments": {
+    "at": {
+      "C1_mask_LR": {
+        "name": "C1_mask_LR [target=at]",
+        "macro_recall_mean": 0.556917366138177,
+        "macro_recall_std": 0.05394865985889568,
+        "input_dim": 768,
+        "labels": [
+          "FALSE",
+          "PROBABLE",
+          "TRUE"
+        ],
+        "confusion_matrix": [
+          [
+            479,
+            50,
+            161
+          ],
+          [
+            46,
+            41,
+            33
+          ],
+          [
+            124,
+            37,
+            280
+          ]
+        ],
+        "per_class": {
+          "FALSE": {
+            "precision": 0.7380585516178737,
+            "recall": 0.6942028985507246,
+            "support": 690.0
+          },
+          "PROBABLE": {
+            "precision": 0.3203125,
+            "recall": 0.3416666666666667,
+            "support": 120.0
+          },
+          "TRUE": {
+            "precision": 0.5907172995780591,
+            "recall": 0.6349206349206349,
+            "support": 441.0
+          }
+        }
+      },
+      "C4_mask+e1+e2+temporal_LR": {
+        "name": "C4_mask+e1+e2+temporal_LR [target=at]",
+        "macro_recall_mean": 0.5917938545197948,
+        "macro_recall_std": 0.043615409307487564,
+        "input_dim": 2319,
+        "labels": [
+          "FALSE",
+          "PROBABLE",
+          "TRUE"
+        ],
+        "confusion_matrix": [
+          [
+            513,
+            38,
+            139
+          ],
+          [
+            37,
+            49,
+            34
+          ],
+          [
+            139,
+            27,
+            275
+          ]
+        ],
+        "per_class": {
+          "FALSE": {
+            "precision": 0.7445573294629898,
+            "recall": 0.7434782608695653,
+            "support": 690.0
+          },
+          "PROBABLE": {
+            "precision": 0.4298245614035088,
+            "recall": 0.4083333333333333,
+            "support": 120.0
+          },
+          "TRUE": {
+            "precision": 0.6138392857142857,
+            "recall": 0.6235827664399093,
+            "support": 441.0
+          }
+        }
+      },
+      "T1.4_temporal_only_LR": {
+        "name": "T1.4_temporal_only_LR [target=at]",
+        "macro_recall_mean": 0.44805319931113774,
+        "macro_recall_std": 0.031255377445609044,
+        "input_dim": 15,
+        "labels": [
+          "FALSE",
+          "PROBABLE",
+          "TRUE"
+        ],
+        "confusion_matrix": [
+          [
+            264,
+            225,
+            201
+          ],
+          [
+            24,
+            55,
+            41
+          ],
+          [
+            90,
+            129,
+            222
+          ]
+        ],
+        "per_class": {
+          "FALSE": {
+            "precision": 0.6984126984126984,
+            "recall": 0.3826086956521739,
+            "support": 690.0
+          },
+          "PROBABLE": {
+            "precision": 0.13447432762836187,
+            "recall": 0.4583333333333333,
+            "support": 120.0
+          },
+          "TRUE": {
+            "precision": 0.47844827586206895,
+            "recall": 0.5034013605442177,
+            "support": 441.0
+          }
+        }
+      },
+      "T1.5_handcrafted_RF": {
+        "name": "T1.5_handcrafted_RF [target=at]",
+        "macro_recall_mean": 0.5702583973590325,
+        "macro_recall_std": 0.022368707030549842,
+        "input_dim": 36,
+        "labels": [
+          "FALSE",
+          "PROBABLE",
+          "TRUE"
+        ],
+        "confusion_matrix": [
+          [
+            540,
+            20,
+            130
+          ],
+          [
+            47,
+            42,
+            31
+          ],
+          [
+            162,
+            24,
+            255
+          ]
+        ],
+        "per_class": {
+          "FALSE": {
+            "precision": 0.7209612817089452,
+            "recall": 0.782608695652174,
+            "support": 690.0
+          },
+          "PROBABLE": {
+            "precision": 0.4883720930232558,
+            "recall": 0.35,
+            "support": 120.0
+          },
+          "TRUE": {
+            "precision": 0.6129807692307693,
+            "recall": 0.5782312925170068,
+            "support": 441.0
+          }
+        }
+      }
+    },
+    "isAt": {
+      "C1_mask_LR": {
+        "name": "C1_mask_LR [target=isAt]",
+        "macro_recall_mean": 0.6880671562114862,
+        "macro_recall_std": 0.020264447298282792,
+        "input_dim": 768,
+        "labels": [
+          "FALSE",
+          "TRUE"
+        ],
+        "confusion_matrix": [
+          [
+            784,
+            188
+          ],
+          [
+            120,
+            159
+          ]
+        ],
+        "per_class": {
+          "FALSE": {
+            "precision": 0.8672566371681416,
+            "recall": 0.8065843621399177,
+            "support": 972.0
+          },
+          "TRUE": {
+            "precision": 0.45821325648414984,
+            "recall": 0.5698924731182796,
+            "support": 279.0
+          }
+        }
+      },
+      "C4_mask+e1+e2+temporal_LR": {
+        "name": "C4_mask+e1+e2+temporal_LR [target=isAt]",
+        "macro_recall_mean": 0.7169548406919541,
+        "macro_recall_std": 0.020234352295004157,
+        "input_dim": 2319,
+        "labels": [
+          "FALSE",
+          "TRUE"
+        ],
+        "confusion_matrix": [
+          [
+            847,
+            125
+          ],
+          [
+            122,
+            157
+          ]
+        ],
+        "per_class": {
+          "FALSE": {
+            "precision": 0.8740970072239422,
+            "recall": 0.8713991769547325,
+            "support": 972.0
+          },
+          "TRUE": {
+            "precision": 0.5567375886524822,
+            "recall": 0.5627240143369175,
+            "support": 279.0
+          }
+        }
+      },
+      "T1.4_temporal_only_LR": {
+        "name": "T1.4_temporal_only_LR [target=isAt]",
+        "macro_recall_mean": 0.5833967922112251,
+        "macro_recall_std": 0.03525676411192276,
+        "input_dim": 15,
+        "labels": [
+          "FALSE",
+          "TRUE"
+        ],
+        "confusion_matrix": [
+          [
+            476,
+            496
+          ],
+          [
+            90,
+            189
+          ]
+        ],
+        "per_class": {
+          "FALSE": {
+            "precision": 0.8409893992932862,
+            "recall": 0.4897119341563786,
+            "support": 972.0
+          },
+          "TRUE": {
+            "precision": 0.2759124087591241,
+            "recall": 0.6774193548387096,
+            "support": 279.0
+          }
+        }
+      },
+      "T1.5_handcrafted_RF": {
+        "name": "T1.5_handcrafted_RF [target=isAt]",
+        "macro_recall_mean": 0.6723037272006345,
+        "macro_recall_std": 0.04257428646020401,
+        "input_dim": 36,
+        "labels": [
+          "FALSE",
+          "TRUE"
+        ],
+        "confusion_matrix": [
+          [
+            889,
+            83
+          ],
+          [
+            159,
+            120
+          ]
+        ],
+        "per_class": {
+          "FALSE": {
+            "precision": 0.8482824427480916,
+            "recall": 0.9146090534979424,
+            "support": 972.0
+          },
+          "TRUE": {
+            "precision": 0.5911330049261084,
+            "recall": 0.43010752688172044,
+            "support": 279.0
+          }
+        }
+      }
+    }
+  },
+  "gate": {
+    "at": {
+      "mask_score": 0.556917366138177,
+      "handcrafted_score": 0.5702583973590325,
+      "delta": -0.013341031220855504,
+      "decision": "CONDITIONAL",
+      "spec_floor": 0.59,
+      "passes_spec_floor": false
+    },
+    "isAt": {
+      "mask_score": 0.6880671562114862,
+      "handcrafted_score": 0.6723037272006345,
+      "delta": 0.015763429010851704,
+      "decision": "CONDITIONAL",
+      "spec_floor": 0.68,
+      "passes_spec_floor": true
+    }
+  }
+}

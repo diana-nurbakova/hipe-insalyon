@@ -255,6 +255,130 @@ def establish_baseline(
     }
 
 
+@dataclass(slots=True)
+class ScorerConsistencyResult:
+    """Outcome of running our internal scorer alongside the official one.
+
+    The two scorers must agree on macro recall numbers (within
+    floating-point tolerance) before we trust internal scores for ablation.
+    See HIPE2026_Evaluation_Submission_Specs §7.2.
+    """
+
+    consistent: bool
+    tolerance: float
+    macro_recall_at_internal: float | None
+    macro_recall_isAt_internal: float | None
+    global_score_internal: float | None
+    macro_recall_at_official: float | None
+    macro_recall_isAt_official: float | None
+    global_score_official: float | None
+    deltas: dict[str, float | None]
+    official_stdout: str
+
+    def summary(self) -> str:
+        lines = [
+            f"consistent={self.consistent}  (tol={self.tolerance})",
+            f"  MR(at):    internal={self._fmt(self.macro_recall_at_internal)}  "
+            f"official={self._fmt(self.macro_recall_at_official)}  "
+            f"delta={self._fmt(self.deltas.get('macro_recall_at'))}",
+            f"  MR(isAt):  internal={self._fmt(self.macro_recall_isAt_internal)}  "
+            f"official={self._fmt(self.macro_recall_isAt_official)}  "
+            f"delta={self._fmt(self.deltas.get('macro_recall_isAt'))}",
+            f"  Global:    internal={self._fmt(self.global_score_internal)}  "
+            f"official={self._fmt(self.global_score_official)}  "
+            f"delta={self._fmt(self.deltas.get('global_score'))}",
+        ]
+        return "\n".join(lines)
+
+    @staticmethod
+    def _fmt(v: float | None) -> str:
+        return "n/a" if v is None else f"{v:.4f}"
+
+
+def verify_scorer_consistency(
+    gold_file: str | Path,
+    prediction_file: str | Path,
+    *,
+    tolerance: float = 1e-3,
+    tools_dir: str | Path | None = None,
+    python_executable: str | None = None,
+) -> ScorerConsistencyResult:
+    """Run our internal scorer and the official scorer on the same files.
+
+    Per HIPE2026_Evaluation_Submission_Specs §7.2, internal scores are only
+    trustworthy after they have been confirmed to match the organizers'
+    ``file_scorer_evaluation.py`` on at least one run. Use this on the dev
+    set before relying on ``hipe.evaluation.metrics`` for ablations.
+
+    Both files are official-format JSONL: ``gold_file`` carries the gold
+    labels, ``prediction_file`` carries the predicted ones (e.g. produced
+    by :func:`hipe.submission.writer.generate_submission_file`).
+    """
+    # Local imports keep the tools module dependency-light at import time.
+    from hipe.data.official import iter_official_instances
+    from hipe.evaluation.metrics import compute_global_score, null_to_false
+
+    at_gold: list[str] = []
+    isAt_gold: list[str] = []
+    for inst in iter_official_instances(gold_file):
+        at_gold.append(null_to_false(inst.at))
+        isAt_gold.append(null_to_false(inst.isAt))
+
+    at_pred: list[str] = []
+    isAt_pred: list[str] = []
+    for inst in iter_official_instances(prediction_file):
+        at_pred.append(null_to_false(inst.at))
+        isAt_pred.append(null_to_false(inst.isAt))
+
+    if len(at_gold) != len(at_pred):
+        raise ValueError(
+            f"Pair count mismatch: gold has {len(at_gold)}, "
+            f"predictions has {len(at_pred)}"
+        )
+
+    internal = compute_global_score(at_gold, at_pred, isAt_gold, isAt_pred)
+
+    official = run_official_scorer(
+        gold_file,
+        prediction_file,
+        tools_dir=tools_dir,
+        python_executable=python_executable,
+    )
+
+    def _delta(a: float | None, b: float | None) -> float | None:
+        if a is None or b is None:
+            return None
+        return abs(a - b)
+
+    deltas: dict[str, float | None] = {
+        "macro_recall_at": _delta(
+            internal["macro_recall_at"], official.macro_recall_at
+        ),
+        "macro_recall_isAt": _delta(
+            internal["macro_recall_isAt"], official.macro_recall_isAt
+        ),
+        "global_score": _delta(
+            internal["global_score"], official.global_score
+        ),
+    }
+    consistent = all(
+        d is not None and d <= tolerance for d in deltas.values()
+    )
+
+    return ScorerConsistencyResult(
+        consistent=consistent,
+        tolerance=tolerance,
+        macro_recall_at_internal=internal["macro_recall_at"],
+        macro_recall_isAt_internal=internal["macro_recall_isAt"],
+        global_score_internal=internal["global_score"],
+        macro_recall_at_official=official.macro_recall_at,
+        macro_recall_isAt_official=official.macro_recall_isAt,
+        global_score_official=official.global_score,
+        deltas=deltas,
+        official_stdout=official.stdout,
+    )
+
+
 def package_runs(
     team_name: str,
     run_files: list[str | Path],

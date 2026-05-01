@@ -177,6 +177,8 @@ def main() -> int:
     ap.add_argument("--cv-folds", type=int, default=5)
     ap.add_argument("--cv-min-precision", type=float, default=0.3)
     ap.add_argument("--cv-min-folds", type=int, default=3)
+    ap.add_argument("--cv-semantic-threshold", type=float, default=0.5,
+                    help="Jaccard threshold for semantic stability clustering (Specs v3 §7.1)")
     ap.add_argument("--run-id", default=None)
     ap.add_argument("--out-dir", default=None,
                     help="Run output directory. Default: runs/sd/<run_id>")
@@ -307,6 +309,7 @@ def main() -> int:
                     n_folds=args.cv_folds,
                     min_precision=args.cv_min_precision,
                     min_folds=args.cv_min_folds,
+                    semantic_threshold=args.cv_semantic_threshold,
                     sd_kwargs={
                         **{k: v for k, v in common_kwargs.items() if k != "random_state"},
                         "n_chains": max(2, common_kwargs["n_chains"] // 2),
@@ -327,17 +330,23 @@ def main() -> int:
                     "n_folds": args.cv_folds,
                     "min_precision": args.cv_min_precision,
                     "min_folds": args.cv_min_folds,
+                    "semantic_threshold": args.cv_semantic_threshold,
                     "elapsed_seconds": round(elapsed, 2),
                     "stable_patterns": report.stable_patterns,
                     "n_stable": report.n_stable(),
+                    "semantic_stable_patterns": report.semantic_stable_patterns,
+                    "n_semantic_stable": report.n_semantic_stable(),
                 }, indent=2)
             )
             print(
-                f"  stable patterns: {report.n_stable()}  "
-                f"(precision >= {args.cv_min_precision} on >= "
-                f"{args.cv_min_folds}/{args.cv_folds})  -> {cv_path}"
+                f"  string-stable: {report.n_stable()}  | "
+                f"semantic-stable: {report.n_semantic_stable()}  "
+                f"(prec >= {args.cv_min_precision} on >= "
+                f"{args.cv_min_folds}/{args.cv_folds}; "
+                f"Jaccard >= {args.cv_semantic_threshold})  -> {cv_path}"
             )
             all_results["targets"][target]["cv_n_stable"] = report.n_stable()
+            all_results["targets"][target]["cv_n_semantic_stable"] = report.n_semantic_stable()
             all_results["targets"][target]["cv_seconds"] = round(elapsed, 2)
 
     summary_path = out_dir / "summary.json"

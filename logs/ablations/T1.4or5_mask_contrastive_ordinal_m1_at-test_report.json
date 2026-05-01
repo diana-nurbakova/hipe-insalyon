@@ -1,0 +1,244 @@
+{
+  "experiment_id": "T1.4or5_mask_contrastive_ordinal_m1_at-test",
+  "timestamp": "2026-04-30T23:13:01.111455+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.7189407911776333,
+    "macro_recall_at": 0.6722675472675473,
+    "macro_recall_isAt": 0.7656140350877193,
+    "at_details": {
+      "recall_TRUE": 0.7272727272727273,
+      "recall_PROBABLE": 0.7222222222222222,
+      "recall_FALSE": 0.5673076923076923,
+      "macro_recall": 0.6722675472675473
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.6578947368421053,
+      "recall_FALSE": 0.8733333333333333,
+      "macro_recall": 0.7656140350877193
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.5925925925925926,
+      "recall": 0.7272727272727273,
+      "f1-score": 0.6530612244897959,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.37142857142857144,
+      "recall": 0.7222222222222222,
+      "f1-score": 0.490566037735849,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.8194444444444444,
+      "recall": 0.5673076923076923,
+      "f1-score": 0.6704545454545454,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.5944885361552028,
+      "recall": 0.6722675472675471,
+      "f1-score": 0.6046939358933968,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6969098277608915,
+      "recall": 0.6382978723404256,
+      "f1-score": 0.6471250118236411,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.5681818181818182,
+      "recall": 0.6578947368421053,
+      "f1-score": 0.6097560975609756,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.9097222222222222,
+      "recall": 0.8733333333333333,
+      "f1-score": 0.891156462585034,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.7389520202020202,
+      "recall": 0.7656140350877193,
+      "f1-score": 0.7504562800730048,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8406874597034172,
+      "recall": 0.8297872340425532,
+      "f1-score": 0.8342776653993199,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      48,
+      8,
+      10
+    ],
+    [
+      2,
+      13,
+      3
+    ],
+    [
+      31,
+      14,
+      59
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      25,
+      13
+    ],
+    [
+      19,
+      131
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "experiment_id": "T1.4or5_mask_contrastive_ordinal_m1_at-test",
+    "feature_set": "concat_l_t",
+    "input_dim": 3855,
+    "n_train": 956,
+    "n_val": 107,
+    "n_test": 188,
+    "best_epoch": 5,
+    "best_val_global": 0.6821566628435496,
+    "train_seconds": 2.4250397960004193,
+    "history": [
+      {
+        "epoch": 0,
+        "train_loss_mean": 2.5167248129844664,
+        "val_macro_recall_at": 0.3333333333333333,
+        "val_macro_recall_isAt": 0.6067099567099568,
+        "val_global": 0.470021645021645
+      },
+      {
+        "epoch": 1,
+        "train_loss_mean": 2.2304002165794374,
+        "val_macro_recall_at": 0.38438893844781447,
+        "val_macro_recall_isAt": 0.6218614718614719,
+        "val_global": 0.5031252051546432
+      },
+      {
+        "epoch": 2,
+        "train_loss_mean": 2.0013917565345762,
+        "val_macro_recall_at": 0.4771632471008029,
+        "val_macro_recall_isAt": 0.6164502164502165,
+        "val_global": 0.5468067317755096
+      },
+      {
+        "epoch": 3,
+        "train_loss_mean": 1.8009189665317535,
+        "val_macro_recall_at": 0.5780850431162652,
+        "val_macro_recall_isAt": 0.6738095238095239,
+        "val_global": 0.6259472834628945
+      },
+      {
+        "epoch": 4,
+        "train_loss_mean": 1.6936384975910186,
+        "val_macro_recall_at": 0.6145108534046981,
+        "val_macro_recall_isAt": 0.6896103896103896,
+        "val_global": 0.6520606215075438
+      },
+      {
+        "epoch": 5,
+        "train_loss_mean": 1.5853634417057036,
+        "val_macro_recall_at": 0.6690752304490039,
+        "val_macro_recall_isAt": 0.6952380952380952,
+        "val_global": 0.6821566628435496
+      },
+      {
+        "epoch": 6,
+        "train_loss_mean": 1.5155709445476533,
+        "val_macro_recall_at": 0.5421647338685697,
+        "val_macro_recall_isAt": 0.6989177489177489,
+        "val_global": 0.6205412413931592
+      },
+      {
+        "epoch": 7,
+        "train_loss_mean": 1.456114763021469,
+        "val_macro_recall_at": 0.6396372286648826,
+        "val_macro_recall_isAt": 0.7183982683982684,
+        "val_global": 0.6790177485315755
+      },
+      {
+        "epoch": 8,
+        "train_loss_mean": 1.4575532674789429,
+        "val_macro_recall_at": 0.5384478144513828,
+        "val_macro_recall_isAt": 0.6952380952380952,
+        "val_global": 0.6168429548447389
+      },
+      {
+        "epoch": 9,
+        "train_loss_mean": 1.3905184388160705,
+        "val_macro_recall_at": 0.595569432054713,
+        "val_macro_recall_isAt": 0.761038961038961,
+        "val_global": 0.678304196546837
+      },
+      {
+        "epoch": 10,
+        "train_loss_mean": 1.3719313085079192,
+        "val_macro_recall_at": 0.6043413618792745,
+        "val_macro_recall_isAt": 0.7313852813852814,
+        "val_global": 0.6678633216322779
+      }
+    ],
+    "cache": "/content/HIPE/runs/mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7.npz",
+    "model_meta": {
+      "model": "dbmdz/bert-base-historic-multilingual-cased",
+      "template": "M2",
+      "field": "context",
+      "layers": [
+        -1,
+        -4,
+        -7
+      ]
+    },
+    "model_config": {
+      "input_dim": 3855,
+      "hidden_dim": 256,
+      "bottleneck_dim": 512,
+      "projection_dim": 128,
+      "dropout": 0.1,
+      "n_at_classes": 3,
+      "n_isAt_classes": 2
+    },
+    "train_config": {
+      "epochs": 20,
+      "lr": 0.0002,
+      "weight_decay": 0.0001,
+      "alpha": 0.7,
+      "contrastive_at": "ordinal",
+      "contrastive_isAt": "supcon",
+      "base_margin": 1.0,
+      "temperature": 0.07,
+      "k_per_class_at": 16,
+      "early_stopping_patience": 5,
+      "grad_clip": 1.0,
+      "seed": 42,
+      "device": null,
+      "log_every": 1,
+      "class_weights_at": null,
+      "class_weights_isAt": null,
+      "standardise": true
+    }
+  }
+}

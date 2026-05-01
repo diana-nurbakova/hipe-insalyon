@@ -1,0 +1,131 @@
+{
+  "experiment_id": "T1.4or5_mask_grid_mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7_mask_at_at-test",
+  "timestamp": "2026-04-30T22:49:51.760431+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.5555393680393681,
+    "macro_recall_at": 0.6110787360787361,
+    "macro_recall_isAt": 0.5,
+    "at_details": {
+      "recall_TRUE": 0.5757575757575758,
+      "recall_PROBABLE": 0.5555555555555556,
+      "recall_FALSE": 0.7019230769230769,
+      "macro_recall": 0.6110787360787361
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.0,
+      "recall_FALSE": 1.0,
+      "macro_recall": 0.5
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.5671641791044776,
+      "recall": 0.5757575757575758,
+      "f1-score": 0.5714285714285714,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.37037037037037035,
+      "recall": 0.5555555555555556,
+      "f1-score": 0.4444444444444445,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.776595744680851,
+      "recall": 0.7019230769230769,
+      "f1-score": 0.7373737373737373,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.5713767647185662,
+      "recall": 0.6110787360787361,
+      "f1-score": 0.5844155844155844,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6641779783743121,
+      "recall": 0.6436170212765957,
+      "f1-score": 0.6510699702189063,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.7978723404255319,
+      "recall": 1.0,
+      "f1-score": 0.8875739644970414,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.39893617021276595,
+      "recall": 0.5,
+      "f1-score": 0.4437869822485207,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6366002716161159,
+      "recall": 0.7978723404255319,
+      "f1-score": 0.7081707163540224,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      38,
+      11,
+      17
+    ],
+    [
+      4,
+      10,
+      4
+    ],
+    [
+      25,
+      6,
+      73
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      0,
+      38
+    ],
+    [
+      0,
+      150
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "cache": "mask_dbmdz_bert_base_historic_multilingual_cased_M2_L-1_-4_-7.npz",
+    "model": "dbmdz/bert-base-historic-multilingual-cased",
+    "template": "M2",
+    "field": "context",
+    "layers": [
+      -1,
+      -4,
+      -7
+    ],
+    "feature_set": "mask",
+    "n_train": 1063,
+    "n_test": 188,
+    "input_dim": 768,
+    "target": "at"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "experiment_id": "T1.4or5_mask_grid_mask_xlm_roberta_large_M2_L-1_-4_-7_spec10_concat_spec_at_at-test",
+  "timestamp": "2026-04-30T23:05:13.086595+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.535369722869723,
+    "macro_recall_at": 0.5707394457394458,
+    "macro_recall_isAt": 0.5,
+    "at_details": {
+      "recall_TRUE": 0.6363636363636364,
+      "recall_PROBABLE": 0.2777777777777778,
+      "recall_FALSE": 0.7980769230769231,
+      "macro_recall": 0.5707394457394458
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.0,
+      "recall_FALSE": 1.0,
+      "macro_recall": 0.5
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.6268656716417911,
+      "recall": 0.6363636363636364,
+      "f1-score": 0.6315789473684211,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.38461538461538464,
+      "recall": 0.2777777777777778,
+      "f1-score": 0.3225806451612903,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.7685185185185185,
+      "recall": 0.7980769230769231,
+      "f1-score": 0.7830188679245284,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.5933331915918981,
+      "recall": 0.5707394457394458,
+      "f1-score": 0.57905948681808,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6820326445604311,
+      "recall": 0.6914893617021277,
+      "f1-score": 0.6857692787413295,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.7978723404255319,
+      "recall": 1.0,
+      "f1-score": 0.8875739644970414,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.39893617021276595,
+      "recall": 0.5,
+      "f1-score": 0.4437869822485207,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6366002716161159,
+      "recall": 0.7978723404255319,
+      "f1-score": 0.7081707163540224,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      42,
+      6,
+      18
+    ],
+    [
+      6,
+      5,
+      7
+    ],
+    [
+      19,
+      2,
+      83
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      0,
+      38
+    ],
+    [
+      0,
+      150
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "cache": "mask_xlm_roberta_large_M2_L-1_-4_-7_spec10.npz",
+    "model": "xlm-roberta-large",
+    "template": "M2",
+    "field": "context",
+    "layers": [
+      -1,
+      -4,
+      -7
+    ],
+    "feature_set": "concat_spec",
+    "n_train": 1063,
+    "n_test": 188,
+    "input_dim": 3097,
+    "target": "at"
+  }
+}

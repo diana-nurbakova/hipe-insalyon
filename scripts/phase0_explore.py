@@ -18,6 +18,10 @@ from pathlib import Path
 import pandas as pd
 
 from hipe.data import RelationInstance, load_baseline_split, load_jsonl
+from hipe.features.temporal import (
+    DEFAULT_ISAT_WINDOW_DAYS,
+    recompute_has_timex_in_window,
+)
 
 DEFAULT_JSONL = Path(__file__).resolve().parents[1] / "data" / "dataset_reference.jsonl"
 
@@ -105,17 +109,27 @@ def explore(instances: list[RelationInstance]) -> None:
     cat_counter = Counter(i.temporal_signal_category for i in instances)
     fraction_table("temporal_signal_category", cat_counter, n)
 
-    # Critical: explicit temporal expressions in isAt window
-    banner("Temporal expressions vs isAt label (spec §1.4)")
+    # Critical: explicit temporal expressions in isAt window. Per Spec
+    # v3 §8.1 the isAt window was widened from the ±14-day rule baked into
+    # `dataset_reference.jsonl` to "approximately one month" (~30 days);
+    # re-compute from `nearest_timex_distance` rather than trusting the
+    # pre-baked boolean.
+    banner("Temporal expressions vs isAt label (spec §1.4 / §8.1)")
     n_isat_true = sum(1 for i in instances if i.isAt == "TRUE")
-    n_isat_true_with_window_timex = sum(
+    n_legacy = sum(
         1 for i in instances if i.isAt == "TRUE" and i.has_timex_in_isat_window
     )
-    pct = 100 * n_isat_true_with_window_timex / n_isat_true if n_isat_true else 0
+    n_spec = sum(
+        1 for i in instances
+        if i.isAt == "TRUE" and recompute_has_timex_in_window(i)
+    )
+    pct_legacy = 100 * n_legacy / n_isat_true if n_isat_true else 0
+    pct_spec = 100 * n_spec / n_isat_true if n_isat_true else 0
     print(f"  isAt=TRUE total                          : {n_isat_true}")
-    print(f"  isAt=TRUE with timex in +/-14d window    : {n_isat_true_with_window_timex}")
-    print(f"  Fraction relying on explicit timex       : {pct:.1f}%")
-    print(f"  Spec citation: ~5.7% (16/279)")
+    print(f"  Legacy (+/-14d, dataset field)           : {n_legacy}  ({pct_legacy:.1f}%)")
+    print(f"  Spec  (~{DEFAULT_ISAT_WINDOW_DAYS}d, recomputed)              : {n_spec}  ({pct_spec:.1f}%)")
+    print(f"  Spec citation: ~5.7% (16/279) refers to the legacy 14d rule;")
+    print(f"  Spec v3 §8.1 says re-compute with the wider window.")
 
     # Person temporal status
     banner("Person temporal status")

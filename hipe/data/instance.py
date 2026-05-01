@@ -44,8 +44,13 @@ class RelationInstance:
     tense_aspect: list[dict[str, Any]] = field(default_factory=list)
     sentence_position: int = -1
     ocr_quality: float = 1.0
+    # Pre-computed in `dataset_reference.jsonl` with a ±14-day window. The
+    # official guidelines (HIPE2026_Evaluation_Submission_Specs §1.2 / §8.1)
+    # widen the isAt window to "approximately one month" before publication.
+    # Use ``hipe.features.temporal.recompute_has_timex_in_window`` to derive
+    # the spec-aligned 30-day boolean from ``nearest_timex_distance``.
     has_timex_in_isat_window: bool = False
-    nearest_timex_distance: int | None = None
+    nearest_timex_distance: int | None = None  # signed days from publication date
 
     # Derived features
     person_location_match: str = "unknown"

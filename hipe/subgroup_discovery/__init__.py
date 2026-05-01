@@ -18,7 +18,8 @@ Public surface
 - :func:`add_subgroup_features`    — Option A: append match indicators to X
 - :func:`apply_overrides`          — Option B: post-hoc class-flip from rules
 - :func:`subgroup_to_prompt_rule`  — Option C: NL rule for LLM prompts
-- :func:`cv_stability`             — k-fold stability evaluation
+- :func:`cv_stability`             — k-fold stability evaluation (string + Jaccard)
+- :func:`semantic_stability`       — Jaccard-on-extent stability over fold groups (v3 §7.1)
 """
 
 from hipe.subgroup_discovery.evidence import (
@@ -55,7 +56,7 @@ from hipe.subgroup_discovery.mcmc import (
     MCMCSubgroupDiscovery,
     Subgroup,
 )
-from hipe.subgroup_discovery.stability import cv_stability
+from hipe.subgroup_discovery.stability import cv_stability, semantic_stability
 
 __all__ = [
     # Algorithm
@@ -87,4 +88,5 @@ __all__ = [
     "subgroups_to_prompt_block",
     "summarize",
     "cv_stability",
+    "semantic_stability",
 ]

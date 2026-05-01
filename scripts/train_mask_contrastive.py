@@ -28,6 +28,7 @@ Examples:
 from __future__ import annotations
 
 import argparse
+import dataclasses
 import json
 import time
 from pathlib import Path
@@ -323,8 +324,10 @@ def main() -> int:
             "field": str(cache.get("_meta_field", "")),
             "layers": cache.get("_meta_layers", np.asarray([-1])).tolist(),
         },
-        "model_config": vars(model_cfg),
-        "train_config": vars(train_cfg),
+        # ContrastiveModelConfig / TrainConfig use slots=True, so vars() doesn't
+        # work; asdict() walks the dataclass fields and serialises cleanly.
+        "model_config": dataclasses.asdict(model_cfg),
+        "train_config": dataclasses.asdict(train_cfg),
     }
     report = generate_evaluation_report(
         exp_id,

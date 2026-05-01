@@ -14,6 +14,31 @@ import numpy as np
 
 from hipe.data import RelationInstance
 
+# Spec-aligned ``isAt`` window. The official HIPE-2026 guidelines
+# (Evaluation Specs §1.2 / §8.1) widened the window from the ±14-day rule
+# used in our preprocessed dataset_reference.jsonl to "approximately one
+# month" before the publication date. ``recompute_has_timex_in_window``
+# applies the spec window to the pre-computed ``nearest_timex_distance``.
+DEFAULT_ISAT_WINDOW_DAYS = 30
+
+
+def recompute_has_timex_in_window(
+    inst: RelationInstance,
+    *,
+    window_days: int = DEFAULT_ISAT_WINDOW_DAYS,
+) -> bool:
+    """Recompute the boolean ``has_timex_in_isat_window`` for the spec window.
+
+    The dataset's pre-computed flag uses the obsolete ±14-day window. This
+    helper derives the spec-aligned (~1 month) flag from
+    ``nearest_timex_distance`` (signed days from the publication date),
+    which is a verified field in the dataset.
+    """
+    d = inst.nearest_timex_distance
+    if d is None:
+        return False
+    return abs(int(d)) <= window_days
+
 # 15-d feature names — matches the spec's TemporalFeatureVector dataclass exactly.
 TEMPORAL_FEATURE_NAMES: tuple[str, ...] = (
     "verb_is_present",
@@ -95,7 +120,10 @@ def extract_temporal_features(inst: RelationInstance) -> np.ndarray:
     sig_rel = 1.0 if cat == "relative_only" else 0.0
     sig_none = 1.0 if cat in {"no_signal", ""} else 0.0
 
-    has_timex = 1.0 if inst.has_timex_in_isat_window else 0.0
+    # Spec §8.1 widens the isAt window from ±14 days to ~1 month. The
+    # dataset's pre-computed boolean still reflects the old 14-day rule;
+    # recompute from `nearest_timex_distance` to align with the guidelines.
+    has_timex = 1.0 if recompute_has_timex_in_window(inst) else 0.0
     nearest = inst.nearest_timex_distance
     nearest_norm = 0.0 if nearest is None else max(0.0, min(1.0, abs(nearest) / 365.0))
 
