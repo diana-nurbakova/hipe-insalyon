@@ -2,17 +2,29 @@
 
 Configurations supported (Specs v2 §4.3 + Dateline/QA Specs §4.2):
 
-    SD-H    handcrafted only (~47 dims, incl. dateline)
-    SD-HS   handcrafted + spectral eigenvectors (~57 dims)
-    SD-HSP  handcrafted + spectral + PCA-MASK (~67 dims)
-    SD-HQ   handcrafted + QA evidence (~61 dims)        — GPU
-    SD-HQS  handcrafted + QA + spectral (~71 dims)      — GPU
+    SD-H    handcrafted only (~47 dims, incl. dateline)            [default]
+    SD-HS   handcrafted + spectral eigenvectors (~57 dims)         [default]
+    SD-HSP  handcrafted + spectral + PCA-MASK (~67 dims)           [default]
+    SD-HQ   handcrafted + QA evidence (~62 dims)        — GPU      [experimental]
+    SD-HQS  handcrafted + QA + spectral (~72 dims)      — GPU      [experimental]
 
 The handcrafted block is composed of the existing temporal block plus the
 evidence-strength, verb-type, optional location-hierarchy, dateline, and
 language metadata features. ``build_hybrid_features`` is kept for backward
 compatibility with the v1 SD-P configuration (handcrafted ⊕ PCA-MASK, no
 evidence block).
+
+**Status of QA configurations.** SD-HQ and SD-HQS are retained for future
+research but are **not recommended for production use on HIPE-2026**.
+Empirical evaluation (April 2026, see ``logs/final/evaluation_report_*.md``)
+showed that the 15-d QA evidence block actively degrades both Random Forest
+classification (Δ macro-Recall(at) = −0.029) and MCMC subgroup discovery
+(SD-HQ finds 0 patterns at min_support=10 vs 10 patterns for SD-H, top
+NWRAcc 0.078). The mechanism is that extractive-QA confidence measures
+*span availability*, not *relation correctness*; the resulting 14-d
+continuous noise pushes MCMC into 3-support overfit patterns or, under
+coverage pressure, prevents convergence entirely. Use ``SD-H`` /
+``SD-HS`` / ``SD-HSP`` as the default configurations.
 """
 
 from __future__ import annotations
