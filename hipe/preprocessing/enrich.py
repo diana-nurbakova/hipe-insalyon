@@ -183,9 +183,9 @@ def _spacy_model(lang: str):
 def extract_tense_aspect(text: str, language: str) -> list[dict[str, Any]]:
     """spaCy-based verb-cluster annotation matching the dataset schema.
 
-    Returns a list of ``{"verb": str, "tense": str, "aspect": str, "mood": str,
-    "negated": bool}`` for each finite verb cluster found in ``text``. Tense
-    values mirror Universal Dependencies feature names (Pres, Past, Fut).
+    Schema mirrors ``data/dataset_reference.jsonl``:
+    ``{verb_cluster, tense, aspect, mood, modals, negated, sentence}``. Tense
+    values use Universal Dependencies feature names (Pres, Past, Fut).
     Returns an empty list if spaCy is unavailable.
     """
     nlp = _spacy_model(language)
@@ -200,14 +200,22 @@ def extract_tense_aspect(text: str, language: str) -> list[dict[str, Any]]:
         tense = morph.get("Tense")
         aspect = morph.get("Aspect")
         mood = morph.get("Mood")
-        negated = any(c.dep_ == "advmod" and c.lemma_.lower() in {"not", "ne", "nicht", "n't"}
-                      for c in tok.children)
+        # Walk auxiliary/modal children to assemble the verb cluster string.
+        cluster_parts = [c.text for c in tok.lefts if c.pos_ == "AUX"] + [tok.text]
+        cluster = " ".join(cluster_parts).strip() or tok.text
+        modals = [c.lemma_ for c in tok.children if c.pos_ == "AUX" and c.tag_ == "MD"]
+        negated = any(
+            c.dep_ == "advmod" and c.lemma_.lower() in {"not", "ne", "nicht", "n't"}
+            for c in tok.children
+        )
         out.append({
-            "verb": tok.lemma_ or tok.text,
-            "tense": tense[0] if tense else "",
-            "aspect": aspect[0] if aspect else "",
-            "mood": mood[0] if mood else "",
+            "verb_cluster": cluster,
+            "tense": tense[0] if tense else None,
+            "aspect": aspect[0] if aspect else None,
+            "mood": mood[0] if mood else None,
+            "modals": modals or None,
             "negated": bool(negated),
+            "sentence": tok.sent.text if tok.has_vector or True else "",
         })
     return out
 
@@ -373,36 +381,198 @@ _WIKIDATA_ENDPOINT = "https://query.wikidata.org/sparql"
 _WIKIDATA_USER_AGENT = "HIPE-2026 enrichment/0.1 (research)"
 
 
-@functools.lru_cache(maxsize=4096)
-def _wikidata_birth_death(qid: str) -> tuple[int | None, int | None]:
-    """Return (birth_year, death_year). Cached. Either may be None."""
-    if not qid or not qid.startswith("Q"):
-        return None, None
-    query = (
-        "SELECT ?birth ?death WHERE {"
-        f"  wd:{qid} wdt:P569 ?birth ."
-        f"  OPTIONAL {{ wd:{qid} wdt:P570 ?death . }}"
-        "} LIMIT 1"
-    )
+def _sparql(query: str) -> list[dict] | None:
+    """Run a SPARQL query against Wikidata. Returns bindings or None on failure."""
     try:
         r = requests.get(
             _WIKIDATA_ENDPOINT,
             params={"query": query, "format": "json"},
             headers={"User-Agent": _WIKIDATA_USER_AGENT, "Accept": "application/json"},
-            timeout=15,
+            timeout=20,
         )
         if r.status_code != 200:
-            return None, None
-        bindings = r.json().get("results", {}).get("bindings", [])
-        if not bindings:
-            return None, None
-        b = bindings[0]
-        birth_year = int(b["birth"]["value"][:4]) if "birth" in b else None
-        death_year = int(b["death"]["value"][:4]) if "death" in b else None
-        return birth_year, death_year
+            return None
+        return r.json().get("results", {}).get("bindings", [])
     except Exception as exc:
-        logger.warning("Wikidata SPARQL failed for %s: %s", qid, exc)
-        return None, None
+        logger.warning("Wikidata SPARQL failed: %s", exc)
+        return None
+
+
+@functools.lru_cache(maxsize=4096)
+def _wikidata_person_props(qid: str) -> dict:
+    """Fetch person-side properties in a single SPARQL query (cached).
+
+    Returns ``{label, description, birth, death, birthplaces, deathplaces,
+    occupations, residences, work_locations}``. Empty dict on QID miss /
+    failure. ``birth``/``death`` are 4-digit year ints; the *_locations
+    fields are lists of QIDs (strings)."""
+    if not qid or not qid.startswith("Q"):
+        return {}
+    query = f"""
+    SELECT ?label ?description ?birth ?death
+           (GROUP_CONCAT(DISTINCT ?birthplace; SEPARATOR="|") AS ?birthplaces)
+           (GROUP_CONCAT(DISTINCT ?deathplace; SEPARATOR="|") AS ?deathplaces)
+           (GROUP_CONCAT(DISTINCT ?occupation; SEPARATOR="|") AS ?occupations)
+           (GROUP_CONCAT(DISTINCT ?residence;  SEPARATOR="|") AS ?residences)
+           (GROUP_CONCAT(DISTINCT ?work_loc;   SEPARATOR="|") AS ?work_locations)
+    WHERE {{
+      OPTIONAL {{ wd:{qid} rdfs:label ?label . FILTER(LANG(?label) IN ("en","fr","de")) }}
+      OPTIONAL {{ wd:{qid} schema:description ?description . FILTER(LANG(?description) IN ("en","fr","de")) }}
+      OPTIONAL {{ wd:{qid} wdt:P569 ?birth . }}
+      OPTIONAL {{ wd:{qid} wdt:P570 ?death . }}
+      OPTIONAL {{ wd:{qid} wdt:P19  ?birthplace . }}
+      OPTIONAL {{ wd:{qid} wdt:P20  ?deathplace . }}
+      OPTIONAL {{ wd:{qid} wdt:P106 ?occupation . }}
+      OPTIONAL {{ wd:{qid} wdt:P551 ?residence . }}
+      OPTIONAL {{ wd:{qid} wdt:P937 ?work_loc . }}
+    }}
+    GROUP BY ?label ?description ?birth ?death
+    LIMIT 1
+    """
+    bindings = _sparql(query)
+    if not bindings:
+        return {}
+    b = bindings[0]
+
+    def _qid_list(field: str) -> list[str]:
+        v = b.get(field, {}).get("value", "")
+        if not v:
+            return []
+        return [x.rsplit("/", 1)[-1] for x in v.split("|") if x]
+
+    out = {
+        "qid": qid,
+        "label": b.get("label", {}).get("value"),
+        "description": b.get("description", {}).get("value"),
+        "birth_year": int(b["birth"]["value"][:4]) if "birth" in b else None,
+        "death_year": int(b["death"]["value"][:4]) if "death" in b else None,
+        "birthplaces_qids": _qid_list("birthplaces"),
+        "deathplaces_qids": _qid_list("deathplaces"),
+        "occupation_qids": _qid_list("occupations"),
+        "residence_qids":  _qid_list("residences"),
+        "work_location_qids": _qid_list("work_locations"),
+    }
+    return out
+
+
+@functools.lru_cache(maxsize=4096)
+def _wikidata_location_props(qid: str) -> dict:
+    """Fetch location-side properties in a single SPARQL query (cached).
+
+    Returns ``{qid, label, description, country, located_in, coordinates,
+    instance_of}``. Empty dict on QID miss / failure."""
+    if not qid or not qid.startswith("Q"):
+        return {}
+    query = f"""
+    SELECT ?label ?description ?country ?located_in ?coord ?instance_of
+    WHERE {{
+      OPTIONAL {{ wd:{qid} rdfs:label ?label . FILTER(LANG(?label) IN ("en","fr","de")) }}
+      OPTIONAL {{ wd:{qid} schema:description ?description . FILTER(LANG(?description) IN ("en","fr","de")) }}
+      OPTIONAL {{ wd:{qid} wdt:P17  ?country . }}
+      OPTIONAL {{ wd:{qid} wdt:P131 ?located_in . }}
+      OPTIONAL {{ wd:{qid} wdt:P625 ?coord . }}
+      OPTIONAL {{ wd:{qid} wdt:P31  ?instance_of . }}
+    }}
+    LIMIT 25
+    """
+    bindings = _sparql(query)
+    if not bindings:
+        return {}
+    label = description = None
+    countries: set[str] = set()
+    located_ins: set[str] = set()
+    instance_ofs: set[str] = set()
+    coords: list[dict[str, float]] = []
+    for b in bindings:
+        if "label" in b and label is None:
+            label = b["label"]["value"]
+        if "description" in b and description is None:
+            description = b["description"]["value"]
+        if "country" in b:
+            countries.add(b["country"]["value"].rsplit("/", 1)[-1])
+        if "located_in" in b:
+            located_ins.add(b["located_in"]["value"].rsplit("/", 1)[-1])
+        if "instance_of" in b:
+            instance_ofs.add(b["instance_of"]["value"].rsplit("/", 1)[-1])
+        if "coord" in b:
+            v = b["coord"]["value"]
+            # WKT format: "Point(lon lat)"
+            m = re.match(r"Point\(([-\d\.]+)\s+([-\d\.]+)\)", v)
+            if m:
+                coords.append({"lat": float(m.group(2)), "lon": float(m.group(1))})
+    return {
+        "qid": qid,
+        "label": label,
+        "description": description,
+        "country_qids": sorted(countries),
+        "located_in_qids": sorted(located_ins),
+        "coordinates": coords,
+        "instance_of_qids": sorted(instance_ofs),
+    }
+
+
+def _wikidata_birth_death(qid: str) -> tuple[int | None, int | None]:
+    """Backwards-compatible thin wrapper over :func:`_wikidata_person_props`."""
+    p = _wikidata_person_props(qid)
+    return p.get("birth_year"), p.get("death_year")
+
+
+def derive_person_context(qid: str | None) -> dict:
+    """Block-2 person_context dict. Empty if QID is None / lookup fails."""
+    if not qid:
+        return {}
+    p = _wikidata_person_props(qid)
+    return p
+
+
+def derive_location_context(qid: str | None) -> dict:
+    """Block-2 location_context dict. Empty if QID is None / lookup fails."""
+    if not qid:
+        return {}
+    return _wikidata_location_props(qid)
+
+
+def derive_known_relations(
+    pers_ctx: dict,
+    loc_qid: str | None,
+) -> dict:
+    """Cross-reference person Wikidata properties against the location QID.
+
+    Returns ``{"linked_via": [property_names_where_pers_qid_links_to_loc_qid]}``
+    so the LLM prompt can surface "person was born in this place" / "person
+    works at this place" style facts. Empty dict if no link.
+    """
+    if not loc_qid or not pers_ctx:
+        return {}
+    linked: list[str] = []
+    if loc_qid in pers_ctx.get("birthplaces_qids", []):
+        linked.append("place_of_birth")
+    if loc_qid in pers_ctx.get("deathplaces_qids", []):
+        linked.append("place_of_death")
+    if loc_qid in pers_ctx.get("residence_qids", []):
+        linked.append("residence")
+    if loc_qid in pers_ctx.get("work_location_qids", []):
+        linked.append("work_location")
+    return {"linked_via": linked} if linked else {}
+
+
+def derive_person_location_match(
+    pers_ctx: dict,
+    loc_ctx: dict,
+    relations: dict,
+) -> str:
+    """Categorical summary of how the person and location are connected.
+
+    Categories follow the dataset's pattern:
+    - ``"unknown"``  : either side missing Wikidata data
+    - ``"no_match"`` : both sides exist but no direct relation found
+    - ``"match"``    : at least one P19/P20/P551/P937 link from person→location
+    """
+    if not pers_ctx or not loc_ctx:
+        return "unknown"
+    if relations.get("linked_via"):
+        return "match"
+    return "no_match"
 
 
 def derive_temporal_person_status(
@@ -412,27 +582,96 @@ def derive_temporal_person_status(
     historical_pub_year_threshold: int = 1980,
     rate_limit_seconds: float = 0.05,
 ) -> str:
-    """Bucket the person's life status relative to the publication date."""
+    """Bucket the person's life status relative to the publication date.
+
+    Reuses the cached :func:`_wikidata_person_props` so calling this and
+    :func:`derive_person_context` in the same pass costs only one SPARQL
+    request per QID.
+    """
     if not pers_qid or not pub_date:
         return "unknown"
     try:
         pub_year = datetime.fromisoformat(pub_date).year
     except (ValueError, TypeError):
         return "unknown"
-    birth, death = _wikidata_birth_death(pers_qid)
+    p = _wikidata_person_props(pers_qid)
     if rate_limit_seconds:
         # Polite ~20 req/s pace under Wikidata's anonymous quota.
         time.sleep(rate_limit_seconds)
+    birth = p.get("birth_year")
+    death = p.get("death_year")
     if birth is None:
         return "no_match"
     if birth > pub_year:
-        # Person not yet born at publication — undefined; treat as no_match.
         return "no_match"
     if death is not None and death < pub_year:
         return "dead_historical"
     if pub_year < historical_pub_year_threshold:
         return "alive_past"
     return "alive_now"
+
+
+# =====================================================================
+# 5. Block-3 RAG retrieval (similar_examples)
+# =====================================================================
+
+
+def _load_retriever(retriever_dir: str | Path | None):
+    """Lazy-load a Retriever instance. Returns None if unavailable."""
+    if not retriever_dir:
+        return None
+    try:
+        from hipe.retriever import Retriever
+    except ImportError:
+        logger.warning("hipe.retriever unavailable; similar_examples skipped")
+        return None
+    try:
+        return Retriever.from_disk(retriever_dir)
+    except Exception as exc:
+        logger.warning("failed to load retriever from %s: %s", retriever_dir, exc)
+        return None
+
+
+def derive_similar_examples(
+    instance: RelationInstance,
+    retriever,
+    *,
+    k: int = 5,
+    prefer_language: str | None = "auto",
+) -> list[dict[str, Any]]:
+    """Retrieve top-k similar training examples for ``instance``.
+
+    Returns a list of dicts with keys matching the dataset's ``similar_examples``
+    schema (``document_id``, ``pers_entity_id``, ``loc_entity_id``, ``language``,
+    ``at``, ``isAt``, ``text``, ``score``). Empty list if retriever is None or
+    if retrieval fails.
+    """
+    if retriever is None or k <= 0:
+        return []
+    lang = (
+        instance.language if prefer_language == "auto" else prefer_language
+    ) if prefer_language not in (None, "any") else None
+    try:
+        results = retriever.retrieve(
+            instance, k=k, prefer_language=lang,
+        )
+    except Exception as exc:
+        logger.warning("retrieval failed: %s", exc)
+        return []
+    out: list[dict[str, Any]] = []
+    for r in results:
+        meta = getattr(r, "metadata", {}) or {}
+        out.append({
+            "document_id": meta.get("document_id"),
+            "pers_entity_id": meta.get("pers_entity_id"),
+            "loc_entity_id": meta.get("loc_entity_id"),
+            "language": meta.get("language"),
+            "at": meta.get("at"),
+            "isAt": meta.get("isAt"),
+            "text": meta.get("text") or meta.get("context"),
+            "score": float(getattr(r, "score", 0.0)),
+        })
+    return out
 
 
 # =====================================================================
@@ -446,19 +685,34 @@ def enrich_instance(
     *,
     use_heideltime: bool = False,
     use_wikidata: bool = False,
+    use_wikidata_full: bool = False,
     isat_window_days: int = 14,
+    retriever=None,
+    k_retrieved: int = 5,
 ) -> RelationInstance:
     """Build a fully-populated RelationInstance from one official-format pair.
 
-    Defaults stay conservative: HeidelTime and Wikidata calls are off so a
-    bare CPU-only run produces deterministic output without external deps.
-    Enable them once you've confirmed Java + Wikidata access.
+    Flag matrix
+    -----------
+    - ``use_wikidata`` (Block-1): person life-status only — single SPARQL
+      query per unique person QID; cheap.
+    - ``use_wikidata_full`` (Block-2): adds ``person_context``,
+      ``location_context``, ``known_person_location_relations``,
+      ``person_location_match``. Adds one extra SPARQL per unique location
+      QID; person query is shared with the life-status fetch via the LRU
+      cache. Implies ``use_wikidata``.
+    - ``use_heideltime`` (Block-1): TIMEX3 extraction. Needs Java +
+      ``py-heideltime``. Skipped on Windows.
+    - ``retriever`` + ``k_retrieved`` (Block-3): RAG-retrieved
+      ``similar_examples``. Pass a loaded :class:`hipe.retriever.Retriever`.
     """
     text = doc.get("text", "") or ""
     language = doc.get("language", "") or ""
     pub_date = doc.get("date", None) or None
     pers_mentions = list(pair.get("pers_mentions_list") or [])
     loc_mentions = list(pair.get("loc_mentions_list") or [])
+    pers_qid = pair.get("pers_wikidata_QID")
+    loc_qid = pair.get("loc_wikidata_QID")
 
     signals, signal_category = extract_temporal_signals(text)
     tense_aspect = extract_tense_aspect(text, language)
@@ -474,13 +728,24 @@ def enrich_instance(
         nearest is not None and abs(nearest) <= isat_window_days
     )
 
+    # --- Block 1/2 Wikidata ------------------------------------------------
     person_status = "unknown"
-    if use_wikidata:
-        person_status = derive_temporal_person_status(
-            pair.get("pers_wikidata_QID"), pub_date,
+    person_context: dict = {}
+    location_context: dict = {}
+    known_relations: dict = {}
+    person_loc_match = "unknown"
+    if use_wikidata or use_wikidata_full:
+        person_status = derive_temporal_person_status(pers_qid, pub_date)
+    if use_wikidata_full:
+        person_context = derive_person_context(pers_qid)
+        location_context = derive_location_context(loc_qid)
+        known_relations = derive_known_relations(person_context, loc_qid)
+        person_loc_match = derive_person_location_match(
+            person_context, location_context, known_relations,
         )
 
-    return RelationInstance(
+    # Build a partial instance first so the retriever can read its fields.
+    inst = RelationInstance(
         document_id=doc["document_id"],
         pers_entity_id=pair["pers_entity_id"],
         loc_entity_id=pair["loc_entity_id"],
@@ -488,13 +753,13 @@ def enrich_instance(
         date=pub_date or "",
         pers_mentions_list=pers_mentions,
         loc_mentions_list=loc_mentions,
-        pers_wikidata_QID=pair.get("pers_wikidata_QID"),
-        loc_wikidata_QID=pair.get("loc_wikidata_QID"),
+        pers_wikidata_QID=pers_qid,
+        loc_wikidata_QID=loc_qid,
         text=text,
         context=context,
-        person_context={},
-        location_context={},
-        known_person_location_relations={},
+        person_context=person_context,
+        location_context=location_context,
+        known_person_location_relations=known_relations,
         similar_examples=[],
         temporal_expressions=timexes,
         temporal_signals=signals,
@@ -503,7 +768,7 @@ def enrich_instance(
         ocr_quality=1.0,
         has_timex_in_isat_window=has_timex_in_window,
         nearest_timex_distance=nearest,
-        person_location_match="unknown",
+        person_location_match=person_loc_match,
         temporal_person_status=person_status,
         temporal_signal_category=signal_category,
         at=pair.get("at"),
@@ -512,6 +777,13 @@ def enrich_instance(
         isAt_explanation=pair.get("isAt_explanation"),
     )
 
+    # --- Block 3: RAG retrieval -------------------------------------------
+    if retriever is not None and k_retrieved > 0:
+        inst.similar_examples = derive_similar_examples(
+            inst, retriever, k=k_retrieved,
+        )
+    return inst
+
 
 def enrich_official_jsonl(
     in_path: str | Path,
@@ -519,7 +791,10 @@ def enrich_official_jsonl(
     *,
     use_heideltime: bool = False,
     use_wikidata: bool = False,
+    use_wikidata_full: bool = False,
     isat_window_days: int = 14,
+    retriever_dir: str | Path | None = None,
+    k_retrieved: int = 5,
     progress_every: int = 50,
 ) -> int:
     """Stream an official nested JSONL into a flat enriched JSONL.
@@ -532,6 +807,13 @@ def enrich_official_jsonl(
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
+    retriever = _load_retriever(retriever_dir)
+    if retriever_dir and retriever is None:
+        logger.warning(
+            "retriever_dir=%s was given but the index could not be loaded; "
+            "similar_examples will be empty", retriever_dir,
+        )
+
     n_written = 0
     t0 = time.perf_counter()
     with out_path.open("w", encoding="utf-8") as f:
@@ -541,7 +823,10 @@ def enrich_official_jsonl(
                     doc, pair,
                     use_heideltime=use_heideltime,
                     use_wikidata=use_wikidata,
+                    use_wikidata_full=use_wikidata_full,
                     isat_window_days=isat_window_days,
+                    retriever=retriever,
+                    k_retrieved=k_retrieved,
                 )
                 f.write(json.dumps(asdict(inst), ensure_ascii=False, default=str) + "\n")
                 n_written += 1

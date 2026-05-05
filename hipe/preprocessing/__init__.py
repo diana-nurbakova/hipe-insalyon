@@ -17,21 +17,35 @@ Public surface
 """
 
 from hipe.preprocessing.enrich import (
+    derive_known_relations,
+    derive_location_context,
+    derive_nearest_timex_distance,
+    derive_person_context,
+    derive_person_location_match,
+    derive_sentence_position,
+    derive_similar_examples,
+    derive_temporal_person_status,
     enrich_instance,
     enrich_official_jsonl,
+    extract_context,
     extract_tense_aspect,
     extract_temporal_expressions_heideltime,
     extract_temporal_signals,
-    derive_sentence_position,
-    derive_temporal_person_status,
 )
 
 __all__ = [
+    "derive_known_relations",
+    "derive_location_context",
+    "derive_nearest_timex_distance",
+    "derive_person_context",
+    "derive_person_location_match",
+    "derive_sentence_position",
+    "derive_similar_examples",
+    "derive_temporal_person_status",
     "enrich_instance",
     "enrich_official_jsonl",
+    "extract_context",
     "extract_tense_aspect",
     "extract_temporal_expressions_heideltime",
     "extract_temporal_signals",
-    "derive_sentence_position",
-    "derive_temporal_person_status",
 ]

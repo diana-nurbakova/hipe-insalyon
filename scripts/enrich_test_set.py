@@ -52,8 +52,19 @@ def main() -> int:
     ap.add_argument("--heideltime", action="store_true",
                     help="Run HeidelTime TIMEX3 extraction (needs Java + py-heideltime).")
     ap.add_argument("--wikidata", action="store_true",
-                    help="Fetch person birth/death via Wikidata SPARQL "
-                         "(~20 req/s, ~1 min for 1,118 pairs).")
+                    help="Block-1 Wikidata: person birth/death -> temporal_person_status. "
+                         "~1 SPARQL per unique person QID; SPARQL endpoint averages "
+                         "0.5–2 req/s in practice.")
+    ap.add_argument("--wikidata-full", action="store_true",
+                    help="Block-2 Wikidata: also populate person_context, "
+                         "location_context, known_person_location_relations, "
+                         "person_location_match. Adds 1 SPARQL per unique location QID.")
+    ap.add_argument("--retriever-dir", default=None,
+                    help="Block-3 RAG: path to a built retrieval index "
+                         "(e.g. runs/retriever_at_bgem3) for similar_examples.")
+    ap.add_argument("--k-retrieved", type=int, default=5,
+                    help="How many similar examples to retrieve per pair "
+                         "when --retriever-dir is set.")
     ap.add_argument("--isat-window-days", type=int, default=14,
                     help="±N-day window for has_timex_in_isat_window (default 14, "
                          "matching dataset_reference.jsonl).")
@@ -63,9 +74,11 @@ def main() -> int:
         raise SystemExit(f"--in not found: {args.in_path}")
 
     print(f"Enriching {args.in_path}")
-    print(f"  use_heideltime  = {args.heideltime}")
-    print(f"  use_wikidata    = {args.wikidata}")
-    print(f"  isat_window     = {args.isat_window_days} days")
+    print(f"  use_heideltime    = {args.heideltime}")
+    print(f"  use_wikidata      = {args.wikidata}  (Block-1 person status)")
+    print(f"  use_wikidata_full = {args.wikidata_full}  (Block-2 person/location context)")
+    print(f"  retriever_dir     = {args.retriever_dir}  (Block-3 similar_examples, k={args.k_retrieved})")
+    print(f"  isat_window       = {args.isat_window_days} days")
 
     t0 = time.perf_counter()
     n = enrich_official_jsonl(
@@ -73,7 +86,10 @@ def main() -> int:
         args.out_path,
         use_heideltime=args.heideltime,
         use_wikidata=args.wikidata,
+        use_wikidata_full=args.wikidata_full,
         isat_window_days=args.isat_window_days,
+        retriever_dir=args.retriever_dir,
+        k_retrieved=args.k_retrieved,
     )
     elapsed = time.perf_counter() - t0
     print(f"\nDone: {n} pairs in {elapsed:.1f}s ({n/max(elapsed,1e-3):.1f}/s)")

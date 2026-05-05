@@ -17,7 +17,12 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(python -c \"import json,sys; print\\(list\\(json.loads\\(sys.stdin.readline\\(\\)\\).keys\\(\\)\\)[:15]\\)\")",
-      "Read(//c/Users/dnurb/Documents/MilitIA/HIPE/**)"
+      "Read(//c/Users/dnurb/Documents/MilitIA/HIPE/**)",
+      "Bash(python -c \"import json,sys; d=json.loads\\(sys.stdin.read\\(\\)\\); print\\(list\\(d.keys\\(\\)\\)\\); print\\('language:', d.get\\('language'\\)\\); print\\('n pairs:', len\\(d.get\\('sampled_pairs', []\\)\\)\\); print\\('sample pair:', d['sampled_pairs'][0] if d.get\\('sampled_pairs'\\) else None\\)\")",
+      "Bash(curl -s -o /tmp/hipe_schema.json https://raw.githubusercontent.com/hipe-eval/HIPE-2026-data/main/schemas/hipe-2026-data.schema.json)",
+      "Bash(curl -s https://raw.githubusercontent.com/hipe-eval/HIPE-2026-data/main/scripts/check_jsonlschema.py -o /tmp/check_jsonlschema.py)",
+      "Bash(c:/Users/dnurb/Documents/MilitIA/HIPE/.venv/Scripts/python.exe -c \"import joblib; import torch; print\\('OK', torch.__version__\\)\")",
+      "Bash(c:/Users/dnurb/Documents/MilitIA/HIPE/.venv/Scripts/python.exe -m pip list)"
     ],
     "additionalDirectories": [
       "c:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\data\\newspapers\\v1.0\\official_test"
