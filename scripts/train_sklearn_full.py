@@ -57,8 +57,30 @@ def make_rf():
 
 
 def _load_arrays(npz_path: Path) -> dict[str, np.ndarray]:
+    """Load npz with the same key-renaming convention as run_kfold_per_model_oof.py.
+
+    The npz stores `mask_emb` / `concat_emb`, but feature specs reference the
+    short names `mask` / `concat`. Rename here so feature specs work without
+    extra glue.
+    """
     Z = np.load(npz_path, allow_pickle=True)
-    return {k: Z[k] for k in Z.files}
+    out = {
+        "sample_id": Z["sample_id"].astype(str),
+        "mask": Z["mask_emb"].astype(np.float32),
+        "concat": Z["concat_emb"].astype(np.float32),
+        "temporal": Z["temporal"].astype(np.float32),
+        "handcrafted": Z["handcrafted"].astype(np.float32),
+        "language": Z["language"].astype(str),
+    }
+    # Optional fields (present in labeled npz, absent in unlabeled test npz).
+    if "at" in Z.files:
+        out["at"] = Z["at"].astype(str)
+    if "isAt" in Z.files:
+        out["isAt"] = Z["isAt"].astype(str)
+    # Multi-layer concat (only present when extracted with multiple --layers).
+    if "mask_emb_layers" in Z.files:
+        out["mask_layers"] = Z["mask_emb_layers"].astype(np.float32)
+    return out
 
 
 def _build_features(arrays: dict[str, np.ndarray], spec) -> np.ndarray:
