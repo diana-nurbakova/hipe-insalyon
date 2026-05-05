@@ -1,0 +1,552 @@
+{
+  "experiment_id": "T1_hybrid_DisStacker3_tbalphabetical_at_GemmaIsAt",
+  "timestamp": "2026-05-05T08:07:55.798347+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.7806959609591189,
+    "macro_recall_at": 0.7070059570059569,
+    "macro_recall_isAt": 0.8543859649122807,
+    "at_details": {
+      "recall_TRUE": 0.7727272727272727,
+      "recall_PROBABLE": 0.4444444444444444,
+      "recall_FALSE": 0.9038461538461539,
+      "macro_recall": 0.7070059570059569
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.8421052631578947,
+      "recall_FALSE": 0.8666666666666667,
+      "macro_recall": 0.8543859649122807
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.7846153846153846,
+      "recall": 0.7727272727272727,
+      "f1-score": 0.7786259541984732,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.5333333333333333,
+      "recall": 0.4444444444444444,
+      "f1-score": 0.4848484848484848,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.8703703703703703,
+      "recall": 0.9038461538461539,
+      "f1-score": 0.8867924528301887,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.7294396961063628,
+      "recall": 0.7070059570059569,
+      "f1-score": 0.7167556306257156,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.807995393101776,
+      "recall": 0.8138297872340425,
+      "f1-score": 0.8103351106314446,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.6153846153846154,
+      "recall": 0.8421052631578947,
+      "f1-score": 0.7111111111111111,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.9558823529411765,
+      "recall": 0.8666666666666667,
+      "f1-score": 0.9090909090909091,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.785633484162896,
+      "recall": 0.8543859649122807,
+      "f1-score": 0.8101010101010101,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8870583421584672,
+      "recall": 0.8617021276595744,
+      "f1-score": 0.8690737158822264,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      51,
+      5,
+      10
+    ],
+    [
+      6,
+      8,
+      4
+    ],
+    [
+      8,
+      2,
+      94
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      32,
+      6
+    ],
+    [
+      20,
+      130
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "spec": "HIPE2026_Disagreement_Stacker_Specs.md v1.0",
+    "at_sources": [
+      {
+        "name": "RF",
+        "path": "logs\\ablations\\T1.4or5_mask_T1.5_handcrafted_RF_at_at-test_predictions.jsonl"
+      },
+      {
+        "name": "C4-SDov",
+        "path": "logs\\ablations\\T1.4or5_mask_C4_mask+e1+e2+temporal_LR_at_at-test+SDov_PROBABLE_from_FALSE_nw0.05_predictions.jsonl"
+      },
+      {
+        "name": "Gemma",
+        "path": "logs\\ablations\\T1_llm_zeroshot_PAB_openrouter_gemma-4-31b-it_at-test_predictions.jsonl"
+      }
+    ],
+    "isAt_source": "logs\\ablations\\T1_llm_zeroshot_PAB_openrouter_gemma-4-31b-it_at-test_predictions.jsonl",
+    "tiebreaker": "alphabetical",
+    "fallback_strategy": "majority",
+    "fallback_label": "FALSE",
+    "n_unique_vote_tuples": 20,
+    "vote_tuple_distribution": [
+      {
+        "vote_tuple": [
+          "FALSE",
+          "FALSE",
+          "FALSE"
+        ],
+        "n": 48
+      },
+      {
+        "vote_tuple": [
+          "TRUE",
+          "TRUE",
+          "TRUE"
+        ],
+        "n": 39
+      },
+      {
+        "vote_tuple": [
+          "FALSE",
+          "FALSE",
+          "TRUE"
+        ],
+        "n": 21
+      },
+      {
+        "vote_tuple": [
+          "FALSE",
+          "FALSE",
+          "PROBABLE"
+        ],
+        "n": 14
+      },
+      {
+        "vote_tuple": [
+          "FALSE",
+          "TRUE",
+          "TRUE"
+        ],
+        "n": 12
+      },
+      {
+        "vote_tuple": [
+          "TRUE",
+          "FALSE",
+          "TRUE"
+        ],
+        "n": 9
+      },
+      {
+        "vote_tuple": [
+          "FALSE",
+          "TRUE",
+          "FALSE"
+        ],
+        "n": 8
+      },
+      {
+        "vote_tuple": [
+          "TRUE",
+          "TRUE",
+          "FALSE"
+        ],
+        "n": 7
+      },
+      {
+        "vote_tuple": [
+          "PROBABLE",
+          "PROBABLE",
+          "TRUE"
+        ],
+        "n": 6
+      },
+      {
+        "vote_tuple": [
+          "FALSE",
+          "PROBABLE",
+          "TRUE"
+        ],
+        "n": 5
+      },
+      {
+        "vote_tuple": [
+          "FALSE",
+          "PROBABLE",
+          "FALSE"
+        ],
+        "n": 4
+      },
+      {
+        "vote_tuple": [
+          "PROBABLE",
+          "FALSE",
+          "TRUE"
+        ],
+        "n": 4
+      },
+      {
+        "vote_tuple": [
+          "TRUE",
+          "FALSE",
+          "FALSE"
+        ],
+        "n": 3
+      },
+      {
+        "vote_tuple": [
+          "FALSE",
+          "TRUE",
+          "PROBABLE"
+        ],
+        "n": 2
+      },
+      {
+        "vote_tuple": [
+          "TRUE",
+          "PROBABLE",
+          "TRUE"
+        ],
+        "n": 1
+      },
+      {
+        "vote_tuple": [
+          "PROBABLE",
+          "FALSE",
+          "PROBABLE"
+        ],
+        "n": 1
+      },
+      {
+        "vote_tuple": [
+          "FALSE",
+          "PROBABLE",
+          "PROBABLE"
+        ],
+        "n": 1
+      },
+      {
+        "vote_tuple": [
+          "PROBABLE",
+          "TRUE",
+          "TRUE"
+        ],
+        "n": 1
+      },
+      {
+        "vote_tuple": [
+          "TRUE",
+          "FALSE",
+          "PROBABLE"
+        ],
+        "n": 1
+      },
+      {
+        "vote_tuple": [
+          "TRUE",
+          "TRUE",
+          "PROBABLE"
+        ],
+        "n": 1
+      }
+    ],
+    "stacker_cells": [
+      {
+        "cell": {
+          "RF": "FALSE",
+          "C4-SDov": "FALSE",
+          "Gemma": "FALSE"
+        },
+        "n": 48,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "FALSE": 46,
+          "TRUE": 2
+        }
+      },
+      {
+        "cell": {
+          "RF": "TRUE",
+          "C4-SDov": "TRUE",
+          "Gemma": "TRUE"
+        },
+        "n": 39,
+        "modal_gold": "TRUE",
+        "breakdown": {
+          "TRUE": 33,
+          "FALSE": 5,
+          "PROBABLE": 1
+        }
+      },
+      {
+        "cell": {
+          "RF": "FALSE",
+          "C4-SDov": "FALSE",
+          "Gemma": "TRUE"
+        },
+        "n": 21,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "TRUE": 8,
+          "FALSE": 10,
+          "PROBABLE": 3
+        }
+      },
+      {
+        "cell": {
+          "RF": "FALSE",
+          "C4-SDov": "FALSE",
+          "Gemma": "PROBABLE"
+        },
+        "n": 14,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "FALSE": 14
+        }
+      },
+      {
+        "cell": {
+          "RF": "FALSE",
+          "C4-SDov": "TRUE",
+          "Gemma": "TRUE"
+        },
+        "n": 12,
+        "modal_gold": "TRUE",
+        "breakdown": {
+          "TRUE": 8,
+          "FALSE": 2,
+          "PROBABLE": 2
+        }
+      },
+      {
+        "cell": {
+          "RF": "TRUE",
+          "C4-SDov": "FALSE",
+          "Gemma": "TRUE"
+        },
+        "n": 9,
+        "modal_gold": "TRUE",
+        "breakdown": {
+          "FALSE": 1,
+          "TRUE": 8
+        }
+      },
+      {
+        "cell": {
+          "RF": "FALSE",
+          "C4-SDov": "TRUE",
+          "Gemma": "FALSE"
+        },
+        "n": 8,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "FALSE": 8
+        }
+      },
+      {
+        "cell": {
+          "RF": "TRUE",
+          "C4-SDov": "TRUE",
+          "Gemma": "FALSE"
+        },
+        "n": 7,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "FALSE": 7
+        }
+      },
+      {
+        "cell": {
+          "RF": "PROBABLE",
+          "C4-SDov": "PROBABLE",
+          "Gemma": "TRUE"
+        },
+        "n": 6,
+        "modal_gold": "PROBABLE",
+        "breakdown": {
+          "PROBABLE": 5,
+          "TRUE": 1
+        }
+      },
+      {
+        "cell": {
+          "RF": "FALSE",
+          "C4-SDov": "PROBABLE",
+          "Gemma": "TRUE"
+        },
+        "n": 5,
+        "modal_gold": "TRUE",
+        "breakdown": {
+          "PROBABLE": 2,
+          "TRUE": 3
+        }
+      },
+      {
+        "cell": {
+          "RF": "FALSE",
+          "C4-SDov": "PROBABLE",
+          "Gemma": "FALSE"
+        },
+        "n": 4,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "FALSE": 4
+        }
+      },
+      {
+        "cell": {
+          "RF": "PROBABLE",
+          "C4-SDov": "FALSE",
+          "Gemma": "TRUE"
+        },
+        "n": 4,
+        "modal_gold": "PROBABLE",
+        "breakdown": {
+          "PROBABLE": 3,
+          "TRUE": 1
+        }
+      },
+      {
+        "cell": {
+          "RF": "TRUE",
+          "C4-SDov": "FALSE",
+          "Gemma": "FALSE"
+        },
+        "n": 3,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "FALSE": 3
+        }
+      },
+      {
+        "cell": {
+          "RF": "FALSE",
+          "C4-SDov": "TRUE",
+          "Gemma": "PROBABLE"
+        },
+        "n": 2,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "FALSE": 2
+        }
+      },
+      {
+        "cell": {
+          "RF": "FALSE",
+          "C4-SDov": "PROBABLE",
+          "Gemma": "PROBABLE"
+        },
+        "n": 1,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "FALSE": 1
+        }
+      },
+      {
+        "cell": {
+          "RF": "PROBABLE",
+          "C4-SDov": "FALSE",
+          "Gemma": "PROBABLE"
+        },
+        "n": 1,
+        "modal_gold": "FALSE",
+        "breakdown": {
+          "FALSE": 1
+        }
+      },
+      {
+        "cell": {
+          "RF": "PROBABLE",
+          "C4-SDov": "TRUE",
+          "Gemma": "TRUE"
+        },
+        "n": 1,
+        "modal_gold": "PROBABLE",
+        "breakdown": {
+          "PROBABLE": 1
+        }
+      },
+      {
+        "cell": {
+          "RF": "TRUE",
+          "C4-SDov": "FALSE",
+          "Gemma": "PROBABLE"
+        },
+        "n": 1,
+        "modal_gold": "PROBABLE",
+        "breakdown": {
+          "PROBABLE": 1
+        }
+      },
+      {
+        "cell": {
+          "RF": "TRUE",
+          "C4-SDov": "PROBABLE",
+          "Gemma": "TRUE"
+        },
+        "n": 1,
+        "modal_gold": "TRUE",
+        "breakdown": {
+          "TRUE": 1
+        }
+      },
+      {
+        "cell": {
+          "RF": "TRUE",
+          "C4-SDov": "TRUE",
+          "Gemma": "PROBABLE"
+        },
+        "n": 1,
+        "modal_gold": "TRUE",
+        "breakdown": {
+          "TRUE": 1
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "n_instances": 1251,
+  "n_outer_folds": 5,
+  "n_inner_folds": 3,
+  "max_models": 2,
+  "seed": 42,
+  "tiebreaker": "ordinal_median",
+  "fallback": "ordinal",
+  "candidates": [
+    "RF",
+    "C4"
+  ],
+  "per_fold": [
+    {
+      "fold": 0,
+      "n_train": 1000,
+      "n_test": 251,
+      "selected_models": [
+        "RF"
+      ],
+      "MR_at": 0.6071961678336861,
+      "per_class_recall": {
+        "TRUE": 0.5842696629213483,
+        "PROBABLE": 0.375,
+        "FALSE": 0.8623188405797102
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.5787332058595261,
+              "per_inner_fold": [
+                0.5811302505526897,
+                0.5700908893843676,
+                0.5849784776415211
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.47053292309371897,
+              "per_inner_fold": [
+                0.4480164578727585,
+                0.4887897931376193,
+                0.4747925182707791
+              ]
+            }
+          ],
+          "selected_this_step": "RF",
+          "best_mean": 0.5787332058595261,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.551470677000338,
+              "per_inner_fold": [
+                0.568756140997298,
+                0.5331854638919856,
+                0.5524704261117305
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.551470677000338,
+          "improved": false
+        }
+      ]
+    },
+    {
+      "fold": 1,
+      "n_train": 1001,
+      "n_test": 250,
+      "selected_models": [
+        "C4"
+      ],
+      "MR_at": 0.567413263065437,
+      "per_class_recall": {
+        "TRUE": 0.6931818181818182,
+        "PROBABLE": 0.2916666666666667,
+        "FALSE": 0.717391304347826
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.5815272940211531,
+              "per_inner_fold": [
+                0.6276483050847458,
+                0.5841700442151806,
+                0.5327635327635328
+              ]
+            },
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.580644525659571,
+              "per_inner_fold": [
+                0.6393392286907393,
+                0.5657547285679194,
+                0.5368396197200545
+              ]
+            }
+          ],
+          "selected_this_step": "C4",
+          "best_mean": 0.5815272940211531,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.5668236076382108,
+              "per_inner_fold": [
+                0.6720937730287398,
+                0.5068779169737165,
+                0.5214991329121764
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.5668236076382108,
+          "improved": false
+        }
+      ]
+    },
+    {
+      "fold": 2,
+      "n_train": 1001,
+      "n_test": 250,
+      "selected_models": [
+        "C4"
+      ],
+      "MR_at": 0.4901185770750988,
+      "per_class_recall": {
+        "TRUE": 0.5681818181818182,
+        "PROBABLE": 0.25,
+        "FALSE": 0.6521739130434783
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.6007679702026915,
+              "per_inner_fold": [
+                0.6060780520756571,
+                0.5990926676492263,
+                0.5971331908831908
+              ]
+            },
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.58926239186771,
+              "per_inner_fold": [
+                0.5868874355195284,
+                0.592882584131663,
+                0.5880171559519386
+              ]
+            }
+          ],
+          "selected_this_step": "C4",
+          "best_mean": 0.6007679702026915,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.5564943102172898,
+              "per_inner_fold": [
+                0.5808922869073938,
+                0.566054102186195,
+                0.5225365415582807
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.5564943102172898,
+          "improved": false
+        }
+      ]
+    },
+    {
+      "fold": 3,
+      "n_train": 1001,
+      "n_test": 250,
+      "selected_models": [
+        "RF"
+      ],
+      "MR_at": 0.510320597277119,
+      "per_class_recall": {
+        "TRUE": 0.5454545454545454,
+        "PROBABLE": 0.16666666666666666,
+        "FALSE": 0.8188405797101449
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.6029206215739008,
+              "per_inner_fold": [
+                0.6291374969295013,
+                0.581322156718251,
+                0.5983022110739502
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.5838327704960596,
+              "per_inner_fold": [
+                0.604120609186932,
+                0.5788197003193319,
+                0.568558001981915
+              ]
+            }
+          ],
+          "selected_this_step": "RF",
+          "best_mean": 0.6029206215739008,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.5906565382200976,
+              "per_inner_fold": [
+                0.6590671825104396,
+                0.5146002210759028,
+                0.5983022110739502
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.5906565382200976,
+          "improved": false
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "n_train": 1001,
+      "n_test": 250,
+      "selected_models": [
+        "RF"
+      ],
+      "MR_at": 0.6399319279754062,
+      "per_class_recall": {
+        "TRUE": 0.6136363636363636,
+        "PROBABLE": 0.4583333333333333,
+        "FALSE": 0.8478260869565217
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.5705418415363761,
+              "per_inner_fold": [
+                0.5747896708425448,
+                0.5653862687300418,
+                0.5714495850365416
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.5332506791838038,
+              "per_inner_fold": [
+                0.47353230164578725,
+                0.5850988700564972,
+                0.5411208658491268
+              ]
+            }
+          ],
+          "selected_this_step": "RF",
+          "best_mean": 0.5705418415363761,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.5544239105940777,
+              "per_inner_fold": [
+                0.5349345983787767,
+                0.5701532178825842,
+                0.558183915520872
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.5544239105940777,
+          "improved": false
+        }
+      ]
+    }
+  ],
+  "MR_at_mean_pm_std": {
+    "mean": 0.5629961066453494,
+    "std": 0.06320229601661623,
+    "per_fold": [
+      0.6071961678336861,
+      0.567413263065437,
+      0.4901185770750988,
+      0.510320597277119,
+      0.6399319279754062
+    ]
+  },
+  "MR_at_pooled_OOF": {
+    "macro_recall": 0.5629835025797759,
+    "per_class": {
+      "TRUE": 0.6009070294784581,
+      "PROBABLE": 0.30833333333333335,
+      "FALSE": 0.7797101449275362
+    }
+  },
+  "selected_models_per_fold": [
+    [
+      "RF"
+    ],
+    [
+      "C4"
+    ],
+    [
+      "C4"
+    ],
+    [
+      "RF"
+    ],
+    [
+      "RF"
+    ]
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "n_instances": 1250,
+  "n_bootstrap": 10000,
+  "ci": 0.95,
+  "global_score": {
+    "point": 0.7455175238826008,
+    "bootstrap_mean": 0.7454137906697746,
+    "bootstrap_std": 0.010201521241135438,
+    "ci_lower": 0.725717883205972,
+    "ci_upper": 0.7655215847322749
+  },
+  "macro_recall_at": {
+    "point": 0.6430085886959201,
+    "bootstrap_mean": 0.6429170024486527,
+    "bootstrap_std": 0.015749620752568003,
+    "ci_lower": 0.6127338157714511,
+    "ci_upper": 0.6745368848165182
+  },
+  "macro_recall_isAt": {
+    "point": 0.8480264590692815,
+    "bootstrap_mean": 0.8479105788908966,
+    "bootstrap_std": 0.012170471918426703,
+    "ci_lower": 0.8234711970219116,
+    "ci_upper": 0.8713872189229744
+  },
+  "source_file": "logs\\cv\\T1_stacker_3models_nested_cv_with_gemma_isAt.jsonl"
+}

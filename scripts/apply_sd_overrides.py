@@ -223,9 +223,27 @@ def main() -> int:
     print(f"  test feature matrix: {X_test.shape}")
     expected_d = subgroups[0].active.shape[0]
     if X_test.shape[1] != expected_d:
-        raise SystemExit(
-            f"Feature dimensionality mismatch: SD has {expected_d}, test built {X_test.shape[1]}. "
-            f"Check that SD config '{config}' is reproduced exactly on the test pool."
+        # Try a name-based slice: if every subgroup feature name maps to a
+        # column in the current builder, project the test matrix down to
+        # match the saved subgroups. This recovers the case where the
+        # builder added new columns after the SD run was mined.
+        sg_names = list(subgroups[0].feature_names)
+        name_to_col = {n: i for i, n in enumerate(feature_names)}
+        missing = [n for n in sg_names if n not in name_to_col]
+        if missing:
+            raise SystemExit(
+                f"Feature dimensionality mismatch: SD has {expected_d}, "
+                f"test built {X_test.shape[1]}. The current builder is "
+                f"missing {len(missing)} of the SD feature names; first few: "
+                f"{missing[:5]}. Re-mine subgroups with the current config."
+            )
+        cols = [name_to_col[n] for n in sg_names]
+        X_test = X_test[:, cols]
+        feature_names = list(sg_names)
+        print(
+            f"  sliced test matrix to SD's {expected_d} columns "
+            f"(builder produced {len(name_to_col)}; dropped "
+            f"{len(name_to_col) - expected_d} extras)"
         )
 
     pred_field = "at_predicted" if args.task == "at" else "isAt_predicted"

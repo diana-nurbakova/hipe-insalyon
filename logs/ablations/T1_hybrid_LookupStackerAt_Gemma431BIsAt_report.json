@@ -1,0 +1,125 @@
+{
+  "experiment_id": "T1_hybrid_LookupStackerAt_Gemma431BIsAt",
+  "timestamp": "2026-05-01T20:56:23.941952+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.7950057252688831,
+    "macro_recall_at": 0.7356254856254857,
+    "macro_recall_isAt": 0.8543859649122807,
+    "at_details": {
+      "recall_TRUE": 0.803030303030303,
+      "recall_PROBABLE": 0.5,
+      "recall_FALSE": 0.9038461538461539,
+      "macro_recall": 0.7356254856254857
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.8421052631578947,
+      "recall_FALSE": 0.8666666666666667,
+      "macro_recall": 0.8543859649122807
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.7910447761194029,
+      "recall": 0.803030303030303,
+      "f1-score": 0.7969924812030075,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.6428571428571429,
+      "recall": 0.5,
+      "f1-score": 0.5625000000000001,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.8785046728971962,
+      "recall": 0.9038461538461539,
+      "f1-score": 0.8909952606635071,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.7708021972912474,
+      "recall": 0.7356254856254857,
+      "f1-score": 0.7501625806221716,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8252386690245614,
+      "recall": 0.8297872340425532,
+      "f1-score": 0.8265426110021449,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.6153846153846154,
+      "recall": 0.8421052631578947,
+      "f1-score": 0.7111111111111111,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.9558823529411765,
+      "recall": 0.8666666666666667,
+      "f1-score": 0.9090909090909091,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.785633484162896,
+      "recall": 0.8543859649122807,
+      "f1-score": 0.8101010101010101,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8870583421584672,
+      "recall": 0.8617021276595744,
+      "f1-score": 0.8690737158822264,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      53,
+      3,
+      10
+    ],
+    [
+      6,
+      9,
+      3
+    ],
+    [
+      8,
+      2,
+      94
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      32,
+      6
+    ],
+    [
+      20,
+      130
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "at_source": "lookup-stacker LOO over (RF, C4-SDov, Gemma31B)",
+    "isAt_source": "Gemma 4 31B PAB no rules",
+    "n_instances": 188,
+    "models_at": [
+      "RF",
+      "C4-SDov",
+      "Gemma"
+    ]
+  }
+}

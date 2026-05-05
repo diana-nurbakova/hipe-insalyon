@@ -1,0 +1,27 @@
+{
+  "n_instances": 188,
+  "n_bootstrap": 10000,
+  "ci": 0.95,
+  "global_score": {
+    "point": 0.8172149974781554,
+    "bootstrap_mean": 0.8171461083000229,
+    "bootstrap_std": 0.026101084947084525,
+    "ci_lower": 0.7641976783279912,
+    "ci_upper": 0.866490289226157
+  },
+  "macro_recall_at": {
+    "point": 0.7800440300440301,
+    "bootstrap_mean": 0.7798903863167757,
+    "bootstrap_std": 0.04321669406968724,
+    "ci_lower": 0.6923285353745459,
+    "ci_upper": 0.8622040886688369
+  },
+  "macro_recall_isAt": {
+    "point": 0.8543859649122807,
+    "bootstrap_mean": 0.8544018302832699,
+    "bootstrap_std": 0.03279218306610868,
+    "ci_lower": 0.7872340425531914,
+    "ci_upper": 0.9153934300993125
+  },
+  "source_file": "logs\\ablations\\T1_hybrid_DisStacker4_RF_C4SDov_OrdContM1_Gemma_at_GemmaIsAt_predictions.jsonl"
+}

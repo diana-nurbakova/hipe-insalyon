@@ -1,0 +1,157 @@
+{
+  "experiment_id": "smoke_gemma4_31b_PAB_at",
+  "timestamp": "2026-05-01T19:54:36.364230+00:00",
+  "n_instances": 5,
+  "scores": {
+    "global_score": 0.5416666666666666,
+    "macro_recall_at": 0.3333333333333333,
+    "macro_recall_isAt": 0.75,
+    "at_details": {
+      "recall_TRUE": 1.0,
+      "recall_PROBABLE": 0.0,
+      "recall_FALSE": 0.0,
+      "macro_recall": 0.3333333333333333
+    },
+    "isAt_details": {
+      "recall_TRUE": 1.0,
+      "recall_FALSE": 0.5,
+      "macro_recall": 0.75
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1-score": 0.8571428571428571,
+      "support": 3
+    },
+    "PROBABLE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 1
+    },
+    "FALSE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 1
+    },
+    "macro avg": {
+      "precision": 0.25,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.2857142857142857,
+      "support": 5
+    },
+    "weighted avg": {
+      "precision": 0.45,
+      "recall": 0.6,
+      "f1-score": 0.5142857142857142,
+      "support": 5
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1-score": 0.8571428571428571,
+      "support": 3
+    },
+    "FALSE": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1-score": 0.6666666666666666,
+      "support": 2
+    },
+    "macro avg": {
+      "precision": 0.875,
+      "recall": 0.75,
+      "f1-score": 0.7619047619047619,
+      "support": 5
+    },
+    "weighted avg": {
+      "precision": 0.85,
+      "recall": 0.8,
+      "f1-score": 0.7809523809523808,
+      "support": 5
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      3,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      3,
+      0
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 5,
+    "total_time_seconds": 17.99744060006924,
+    "avg_latency_ms": 3599.488120013848,
+    "predictor_config": {
+      "variant": "AB",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it",
+      "temperature": 0.0,
+      "max_tokens": 512,
+      "text_field": "text",
+      "include_wikidata": false,
+      "include_temporal": false,
+      "k_retrieved": 0,
+      "retriever_dir": null,
+      "retriever_prefer_language": "auto",
+      "diversify_retrieved_labels": false,
+      "zero_shot": true
+    },
+    "data_split": {
+      "task": "at",
+      "n_test": 5,
+      "limit": 5
+    },
+    "predictor_stats": {
+      "n_calls": 5,
+      "parse_ok": 5,
+      "parse_partial": 0,
+      "parse_fail": 0,
+      "prompt_tokens": 4841,
+      "completion_tokens": 132,
+      "model": "google/gemma-4-31b-it",
+      "provider": "openrouter",
+      "fallback_provider": null,
+      "n_fallback_calls": 0,
+      "variant": "AB",
+      "k_retrieved": 0,
+      "avg_retrieved_per_call": 0.0,
+      "n_samples": 1,
+      "sample_temperature": 0.7
+    }
+  }
+}

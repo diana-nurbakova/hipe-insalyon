@@ -1,0 +1,157 @@
+{
+  "experiment_id": "T1_llm_zeroshot_PAB_openrouter_gemma-4-31b-it_at-test",
+  "timestamp": "2026-05-01T20:29:49.301681+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.7045175097806677,
+    "macro_recall_at": 0.5546490546490547,
+    "macro_recall_isAt": 0.8543859649122807,
+    "at_details": {
+      "recall_TRUE": 0.9545454545454546,
+      "recall_PROBABLE": 0.05555555555555555,
+      "recall_FALSE": 0.6538461538461539,
+      "macro_recall": 0.5546490546490547
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.8421052631578947,
+      "recall_FALSE": 0.8666666666666667,
+      "macro_recall": 0.8543859649122807
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.6428571428571429,
+      "recall": 0.9545454545454546,
+      "f1-score": 0.7682926829268294,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.05,
+      "recall": 0.05555555555555555,
+      "f1-score": 0.052631578947368425,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.9714285714285714,
+      "recall": 0.6538461538461539,
+      "f1-score": 0.7816091954022988,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.5547619047619048,
+      "recall": 0.5546490546490547,
+      "f1-score": 0.5341778190921656,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.7678571428571429,
+      "recall": 0.7021276595744681,
+      "f1-score": 0.7071385202982045,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.6153846153846154,
+      "recall": 0.8421052631578947,
+      "f1-score": 0.7111111111111111,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.9558823529411765,
+      "recall": 0.8666666666666667,
+      "f1-score": 0.9090909090909091,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.785633484162896,
+      "recall": 0.8543859649122807,
+      "f1-score": 0.8101010101010101,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8870583421584672,
+      "recall": 0.8617021276595744,
+      "f1-score": 0.8690737158822264,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      63,
+      1,
+      2
+    ],
+    [
+      17,
+      1,
+      0
+    ],
+    [
+      18,
+      18,
+      68
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      32,
+      6
+    ],
+    [
+      20,
+      130
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 188,
+    "total_time_seconds": 758.8591048003873,
+    "avg_latency_ms": 4036.4846000020602,
+    "predictor_config": {
+      "variant": "AB",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it",
+      "temperature": 0.0,
+      "max_tokens": 512,
+      "text_field": "text",
+      "include_wikidata": false,
+      "include_temporal": false,
+      "k_retrieved": 0,
+      "retriever_dir": null,
+      "retriever_prefer_language": "auto",
+      "diversify_retrieved_labels": false,
+      "zero_shot": true
+    },
+    "data_split": {
+      "task": "at",
+      "n_test": 188,
+      "limit": null
+    },
+    "predictor_stats": {
+      "n_calls": 188,
+      "parse_ok": 185,
+      "parse_partial": 1,
+      "parse_fail": 2,
+      "prompt_tokens": 318401,
+      "completion_tokens": 4860,
+      "model": "google/gemma-4-31b-it",
+      "provider": "openrouter",
+      "fallback_provider": null,
+      "n_fallback_calls": 0,
+      "variant": "AB",
+      "k_retrieved": 0,
+      "avg_retrieved_per_call": 0.0,
+      "n_samples": 1,
+      "sample_temperature": 0.7
+    }
+  }
+}

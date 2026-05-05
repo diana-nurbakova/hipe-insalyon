@@ -1,0 +1,27 @@
+{
+  "n_instances": 188,
+  "n_bootstrap": 10000,
+  "ci": 0.95,
+  "global_score": {
+    "point": 0.7585352512984092,
+    "bootstrap_mean": 0.7584577787123816,
+    "bootstrap_std": 0.02790587923431059,
+    "ci_lower": 0.7026620590714006,
+    "ci_upper": 0.8132300179773677
+  },
+  "macro_recall_at": {
+    "point": 0.6626845376845377,
+    "bootstrap_mean": 0.6625137271414933,
+    "bootstrap_std": 0.046286420633110156,
+    "ci_lower": 0.5718357587156897,
+    "ci_upper": 0.7536244801008103
+  },
+  "macro_recall_isAt": {
+    "point": 0.8543859649122807,
+    "bootstrap_mean": 0.8544018302832699,
+    "bootstrap_std": 0.03279218306610868,
+    "ci_lower": 0.7872340425531914,
+    "ci_upper": 0.9153934300993125
+  },
+  "source_file": "logs\\ablations\\T1_hybrid_T15RFat_Gemma431BnoRulesIsAt_predictions.jsonl"
+}

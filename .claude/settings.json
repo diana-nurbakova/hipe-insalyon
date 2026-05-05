@@ -7,7 +7,16 @@
       "Bash(python -c \"from hipe.data import load_jsonl; insts=load_jsonl\\('data/dataset_reference.jsonl'\\); print\\(len\\(insts\\), 'total'\\); print\\(insts[0].sample_id\\)\")",
       "Bash(python -m pytest tests/test_sd_dateline_qa.py tests/test_sd_evidence_features.py -x -q)",
       "Bash(python -m pytest tests/ -x -q)",
-      "Bash(python -m pytest tests/test_sd_dateline_qa.py tests/test_sd_evidence_features.py tests/test_subgroup_discovery.py -x -q)"
+      "Bash(python -m pytest tests/test_sd_dateline_qa.py tests/test_sd_evidence_features.py tests/test_subgroup_discovery.py -x -q)",
+      "Bash(xargs -I {} sh -c 'echo \"=== {} ===\" && python -c \"import json; d=json.load\\(open\\(\\\\\"{}\\\\\"\\)\\); print\\(\\\\\"config:\\\\\", d.get\\(\\\\\"config\\\\\"\\)\\); print\\(\\\\\"nwracc_threshold:\\\\\", d.get\\(\\\\\"mcmc\\\\\",{}\\).get\\(\\\\\"nwracc_threshold\\\\\"\\)\\); pr = d.get\\(\\\\\"targets\\\\\",{}\\).get\\(\\\\\"PROBABLE\\\\\",{}\\); print\\(\\\\\"PROBABLE n_subgroups:\\\\\", pr.get\\(\\\\\"n_subgroups\\\\\"\\)\\); sgs = pr.get\\(\\\\\"subgroups\\\\\", []\\); print\\(\\\\\"top NWRAcc:\\\\\", sgs[0].get\\(\\\\\"nwracc\\\\\"\\) if sgs else None\\)\"')",
+      "Bash(git check-ignore *)",
+      "Bash(git commit -m ' *)",
+      "WebSearch",
+      "Bash(PYTHONIOENCODING=utf-8 uv run python scripts/run_full_pipeline.py --help)",
+      "Bash(gh api *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(python -c \"import json,sys; print\\(list\\(json.loads\\(sys.stdin.readline\\(\\)\\).keys\\(\\)\\)[:15]\\)\")"
     ]
   }
 }

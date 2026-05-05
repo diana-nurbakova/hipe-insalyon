@@ -1,0 +1,37 @@
+{
+  "n_folds": 5,
+  "seed": 42,
+  "n_instances": 1251,
+  "models": {
+    "RF_handcrafted": {
+      "X_shape": [
+        1251,
+        36
+      ],
+      "OOF_path": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\logs\\kfold_oof\\RF_handcrafted_at_oof_predictions.jsonl",
+      "per_fold_MR_at": [
+        0.5740513833992095,
+        0.6375183194919395,
+        0.5304677206851119,
+        0.5820707070707071,
+        0.5987593324549846
+      ],
+      "OOF_pooled_MR_at": 0.5844145387623648
+    },
+    "C4_mask_e1e2_temp": {
+      "X_shape": [
+        1251,
+        2319
+      ],
+      "OOF_path": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\logs\\kfold_oof\\C4_mask_e1e2_temp_at_oof_predictions.jsonl",
+      "per_fold_MR_at": [
+        0.5710386473429953,
+        0.6136079900124844,
+        0.5955204216073781,
+        0.5424901185770751,
+        0.5715854194115063
+      ],
+      "OOF_pooled_MR_at": 0.5786922015182885
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "experiment_id": "rules_PAB_gemma4_31b_at",
+  "timestamp": "2026-05-01T20:10:55.817820+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.7293740713477554,
+    "macro_recall_at": 0.6141867391867392,
+    "macro_recall_isAt": 0.8445614035087718,
+    "at_details": {
+      "recall_TRUE": 0.9696969696969697,
+      "recall_PROBABLE": 0.05555555555555555,
+      "recall_FALSE": 0.8173076923076923,
+      "macro_recall": 0.6141867391867392
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.8157894736842105,
+      "recall_FALSE": 0.8733333333333333,
+      "macro_recall": 0.8445614035087718
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.6881720430107527,
+      "recall": 0.9696969696969697,
+      "f1-score": 0.8050314465408805,
+      "support": 66
+    },
+    "PROBABLE": {
+      "precision": 0.1111111111111111,
+      "recall": 0.05555555555555555,
+      "f1-score": 0.07407407407407407,
+      "support": 18
+    },
+    "FALSE": {
+      "precision": 0.9883720930232558,
+      "recall": 0.8173076923076923,
+      "f1-score": 0.8947368421052632,
+      "support": 104
+    },
+    "macro avg": {
+      "precision": 0.5958850823817066,
+      "recall": 0.6141867391867392,
+      "f1-score": 0.591280787573406,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.7989896410272781,
+      "recall": 0.7978723404255319,
+      "f1-score": 0.7846704275743553,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.62,
+      "recall": 0.8157894736842105,
+      "f1-score": 0.7045454545454546,
+      "support": 38
+    },
+    "FALSE": {
+      "precision": 0.9492753623188406,
+      "recall": 0.8733333333333333,
+      "f1-score": 0.9097222222222222,
+      "support": 150
+    },
+    "macro avg": {
+      "precision": 0.7846376811594202,
+      "recall": 0.8445614035087718,
+      "f1-score": 0.8071338383838385,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.8827197039777984,
+      "recall": 0.8617021276595744,
+      "f1-score": 0.8682503223726629,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      64,
+      1,
+      1
+    ],
+    [
+      17,
+      1,
+      0
+    ],
+    [
+      12,
+      7,
+      85
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      31,
+      7
+    ],
+    [
+      19,
+      131
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "n_instances": 188,
+    "total_time_seconds": 763.734850299079,
+    "avg_latency_ms": 4062.419416484462,
+    "predictor_config": {
+      "variant": "AB",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it",
+      "temperature": 0.0,
+      "max_tokens": 512,
+      "text_field": "text",
+      "include_wikidata": false,
+      "include_temporal": false,
+      "k_retrieved": 0,
+      "retriever_dir": null,
+      "retriever_prefer_language": "auto",
+      "diversify_retrieved_labels": false,
+      "zero_shot": true
+    },
+    "data_split": {
+      "task": "at",
+      "n_test": 188,
+      "limit": null
+    },
+    "predictor_stats": {
+      "n_calls": 188,
+      "parse_ok": 188,
+      "parse_partial": 0,
+      "parse_fail": 0,
+      "prompt_tokens": 632828,
+      "completion_tokens": 4906,
+      "model": "google/gemma-4-31b-it",
+      "provider": "openrouter",
+      "fallback_provider": null,
+      "n_fallback_calls": 0,
+      "variant": "AB",
+      "k_retrieved": 0,
+      "avg_retrieved_per_call": 0.0,
+      "n_samples": 1,
+      "sample_temperature": 0.7
+    }
+  }
+}

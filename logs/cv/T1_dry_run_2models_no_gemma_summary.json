@@ -1,0 +1,136 @@
+{
+  "n_instances": 1251,
+  "n_outer_folds": 5,
+  "n_inner_folds": 3,
+  "max_models": 2,
+  "seed": 42,
+  "tiebreaker": "ordinal_median",
+  "fallback": "ordinal",
+  "candidates": [
+    "RF",
+    "C4"
+  ],
+  "per_fold": [
+    {
+      "fold": 0,
+      "n_train": 1000,
+      "n_test": 251,
+      "selected_models": [
+        "RF",
+        "C4"
+      ],
+      "MR_at": 0.5465518645171796,
+      "per_class_recall": {
+        "TRUE": 0.449438202247191,
+        "PROBABLE": 0.2916666666666667,
+        "FALSE": 0.8985507246376812
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 1,
+      "n_train": 1001,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4"
+      ],
+      "MR_at": 0.5667545015371103,
+      "per_class_recall": {
+        "TRUE": 0.6477272727272727,
+        "PROBABLE": 0.2916666666666667,
+        "FALSE": 0.7608695652173914
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 2,
+      "n_train": 1001,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4"
+      ],
+      "MR_at": 0.5081247255160298,
+      "per_class_recall": {
+        "TRUE": 0.4772727272727273,
+        "PROBABLE": 0.25,
+        "FALSE": 0.7971014492753623
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 3,
+      "n_train": 1001,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4"
+      ],
+      "MR_at": 0.510320597277119,
+      "per_class_recall": {
+        "TRUE": 0.5454545454545454,
+        "PROBABLE": 0.16666666666666666,
+        "FALSE": 0.8188405797101449
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 4,
+      "n_train": 1001,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4"
+      ],
+      "MR_at": 0.6285682916117699,
+      "per_class_recall": {
+        "TRUE": 0.5795454545454546,
+        "PROBABLE": 0.4583333333333333,
+        "FALSE": 0.8478260869565217
+      },
+      "greedy_trace": []
+    }
+  ],
+  "MR_at_mean_pm_std": {
+    "mean": 0.5520639960918416,
+    "std": 0.049427402878043654,
+    "per_fold": [
+      0.5465518645171796,
+      0.5667545015371103,
+      0.5081247255160298,
+      0.510320597277119,
+      0.6285682916117699
+    ]
+  },
+  "MR_at_pooled_OOF": {
+    "macro_recall": 0.5519956291695421,
+    "per_class": {
+      "TRUE": 0.5396825396825397,
+      "PROBABLE": 0.2916666666666667,
+      "FALSE": 0.8246376811594203
+    }
+  },
+  "selected_models_per_fold": [
+    [
+      "RF",
+      "C4"
+    ],
+    [
+      "RF",
+      "C4"
+    ],
+    [
+      "RF",
+      "C4"
+    ],
+    [
+      "RF",
+      "C4"
+    ],
+    [
+      "RF",
+      "C4"
+    ]
+  ]
+}

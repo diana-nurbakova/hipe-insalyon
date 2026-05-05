@@ -1,0 +1,27 @@
+{
+  "n_instances": 188,
+  "n_bootstrap": 10000,
+  "ci": 0.95,
+  "global_score": {
+    "point": 0.7950057252688831,
+    "bootstrap_mean": 0.7946949358334849,
+    "bootstrap_std": 0.02735364064538151,
+    "ci_lower": 0.7396008277122067,
+    "ci_upper": 0.8471901877957485
+  },
+  "macro_recall_at": {
+    "point": 0.7356254856254857,
+    "bootstrap_mean": 0.7349880413837001,
+    "bootstrap_std": 0.04435223711329126,
+    "ci_lower": 0.6480525340844279,
+    "ci_upper": 0.8225412021758772
+  },
+  "macro_recall_isAt": {
+    "point": 0.8543859649122807,
+    "bootstrap_mean": 0.8544018302832699,
+    "bootstrap_std": 0.03279218306610868,
+    "ci_lower": 0.7872340425531914,
+    "ci_upper": 0.9153934300993125
+  },
+  "source_file": "logs\\ablations\\T1_hybrid_LookupStackerAt_Gemma431BIsAt_predictions.jsonl"
+}
