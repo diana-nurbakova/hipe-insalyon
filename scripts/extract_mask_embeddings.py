@@ -29,7 +29,10 @@ from pathlib import Path
 
 import numpy as np
 
+import orjson
+
 from hipe.data import load_jsonl
+from hipe.data.official import iter_official_instances
 from hipe.features import handcrafted_matrix, temporal_matrix
 from hipe.mask import MASKEncoder, MASKEncoderConfig
 from hipe.mask.encoder import DEFAULT_MODEL, stack_embeddings
@@ -71,7 +74,23 @@ def main() -> int:
     args = ap.parse_args()
 
     print(f"Loading dataset {args.jsonl}")
-    instances = load_jsonl(args.jsonl)
+    # Auto-detect official nested format vs the flat dataset_reference.jsonl
+    # by peeking at the first non-empty line. Nested official files carry a
+    # top-level ``sampled_pairs`` array; the flat format is one row per pair.
+    nested = False
+    with Path(args.jsonl).open("rb") as f:
+        for raw in f:
+            raw = raw.strip()
+            if not raw:
+                continue
+            head = orjson.loads(raw)
+            nested = "sampled_pairs" in head and "pers_entity_id" not in head
+            break
+    if nested:
+        print("  detected official nested format (sampled_pairs); flattening to RelationInstance")
+        instances = list(iter_official_instances(args.jsonl))
+    else:
+        instances = load_jsonl(args.jsonl)
     print(f"  {len(instances)} instances")
 
     layers_tuple = tuple(args.layers)

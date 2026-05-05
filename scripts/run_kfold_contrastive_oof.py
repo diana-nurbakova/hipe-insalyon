@@ -50,6 +50,16 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def _build_features(cache: dict, name: str) -> np.ndarray:
+    if name == "concat_l_t":
+        if "mask_emb_layers" not in cache:
+            raise ValueError(
+                "concat_l_t requires mask_emb_layers in the npz; "
+                "extract with `--layers -1 -4 -7`"
+            )
+        return np.concatenate(
+            [cache["mask_emb_layers"], cache["e1_emb"], cache["e2_emb"], cache["temporal"]],
+            axis=1,
+        )
     if name == "concat_t":
         return np.concatenate(
             [cache["mask_emb"], cache["e1_emb"], cache["e2_emb"], cache["temporal"]],
@@ -77,8 +87,9 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--npz", required=True,
                     help="Cache produced by extract_mask_embeddings.py")
-    ap.add_argument("--feature-set", default="concat_t",
-                    choices=["mask", "concat", "concat_t"])
+    ap.add_argument("--feature-set", default="concat_l_t",
+                    choices=["mask", "concat", "concat_t", "concat_l_t"],
+                    help="Default matches the dev OrdContM1 winner (MR(at)=0.6723).")
     ap.add_argument("--n-folds", type=int, default=5)
     ap.add_argument("--seed", type=int, default=42)
     # Trainer hyperparameters — match the test-split run that produced
@@ -90,7 +101,8 @@ def main() -> int:
                     help="CE loss weight (1-alpha is contrastive).")
     ap.add_argument("--contrastive-at", choices=["ordinal", "supcon", "none"], default="ordinal")
     ap.add_argument("--contrastive-isAt", choices=["supcon", "none"], default="supcon")
-    ap.add_argument("--base-margin", type=float, default=0.5)
+    ap.add_argument("--base-margin", type=float, default=1.0,
+                    help="Default 1.0 matches the dev OrdContM1 winner (the trainer's library default is 0.5).")
     ap.add_argument("--temperature", type=float, default=0.07)
     ap.add_argument("--k-per-class", type=int, default=16)
     ap.add_argument("--patience", type=int, default=5)

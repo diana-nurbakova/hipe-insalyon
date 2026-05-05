@@ -1,0 +1,687 @@
+{
+  "n_instances": 1250,
+  "n_outer_folds": 5,
+  "n_inner_folds": 3,
+  "max_models": 4,
+  "seed": 42,
+  "tiebreaker": "ordinal_median",
+  "fallback": "ordinal",
+  "candidates": [
+    "RF",
+    "C4",
+    "OrdContM1",
+    "Gemma"
+  ],
+  "per_fold": [
+    {
+      "fold": 0,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "Gemma",
+        "OrdContM1"
+      ],
+      "MR_at": 0.6669411506368027,
+      "per_class_recall": {
+        "TRUE": 0.7272727272727273,
+        "PROBABLE": 0.375,
+        "FALSE": 0.8985507246376812
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.5792525834809369,
+              "per_inner_fold": [
+                0.5998909972979612,
+                0.553202031462901,
+                0.5846647216819486
+              ]
+            },
+            {
+              "model": "Gemma",
+              "inner_cv_mean_MR": 0.5693927775791296,
+              "per_inner_fold": [
+                0.5768852861704741,
+                0.5577077914034435,
+                0.5735852551634714
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.4863726789189931,
+              "per_inner_fold": [
+                0.4770019651191353,
+                0.5060270345596433,
+                0.4760890370782007
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.45150680501432117,
+              "per_inner_fold": [
+                0.4790284942274625,
+                0.434937445807011,
+                0.44055447500849
+              ]
+            }
+          ],
+          "selected_this_step": "RF",
+          "best_mean": 0.5792525834809369,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "Gemma",
+              "inner_cv_mean_MR": 0.6386083920039357,
+              "per_inner_fold": [
+                0.6804301768607223,
+                0.6324941161897684,
+                0.6029008829613164
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.5722602875285433,
+              "per_inner_fold": [
+                0.5998909972979612,
+                0.5384305710392666,
+                0.5784592942484023
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.5561199190439248,
+              "per_inner_fold": [
+                0.5998909972979612,
+                0.5046373714851976,
+                0.5638313883486153
+              ]
+            }
+          ],
+          "selected_this_step": "Gemma",
+          "best_mean": 0.6386083920039357,
+          "improved": true
+        },
+        {
+          "step": 3,
+          "candidates_evaluated": [
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.6560733921913405,
+              "per_inner_fold": [
+                0.6896416728076639,
+                0.6117304595565466,
+                0.6668480442098114
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.6488511594716871,
+              "per_inner_fold": [
+                0.6916067919430117,
+                0.5976325405673232,
+                0.6573141459047266
+              ]
+            }
+          ],
+          "selected_this_step": "OrdContM1",
+          "best_mean": 0.6560733921913405,
+          "improved": true
+        },
+        {
+          "step": 4,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.636600876583123,
+              "per_inner_fold": [
+                0.6869703389830509,
+                0.5903861637557289,
+                0.6324461270105893
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.636600876583123,
+          "improved": false
+        }
+      ]
+    },
+    {
+      "fold": 1,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "Gemma"
+      ],
+      "MR_at": 0.6739679402722881,
+      "per_class_recall": {
+        "TRUE": 0.9204545454545454,
+        "PROBABLE": 0.3333333333333333,
+        "FALSE": 0.7681159420289855
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.5792924106204819,
+              "per_inner_fold": [
+                0.6310795873249816,
+                0.5675631735414344,
+                0.5392344709950295
+              ]
+            },
+            {
+              "model": "Gemma",
+              "inner_cv_mean_MR": 0.5697305324305176,
+              "per_inner_fold": [
+                0.5533345615327929,
+                0.5794469218382262,
+                0.5764101139205335
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.5413076563095339,
+              "per_inner_fold": [
+                0.6269574428887251,
+                0.4610894339155209,
+                0.5358760921243556
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.45856280402611715,
+              "per_inner_fold": [
+                0.45338983050847464,
+                0.47144803666542795,
+                0.4508505449044488
+              ]
+            }
+          ],
+          "selected_this_step": "RF",
+          "best_mean": 0.5792924106204819,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "Gemma",
+              "inner_cv_mean_MR": 0.6592600401849701,
+              "per_inner_fold": [
+                0.6945774993859003,
+                0.6660086089433915,
+                0.6171940122256183
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.5612418782005191,
+              "per_inner_fold": [
+                0.5907102063375093,
+                0.5623761303109129,
+                0.5306392979531351
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.5516974501974613,
+              "per_inner_fold": [
+                0.6186363915499876,
+                0.48833302365911063,
+                0.5481229353832855
+              ]
+            }
+          ],
+          "selected_this_step": "Gemma",
+          "best_mean": 0.6592600401849701,
+          "improved": true
+        },
+        {
+          "step": 3,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.6517696178146847,
+              "per_inner_fold": [
+                0.7129621100466715,
+                0.610576923076923,
+                0.6317698203204594
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.6478284809301426,
+              "per_inner_fold": [
+                0.6985077376565955,
+                0.6494100706057228,
+                0.5955676345281097
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.6517696178146847,
+          "improved": false
+        }
+      ]
+    },
+    {
+      "fold": 2,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "C4",
+        "Gemma"
+      ],
+      "MR_at": 0.6175889328063241,
+      "per_class_recall": {
+        "TRUE": 0.8636363636363636,
+        "PROBABLE": 0.25,
+        "FALSE": 0.7391304347826086
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.6009927256558517,
+              "per_inner_fold": [
+                0.6089029108327192,
+                0.5840726805400719,
+                0.610002585594764
+              ]
+            },
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.5895096035061695,
+              "per_inner_fold": [
+                0.5860891058707934,
+                0.5842623560014865,
+                0.5981773486462288
+              ]
+            },
+            {
+              "model": "Gemma",
+              "inner_cv_mean_MR": 0.5702693518109233,
+              "per_inner_fold": [
+                0.5768852861704741,
+                0.5595193856063422,
+                0.5744033836559538
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.46033285450132316,
+              "per_inner_fold": [
+                0.461066077130926,
+                0.454880465750031,
+                0.4650520206230125
+              ]
+            }
+          ],
+          "selected_this_step": "C4",
+          "best_mean": 0.6009927256558517,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "Gemma",
+              "inner_cv_mean_MR": 0.6589240083750686,
+              "per_inner_fold": [
+                0.6612779415377057,
+                0.6674253685123249,
+                0.6480687150751753
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.5845531983057352,
+              "per_inner_fold": [
+                0.5922761606484893,
+                0.5652986807878112,
+                0.5960847534809052
+              ]
+            },
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.5559490891246944,
+              "per_inner_fold": [
+                0.5800939572586588,
+                0.5364138176638177,
+                0.551339492451607
+              ]
+            }
+          ],
+          "selected_this_step": "Gemma",
+          "best_mean": 0.6589240083750686,
+          "improved": true
+        },
+        {
+          "step": 3,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.651939233789164,
+              "per_inner_fold": [
+                0.6604872881355932,
+                0.6343173231760187,
+                0.6610130900558797
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.6513221386345615,
+              "per_inner_fold": [
+                0.6442904077622207,
+                0.6442230273752013,
+                0.6654529807662622
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.651939233789164,
+          "improved": false
+        }
+      ]
+    },
+    {
+      "fold": 3,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "Gemma"
+      ],
+      "MR_at": 0.5902167662021677,
+      "per_class_recall": {
+        "TRUE": 0.9318181818181818,
+        "PROBABLE": 0.16,
+        "FALSE": 0.6788321167883211
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.6003471826452133,
+              "per_inner_fold": [
+                0.5805698845492508,
+                0.584599126718692,
+                0.6358725366676968
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.584486984099507,
+              "per_inner_fold": [
+                0.6023090149840334,
+                0.5814288368636195,
+                0.569723100450868
+              ]
+            },
+            {
+              "model": "Gemma",
+              "inner_cv_mean_MR": 0.5762097764676984,
+              "per_inner_fold": [
+                0.5758720216163105,
+                0.5851449275362319,
+                0.5676123802505527
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.45600902709107083,
+              "per_inner_fold": [
+                0.4441169245885532,
+                0.45255790907964827,
+                0.471352247605011
+              ]
+            }
+          ],
+          "selected_this_step": "RF",
+          "best_mean": 0.6003471826452133,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "Gemma",
+              "inner_cv_mean_MR": 0.6824918660145798,
+              "per_inner_fold": [
+                0.6791559199213952,
+                0.6563661278335191,
+                0.711953550288825
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.5942748560435326,
+              "per_inner_fold": [
+                0.5778985507246377,
+                0.5690534807382633,
+                0.6358725366676968
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.5678387325234419,
+              "per_inner_fold": [
+                0.5976955907639401,
+                0.5602742165242165,
+                0.545546390282169
+              ]
+            }
+          ],
+          "selected_this_step": "Gemma",
+          "best_mean": 0.6824918660145798,
+          "improved": true
+        },
+        {
+          "step": 3,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.6802836184695282,
+              "per_inner_fold": [
+                0.6973025669368705,
+                0.6495997460671373,
+                0.6939485424045767
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.6740970610499675,
+              "per_inner_fold": [
+                0.6650393023827069,
+                0.6503894153350674,
+                0.7068624654321282
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.6802836184695282,
+          "improved": false
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "Gemma",
+        "RF"
+      ],
+      "MR_at": 0.675595722737882,
+      "per_class_recall": {
+        "TRUE": 0.9325842696629213,
+        "PROBABLE": 0.391304347826087,
+        "FALSE": 0.7028985507246377
+      },
+      "greedy_trace": [
+        {
+          "step": 1,
+          "candidates_evaluated": [
+            {
+              "model": "Gemma",
+              "inner_cv_mean_MR": 0.5751308685502362,
+              "per_inner_fold": [
+                0.561838164922355,
+                0.5732379536727362,
+                0.5903164870556175
+              ]
+            },
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.5734662672948921,
+              "per_inner_fold": [
+                0.6059006289625907,
+                0.5595426111730459,
+                0.5549555617490399
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.49576064464484554,
+              "per_inner_fold": [
+                0.47415948874687414,
+                0.5284822866344605,
+                0.484640158553202
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.45535653286296585,
+              "per_inner_fold": [
+                0.44828810472044706,
+                0.43623807754242544,
+                0.48154341632602504
+              ]
+            }
+          ],
+          "selected_this_step": "Gemma",
+          "best_mean": 0.5751308685502362,
+          "improved": true
+        },
+        {
+          "step": 2,
+          "candidates_evaluated": [
+            {
+              "model": "RF",
+              "inner_cv_mean_MR": 0.6617445060113313,
+              "per_inner_fold": [
+                0.6806534362799992,
+                0.6470449337297164,
+                0.6575351480242785
+              ]
+            },
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.6036846033263366,
+              "per_inner_fold": [
+                0.6447006884628447,
+                0.5760366344605475,
+                0.5903164870556175
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.5673084372446312,
+              "per_inner_fold": [
+                0.6140552510377462,
+                0.5315093521615261,
+                0.5563607085346215
+              ]
+            }
+          ],
+          "selected_this_step": "RF",
+          "best_mean": 0.6617445060113313,
+          "improved": true
+        },
+        {
+          "step": 3,
+          "candidates_evaluated": [
+            {
+              "model": "C4",
+              "inner_cv_mean_MR": 0.647436446230445,
+              "per_inner_fold": [
+                0.6842655507562426,
+                0.6147846215780999,
+                0.6432591663569925
+              ]
+            },
+            {
+              "model": "OrdContM1",
+              "inner_cv_mean_MR": 0.63948096291672,
+              "per_inner_fold": [
+                0.6483605154069171,
+                0.6419004707048185,
+                0.6281819026384244
+              ]
+            }
+          ],
+          "selected_this_step": null,
+          "best_mean": 0.647436446230445,
+          "improved": false
+        }
+      ]
+    }
+  ],
+  "MR_at_mean_pm_std": {
+    "mean": 0.644862102531093,
+    "std": 0.03875928319842741,
+    "per_fold": [
+      0.6669411506368027,
+      0.6739679402722881,
+      0.6175889328063241,
+      0.5902167662021677,
+      0.675595722737882
+    ]
+  },
+  "MR_at_pooled_OOF": {
+    "macro_recall": 0.6443010618212774,
+    "per_class": {
+      "TRUE": 0.8752834467120182,
+      "PROBABLE": 0.3,
+      "FALSE": 0.7576197387518142
+    }
+  },
+  "selected_models_per_fold": [
+    [
+      "RF",
+      "Gemma",
+      "OrdContM1"
+    ],
+    [
+      "RF",
+      "Gemma"
+    ],
+    [
+      "C4",
+      "Gemma"
+    ],
+    [
+      "RF",
+      "Gemma"
+    ],
+    [
+      "Gemma",
+      "RF"
+    ]
+  ]
+}

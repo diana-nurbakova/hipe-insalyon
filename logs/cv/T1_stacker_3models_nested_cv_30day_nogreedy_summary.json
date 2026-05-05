@@ -1,0 +1,147 @@
+{
+  "n_instances": 1250,
+  "n_outer_folds": 5,
+  "n_inner_folds": 3,
+  "max_models": 3,
+  "seed": 42,
+  "tiebreaker": "ordinal_median",
+  "fallback": "ordinal",
+  "candidates": [
+    "RF",
+    "C4",
+    "Gemma"
+  ],
+  "per_fold": [
+    {
+      "fold": 0,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "Gemma"
+      ],
+      "MR_at": 0.660518225735617,
+      "per_class_recall": {
+        "TRUE": 0.7840909090909091,
+        "PROBABLE": 0.2916666666666667,
+        "FALSE": 0.9057971014492754
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 1,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "Gemma"
+      ],
+      "MR_at": 0.6748462889767238,
+      "per_class_recall": {
+        "TRUE": 0.7727272727272727,
+        "PROBABLE": 0.375,
+        "FALSE": 0.8768115942028986
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 2,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "Gemma"
+      ],
+      "MR_at": 0.6723210364514712,
+      "per_class_recall": {
+        "TRUE": 0.6818181818181818,
+        "PROBABLE": 0.4583333333333333,
+        "FALSE": 0.8768115942028986
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 3,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "Gemma"
+      ],
+      "MR_at": 0.6024165007741651,
+      "per_class_recall": {
+        "TRUE": 0.7386363636363636,
+        "PROBABLE": 0.2,
+        "FALSE": 0.8686131386861314
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 4,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "Gemma"
+      ],
+      "MR_at": 0.6865602779134777,
+      "per_class_recall": {
+        "TRUE": 0.7191011235955056,
+        "PROBABLE": 0.4782608695652174,
+        "FALSE": 0.8623188405797102
+      },
+      "greedy_trace": []
+    }
+  ],
+  "MR_at_mean_pm_std": {
+    "mean": 0.659332465970291,
+    "std": 0.03313445537148881,
+    "per_fold": [
+      0.660518225735617,
+      0.6748462889767238,
+      0.6723210364514712,
+      0.6024165007741651,
+      0.6865602779134777
+    ]
+  },
+  "MR_at_pooled_OOF": {
+    "macro_recall": 0.6585488460825388,
+    "per_class": {
+      "TRUE": 0.7392290249433107,
+      "PROBABLE": 0.35833333333333334,
+      "FALSE": 0.8780841799709724
+    }
+  },
+  "selected_models_per_fold": [
+    [
+      "RF",
+      "C4",
+      "Gemma"
+    ],
+    [
+      "RF",
+      "C4",
+      "Gemma"
+    ],
+    [
+      "RF",
+      "C4",
+      "Gemma"
+    ],
+    [
+      "RF",
+      "C4",
+      "Gemma"
+    ],
+    [
+      "RF",
+      "C4",
+      "Gemma"
+    ]
+  ]
+}

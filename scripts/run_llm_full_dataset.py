@@ -22,7 +22,10 @@ import json
 import sys
 from pathlib import Path
 
+import orjson
+
 from hipe.data import load_jsonl
+from hipe.data.official import iter_official_instances
 from hipe.llm import LLMPredictor, LLMPredictorConfig
 from hipe.llm.prompts import UserMessageOptions
 
@@ -66,7 +69,22 @@ def main() -> int:
     args = ap.parse_args()
 
     print(f"Loading dataset {args.jsonl}")
-    instances = load_jsonl(args.jsonl)
+    # Auto-detect official nested format (top-level ``sampled_pairs``) vs the
+    # flat dataset_reference.jsonl format.
+    nested = False
+    with Path(args.jsonl).open("rb") as f:
+        for raw in f:
+            raw = raw.strip()
+            if not raw:
+                continue
+            head = orjson.loads(raw)
+            nested = "sampled_pairs" in head and "pers_entity_id" not in head
+            break
+    if nested:
+        print("  detected official nested format (sampled_pairs); flattening to RelationInstance")
+        instances = list(iter_official_instances(args.jsonl))
+    else:
+        instances = load_jsonl(args.jsonl)
     print(f"  n_instances total = {len(instances)}")
 
     skipped_rows: list[dict] = []

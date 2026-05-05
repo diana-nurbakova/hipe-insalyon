@@ -1,0 +1,27 @@
+{
+  "n_instances": 1250,
+  "n_bootstrap": 10000,
+  "ci": 0.95,
+  "global_score": {
+    "point": 0.7519814253599795,
+    "bootstrap_mean": 0.751924649736897,
+    "bootstrap_std": 0.010260951898082312,
+    "ci_lower": 0.7321292752319633,
+    "ci_upper": 0.7724052958926726
+  },
+  "macro_recall_at": {
+    "point": 0.6559363916506774,
+    "bootstrap_mean": 0.6559387205828975,
+    "bootstrap_std": 0.016233209331648922,
+    "ci_lower": 0.625020868533418,
+    "ci_upper": 0.6884891644375982
+  },
+  "macro_recall_isAt": {
+    "point": 0.8480264590692815,
+    "bootstrap_mean": 0.8479105788908966,
+    "bootstrap_std": 0.012170471918426703,
+    "ci_lower": 0.8234711970219116,
+    "ci_upper": 0.8713872189229744
+  },
+  "source_file": "logs\\cv\\T1_stacker_4models_nogreedy_with_gemma_isAt.jsonl"
+}

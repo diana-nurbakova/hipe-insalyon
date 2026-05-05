@@ -1,0 +1,158 @@
+{
+  "n_instances": 1250,
+  "n_outer_folds": 5,
+  "n_inner_folds": 3,
+  "max_models": 4,
+  "seed": 42,
+  "tiebreaker": "ordinal_median",
+  "fallback": "ordinal",
+  "candidates": [
+    "RF",
+    "C4",
+    "OrdContM1",
+    "Gemma"
+  ],
+  "per_fold": [
+    {
+      "fold": 0,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "OrdContM1",
+        "Gemma"
+      ],
+      "MR_at": 0.6507465963987703,
+      "per_class_recall": {
+        "TRUE": 0.8181818181818182,
+        "PROBABLE": 0.25,
+        "FALSE": 0.8840579710144928
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 1,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "OrdContM1",
+        "Gemma"
+      ],
+      "MR_at": 0.6605731225296442,
+      "per_class_recall": {
+        "TRUE": 0.8295454545454546,
+        "PROBABLE": 0.3333333333333333,
+        "FALSE": 0.8188405797101449
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 2,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "OrdContM1",
+        "Gemma"
+      ],
+      "MR_at": 0.7039964866051823,
+      "per_class_recall": {
+        "TRUE": 0.7840909090909091,
+        "PROBABLE": 0.4583333333333333,
+        "FALSE": 0.8695652173913043
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 3,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "OrdContM1",
+        "Gemma"
+      ],
+      "MR_at": 0.6081121433311214,
+      "per_class_recall": {
+        "TRUE": 0.8068181818181818,
+        "PROBABLE": 0.2,
+        "FALSE": 0.8175182481751825
+      },
+      "greedy_trace": []
+    },
+    {
+      "fold": 4,
+      "n_train": 1000,
+      "n_test": 250,
+      "selected_models": [
+        "RF",
+        "C4",
+        "OrdContM1",
+        "Gemma"
+      ],
+      "MR_at": 0.6583075503446778,
+      "per_class_recall": {
+        "TRUE": 0.7865168539325843,
+        "PROBABLE": 0.34782608695652173,
+        "FALSE": 0.8405797101449275
+      },
+      "greedy_trace": []
+    }
+  ],
+  "MR_at_mean_pm_std": {
+    "mean": 0.6563471798418792,
+    "std": 0.03409597982618056,
+    "per_fold": [
+      0.6507465963987703,
+      0.6605731225296442,
+      0.7039964866051823,
+      0.6081121433311214,
+      0.6583075503446778
+    ]
+  },
+  "MR_at_pooled_OOF": {
+    "macro_recall": 0.6559363916506774,
+    "per_class": {
+      "TRUE": 0.8049886621315193,
+      "PROBABLE": 0.31666666666666665,
+      "FALSE": 0.8461538461538461
+    }
+  },
+  "selected_models_per_fold": [
+    [
+      "RF",
+      "C4",
+      "OrdContM1",
+      "Gemma"
+    ],
+    [
+      "RF",
+      "C4",
+      "OrdContM1",
+      "Gemma"
+    ],
+    [
+      "RF",
+      "C4",
+      "OrdContM1",
+      "Gemma"
+    ],
+    [
+      "RF",
+      "C4",
+      "OrdContM1",
+      "Gemma"
+    ],
+    [
+      "RF",
+      "C4",
+      "OrdContM1",
+      "Gemma"
+    ]
+  ]
+}

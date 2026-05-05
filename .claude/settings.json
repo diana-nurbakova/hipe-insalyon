@@ -16,7 +16,11 @@
       "Bash(gh api *)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(python -c \"import json,sys; print\\(list\\(json.loads\\(sys.stdin.readline\\(\\)\\).keys\\(\\)\\)[:15]\\)\")"
+      "Bash(python -c \"import json,sys; print\\(list\\(json.loads\\(sys.stdin.readline\\(\\)\\).keys\\(\\)\\)[:15]\\)\")",
+      "Read(//c/Users/dnurb/Documents/MilitIA/HIPE/**)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\data\\newspapers\\v1.0\\official_test"
     ]
   }
 }
