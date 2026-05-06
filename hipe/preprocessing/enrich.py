@@ -297,6 +297,30 @@ def _heideltime(language: str):
     return functools.partial(heideltime, language=lang, document_type="news")
 
 
+_ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def _normalise_pub_date(pub_date: str | None) -> str:
+    """Coerce ``pub_date`` to strict YYYY-MM-DD or fall back to ``1900-01-01``.
+
+    HeidelTime's DCT validator only accepts the strict ISO form. Real-world
+    inputs include ``None``, empty strings, year-only ("1920"), year-month
+    ("1920-08"), and the occasional ``YYYY-MM-DDThh:mm:ss`` from upstream.
+    Normalise all of those rather than letting Java throw.
+    """
+    if not pub_date:
+        return "1900-01-01"
+    s = str(pub_date)[:10]  # trim time component if present
+    if _ISO_DATE_RE.match(s):
+        return s
+    # Year-month -> first day of month; year-only -> Jan 1.
+    if re.match(r"^\d{4}-\d{2}$", s):
+        return s + "-01"
+    if re.match(r"^\d{4}$", s):
+        return s + "-01-01"
+    return "1900-01-01"
+
+
 def extract_temporal_expressions_heideltime(
     text: str,
     pub_date: str | None,
@@ -310,8 +334,9 @@ def extract_temporal_expressions_heideltime(
     fn = _heideltime(language)
     if fn is None or not text:
         return []
+    dct = _normalise_pub_date(pub_date)
     try:
-        result = fn(text, dct=pub_date or "1900-01-01")
+        result = fn(text, dct=dct)
     except Exception as exc:  # heideltime raises on Java startup failure
         logger.warning("HeidelTime failed: %s", exc)
         return []

@@ -1,0 +1,70 @@
+INSALyon — HIPE-2026 system descriptions
+=========================================
+
+This file documents the parameter count and on-disk model size for each
+submitted run, as required by the HIPE-2026 evaluation guidelines (the
+organisers ask each team to report a single integer for "weights" and a
+single integer for "size in MB" per system).
+
+Convention: 1 MB = 1024 * 1024 bytes (binary mebibyte).
+Sizes for hosted/pretrained models are reported at BF16/FP16 precision —
+the precision actually loaded for inference.
+
+-------------------------------------------------------------------------
+Run 1 — Gemma 4 31B Instruct, zero-shot PAB
+-------------------------------------------------------------------------
+Files:
+  INSALyon_HIPE-2026-v1.0-impresso-test-de_run1.jsonl
+  INSALyon_HIPE-2026-v1.0-impresso-test-en_run1.jsonl
+  INSALyon_HIPE-2026-v1.0-impresso-test-fr_run1.jsonl
+  INSALyon_HIPE-2026-v1.0-surprise-test-fr_run1.jsonl
+
+System:
+  Single LLM, prompt P-AB (joint at + isAt prediction).
+  Provider: OpenRouter (google/gemma-4-31b-it).
+  Both `at` and `isAt` predictions come from the same Gemma call.
+
+Number of parameters (integer):  30700000000
+Size in MB (BF16, integer):      58556
+
+(30.7 B parameters x 2 bytes/param = 61,400,000,000 B = 58,556 MB.)
+
+-------------------------------------------------------------------------
+Run 2 / Run 3 — Stacked ensemble on `at` + Gemma 4 31B on `isAt`
+-------------------------------------------------------------------------
+System (planned for the stacker run, see specs/HIPE2026_Stacked_Approach.md):
+  `at` task: lookup-table stacker built on out-of-fold predictions of
+             four base models (RF, C4-SDov, OrdContM1, Gemma).
+  `isAt` task: Gemma 4 31B P-AB output (best single isAt model).
+
+Components and individual sizes (BF16 weights for neural models; on-disk
+joblib bytes for sklearn artefacts, with .pt for the contrastive MLP):
+
+  Component              Parameters     Disk size (MB, binary)
+  ---------              ----------     ----------------------
+  RF (handcrafted)              842,545                     20
+  C4 (StandardScaler + LR)       11,598                      1
+  OrdContM1 (contrastive MLP) 2,156,293                      8
+  hmBERT encoder            110,617,344                    424
+  Gemma 4 31B            30,700,000,000                  58,556
+  Lookup table (cells)        negligible                      0
+  ---------                ------------                  ------
+  TOTAL                  30,813,627,780                  59,009
+
+Number of parameters (integer):  30813627780
+Size in MB (BF16, integer):      59009
+
+Notes
+-----
+- The hmBERT encoder is required at inference time to produce the
+  768x3-layer MASK embeddings consumed by both C4 and OrdContM1, so it
+  is part of the system footprint.
+- The lookup-table is a small dict (4-tuple key -> majority gold)
+  built once on the training set; its memory cost is negligible.
+- Run 2 and Run 3 use identical model weights; if those slots end up
+  carrying different ablations (e.g. different tiebreaker / fallback
+  policies), only the lookup table changes — parameter count and size
+  remain the values above.
+- The Gemma weights size assumes BF16 (the precision used by the
+  hosted endpoint and by Google's published checkpoints). At INT4 /
+  NF4 quantization the on-disk size would be ~14,653 MB instead.
