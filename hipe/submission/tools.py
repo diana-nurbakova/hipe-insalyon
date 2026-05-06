@@ -32,6 +32,17 @@ DEFAULT_SUBPATH_CANDIDATES: tuple[str, ...] = (
     "third_party/HIPE-2026-data",
 )
 
+# Local cache of the official schema. Used when no HIPE-2026-data clone is
+# available — see ``validate_submission`` below. Refresh this file by
+# downloading the latest from
+# https://github.com/hipe-eval/HIPE-2026-data/blob/main/schemas/hipe-2026-data.schema.json
+# (the organisers updated `oneOf` -> `anyOf` for the `date` field on the
+# main branch — make sure the cached copy stays in sync).
+_LOCAL_SCHEMA = (
+    Path(__file__).resolve().parents[2]
+    / "data" / "schemas" / "hipe-2026-data.schema.json"
+)
+
 
 def default_tools_dir(start: str | Path | None = None) -> Path:
     """Locate the cloned ``HIPE-2026-data`` checkout.
@@ -75,12 +86,24 @@ def _resolve(tools_dir: str | Path | None) -> Path:
 
 
 def default_schema_file(tools_dir: str | Path | None = None) -> Path:
-    """Return the path to the official JSON schema bundled with the toolkit."""
-    p = _resolve(tools_dir)
+    """Return the path to the official JSON schema.
+
+    Looks first at the cloned HIPE-2026-data toolkit; falls back to the
+    locally cached copy under ``data/schemas/`` if that clone is not
+    available. Either path is suitable input for ``jsonschema.validate``.
+    """
+    try:
+        p = _resolve(tools_dir)
+    except FileNotFoundError:
+        if _LOCAL_SCHEMA.exists():
+            return _LOCAL_SCHEMA
+        raise
     schema = p / "schemas" / "hipe-2026-data.schema.json"
-    if not schema.exists():
-        raise FileNotFoundError(f"Missing schema file at {schema}")
-    return schema
+    if schema.exists():
+        return schema
+    if _LOCAL_SCHEMA.exists():
+        return _LOCAL_SCHEMA
+    raise FileNotFoundError(f"Missing schema file at {schema}")
 
 
 @dataclass(slots=True)
@@ -108,8 +131,17 @@ def validate_submission(
     tools_dir: str | Path | None = None,
     python_executable: str | None = None,
 ) -> SchemaCheckResult:
-    """Run ``check_jsonlschema.py`` on a submission file."""
-    tools = _resolve(tools_dir)
+    """Validate a submission against the official JSON schema.
+
+    Prefers the organisers' ``check_jsonlschema.py`` (so we always run the
+    exact code they run); falls back to in-process validation via the
+    ``jsonschema`` library when no HIPE-2026-data clone is available. The
+    fallback uses the cached schema under ``data/schemas/``.
+    """
+    try:
+        tools = _resolve(tools_dir)
+    except FileNotFoundError:
+        return _validate_inprocess(submission_file, schema_file=schema_file)
     schema = Path(schema_file) if schema_file else default_schema_file(tools)
     py = python_executable or sys.executable
     cmd = [
@@ -125,6 +157,55 @@ def validate_submission(
         stdout=proc.stdout,
         stderr=proc.stderr,
         returncode=proc.returncode,
+    )
+
+
+def _validate_inprocess(
+    submission_file: str | Path,
+    *,
+    schema_file: str | Path | None = None,
+) -> SchemaCheckResult:
+    """Mirror of organizers' ``check_jsonlschema.py`` using the cached schema."""
+    import json
+
+    from jsonschema import ValidationError, validate
+
+    schema_path = Path(schema_file) if schema_file else _LOCAL_SCHEMA
+    if not schema_path.exists():
+        return SchemaCheckResult(
+            ok=False,
+            stdout="",
+            stderr=f"Schema file not found: {schema_path}",
+            returncode=2,
+        )
+    with schema_path.open("r", encoding="utf-8") as f:
+        schema = json.load(f)
+
+    sub_path = Path(submission_file)
+    errors: list[str] = []
+    with sub_path.open("r", encoding="utf-8") as f:
+        for i, line in enumerate(f, start=1):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                validate(instance=json.loads(line), schema=schema)
+            except ValidationError as e:
+                errors.append(f"[ERROR] {sub_path} (line {i}): {e.message}")
+            except json.JSONDecodeError as e:
+                errors.append(f"[ERROR] {sub_path} (line {i}): Invalid JSON - {e}")
+    if errors:
+        return SchemaCheckResult(
+            ok=False,
+            stdout=f"Validating {sub_path}...\n[FAIL] {sub_path} had {len(errors)} error(s).",
+            stderr="\n".join(errors),
+            returncode=1,
+        )
+    return SchemaCheckResult(
+        ok=True,
+        stdout=f"Validating {sub_path}...\n[OK] {sub_path} passed validation.",
+        stderr="",
+        returncode=0,
     )
 
 

@@ -25,7 +25,8 @@
       "Bash(c:/Users/dnurb/Documents/MilitIA/HIPE/.venv/Scripts/python.exe -m pip list)"
     ],
     "additionalDirectories": [
-      "c:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\data\\newspapers\\v1.0\\official_test"
+      "c:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\data\\newspapers\\v1.0\\official_test",
+      "\\tmp"
     ]
   }
 }
