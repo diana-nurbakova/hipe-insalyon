@@ -1,0 +1,123 @@
+{
+  "experiment_id": "T1.4or5_mask_T1.4_temporal_only_LR_at_isAt-test",
+  "timestamp": "2026-05-06T15:38:29.885427+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.49082837062074147,
+    "macro_recall_at": 0.48165674124148294,
+    "macro_recall_isAt": 0.5,
+    "at_details": {
+      "recall_TRUE": 0.5333333333333333,
+      "recall_PROBABLE": 0.5263157894736842,
+      "recall_FALSE": 0.3853211009174312,
+      "macro_recall": 0.48165674124148294
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.0,
+      "recall_FALSE": 1.0,
+      "macro_recall": 0.5
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.43243243243243246,
+      "recall": 0.5333333333333333,
+      "f1-score": 0.47761194029850745,
+      "support": 60
+    },
+    "PROBABLE": {
+      "precision": 0.16666666666666666,
+      "recall": 0.5263157894736842,
+      "f1-score": 0.25316455696202533,
+      "support": 19
+    },
+    "FALSE": {
+      "precision": 0.7777777777777778,
+      "recall": 0.3853211009174312,
+      "f1-score": 0.5153374233128835,
+      "support": 109
+    },
+    "macro avg": {
+      "precision": 0.45895895895895894,
+      "recall": 0.48165674124148294,
+      "f1-score": 0.4153713068578055,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6057999488850553,
+      "recall": 0.44680851063829785,
+      "f1-score": 0.4768011816026235,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 42
+    },
+    "FALSE": {
+      "precision": 0.776595744680851,
+      "recall": 1.0,
+      "f1-score": 0.8742514970059879,
+      "support": 146
+    },
+    "macro avg": {
+      "precision": 0.3882978723404255,
+      "recall": 0.5,
+      "f1-score": 0.43712574850299396,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.6031009506564056,
+      "recall": 0.776595744680851,
+      "f1-score": 0.678939992355714,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      32,
+      19,
+      9
+    ],
+    [
+      6,
+      10,
+      3
+    ],
+    [
+      36,
+      31,
+      42
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      0,
+      42
+    ],
+    [
+      0,
+      146
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "name": "T1.4_temporal_only_LR",
+    "n_train": 1063,
+    "n_test": 188,
+    "input_dim": 15,
+    "target": "at",
+    "task": "isAt"
+  }
+}

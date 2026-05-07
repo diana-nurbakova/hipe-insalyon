@@ -1,0 +1,2 @@
+sample_idx,document_id,pers_entity_id,loc_entity_id,pred_label,confidence,runner_up_confidence,margin,entropy,normalized_entropy,ambiguity_score,top1_label,top2_label,route_to_llm
+430,1542_Rabelais_Pantagruel_chunk86.tsv,1542_Rabelais_Pantagruel_chunk86.tsv-NIL_pantagruel,1542_Rabelais_Pantagruel_chunk86.tsv-NIL_porto_sancto,PROBABLE,0.389596,0.364209,0.025387,1.080187,0.983228,0.978921,PROBABLE,FALSE,1

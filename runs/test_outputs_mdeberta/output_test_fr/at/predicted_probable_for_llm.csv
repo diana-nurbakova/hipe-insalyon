@@ -1,0 +1,1 @@
+sample_idx,document_id,pers_entity_id,loc_entity_id,pred_label,confidence,runner_up_confidence,margin,entropy,normalized_entropy,ambiguity_score,top1_label,top2_label,route_to_llm

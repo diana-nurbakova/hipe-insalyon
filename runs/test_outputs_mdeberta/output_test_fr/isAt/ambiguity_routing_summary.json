@@ -1,0 +1,12 @@
+{
+  "task": "isAt",
+  "policy": "ambiguity_top_rate",
+  "top_rate": 0.2,
+  "n_total": 238,
+  "n_route_to_llm": 48,
+  "route_rate": 0.201681,
+  "n_kept_by_mdeberta": 190,
+  "n_predicted_probable": 0,
+  "mode": "gated",
+  "model_dir": "output/isAt/best_model"
+}

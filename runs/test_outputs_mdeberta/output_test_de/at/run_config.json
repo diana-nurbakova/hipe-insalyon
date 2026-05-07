@@ -1,0 +1,9 @@
+{
+  "task": "at",
+  "data": "retrieval_context_test_de.jsonl",
+  "mode": "gated",
+  "batch": 32,
+  "ambiguity_top_rate": 0.2,
+  "route_probable_only": false,
+  "model_dir": "output/at/best_model"
+}

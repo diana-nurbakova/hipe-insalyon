@@ -105,17 +105,19 @@ def _train_one(
     X_spec,
     factory,
     train_arrays: dict[str, np.ndarray],
+    target: str = "at",
 ):
-    print(f"\n>>> {name}")
+    print(f"\n>>> {name} (target={target})")
     X_train = _build_features(train_arrays, X_spec)
     print(f"   X_train.shape = {X_train.shape}")
-    y_at = train_arrays["at"].astype(str)
+    y = train_arrays[target].astype(str)
     t0 = time.perf_counter()
     clf = factory()
-    clf.fit(X_train, y_at)
-    print(f"   trained on {len(y_at)} instances in {time.perf_counter() - t0:.1f}s")
+    clf.fit(X_train, y)
+    print(f"   trained on {len(y)} instances in {time.perf_counter() - t0:.1f}s")
+    label_set = ("TRUE", "PROBABLE", "FALSE") if target == "at" else ("TRUE", "FALSE")
     print(f"   train class counts: " + ", ".join(
-        f"{c}={int((y_at == c).sum())}" for c in ("TRUE", "PROBABLE", "FALSE")
+        f"{c}={int((y == c).sum())}" for c in label_set
     ))
     return clf, X_train.shape
 
@@ -127,9 +129,10 @@ def _predict_and_write(
     test_arrays: dict[str, np.ndarray],
     out_path: Path,
     train_dim: int,
+    target: str = "at",
 ) -> None:
     X_test = _build_features(test_arrays, X_spec)
-    print(f"\n   predicting with {name}: X_test.shape = {X_test.shape}")
+    print(f"\n   predicting with {name} (target={target}): X_test.shape = {X_test.shape}")
     if X_test.shape[1] != train_dim:
         raise SystemExit(
             f"   feature-dim mismatch: train={train_dim} vs test={X_test.shape[1]}; "
@@ -142,19 +145,21 @@ def _predict_and_write(
     with out_path.open("w", encoding="utf-8") as f:
         for sid, lang, p in zip(sample_ids, languages, pred):
             doc, pers, loc = _split_sample_id(sid)
-            f.write(json.dumps({
+            row = {
                 "document_id": doc,
                 "pers_entity_id": pers,
                 "loc_entity_id": loc,
                 "language": lang,
-                "at_predicted": p,
-                "isAt_predicted": None,
+                "at_predicted": p if target == "at" else None,
+                "isAt_predicted": p if target == "isAt" else None,
                 "at_gold": None,
                 "isAt_gold": None,
-            }, ensure_ascii=False) + "\n")
+            }
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
     print(f"   wrote {out_path} ({len(pred)} predictions)")
+    label_set = ("TRUE", "PROBABLE", "FALSE") if target == "at" else ("TRUE", "FALSE")
     print(f"   pred class counts: " + ", ".join(
-        f"{c}={int((pred == c).sum())}" for c in ("TRUE", "PROBABLE", "FALSE")
+        f"{c}={int((pred == c).sum())}" for c in label_set
     ))
 
 
@@ -180,8 +185,13 @@ def main() -> int:
         default=PROJECT_ROOT / "logs" / "official_test",
         help="Where to write the predictions JSONLs (only used with --test-npz).",
     )
-    ap.add_argument("--rf-out-name", default="RF_official_test_at_predictions.jsonl")
-    ap.add_argument("--c4-out-name", default="C4_official_test_at_predictions.jsonl")
+    ap.add_argument("--rf-out-name", default=None,
+                    help="Default: RF_official_test_<target>_predictions.jsonl")
+    ap.add_argument("--c4-out-name", default=None,
+                    help="Default: C4_official_test_<target>_predictions.jsonl")
+    ap.add_argument("--target", choices=["at", "isAt", "both"], default="at",
+                    help="Which task target to train for. 'both' trains separate "
+                         "classifiers for at and isAt and writes two prediction files each.")
     args = ap.parse_args()
 
     print(f"Loading train cache {args.train_npz}")
@@ -192,6 +202,10 @@ def main() -> int:
             f"  train cache missing 'at' labels — was this built from "
             f"dataset_reference.jsonl?"
         )
+    if args.target in ("isAt", "both") and "isAt" not in train_arrays:
+        raise SystemExit(
+            f"  train cache missing 'isAt' labels — required for target={args.target}"
+        )
 
     test_arrays = None
     if args.test_npz is not None:
@@ -201,37 +215,39 @@ def main() -> int:
         test_arrays = _load_arrays(args.test_npz)
         print(f"  test n = {len(test_arrays['sample_id'])}")
 
-    # --- train both classifiers on the full labeled set --------------------
-    rf, rf_shape = _train_one(
-        "RF_handcrafted", "handcrafted", make_rf, train_arrays,
-    )
-    c4, c4_shape = _train_one(
-        "C4_mask_e1e2_temp", ("concat", "temporal"), make_lr, train_arrays,
-    )
+    targets = ["at", "isAt"] if args.target == "both" else [args.target]
 
-    # --- save trained models if requested ----------------------------------
-    if args.save_models is not None:
-        args.save_models.mkdir(parents=True, exist_ok=True)
-        rf_path = args.save_models / "RF_handcrafted.joblib"
-        c4_path = args.save_models / "C4_mask_e1e2_temp.joblib"
-        joblib.dump({"clf": rf, "feature_spec": "handcrafted",
-                     "input_dim": rf_shape[1]}, rf_path)
-        joblib.dump({"clf": c4, "feature_spec": ("concat", "temporal"),
-                     "input_dim": c4_shape[1]}, c4_path)
-        print(f"\nSaved models:")
-        print(f"  {rf_path}")
-        print(f"  {c4_path}")
+    for target in targets:
+        rf, rf_shape = _train_one(
+            "RF_handcrafted", "handcrafted", make_rf, train_arrays, target=target,
+        )
+        c4, c4_shape = _train_one(
+            "C4_mask_e1e2_temp", ("concat", "temporal"), make_lr, train_arrays, target=target,
+        )
 
-    # --- optional: predict on the test set ---------------------------------
-    if test_arrays is not None:
-        _predict_and_write(
-            "RF_handcrafted", "handcrafted", rf,
-            test_arrays, args.out_dir / args.rf_out_name, rf_shape[1],
-        )
-        _predict_and_write(
-            "C4_mask_e1e2_temp", ("concat", "temporal"), c4,
-            test_arrays, args.out_dir / args.c4_out_name, c4_shape[1],
-        )
+        if args.save_models is not None:
+            args.save_models.mkdir(parents=True, exist_ok=True)
+            rf_path = args.save_models / f"RF_handcrafted_{target}.joblib"
+            c4_path = args.save_models / f"C4_mask_e1e2_temp_{target}.joblib"
+            joblib.dump({"clf": rf, "feature_spec": "handcrafted",
+                         "input_dim": rf_shape[1], "target": target}, rf_path)
+            joblib.dump({"clf": c4, "feature_spec": ("concat", "temporal"),
+                         "input_dim": c4_shape[1], "target": target}, c4_path)
+            print(f"\nSaved models for target={target}:")
+            print(f"  {rf_path}")
+            print(f"  {c4_path}")
+
+        if test_arrays is not None:
+            rf_name = args.rf_out_name or f"RF_official_test_{target}_predictions.jsonl"
+            c4_name = args.c4_out_name or f"C4_official_test_{target}_predictions.jsonl"
+            _predict_and_write(
+                "RF_handcrafted", "handcrafted", rf,
+                test_arrays, args.out_dir / rf_name, rf_shape[1], target=target,
+            )
+            _predict_and_write(
+                "C4_mask_e1e2_temp", ("concat", "temporal"), c4,
+                test_arrays, args.out_dir / c4_name, c4_shape[1], target=target,
+            )
 
     print("\nDone.")
     return 0

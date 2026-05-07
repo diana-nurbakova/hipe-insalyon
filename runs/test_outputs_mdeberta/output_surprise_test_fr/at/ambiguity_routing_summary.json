@@ -1,0 +1,12 @@
+{
+  "task": "at",
+  "policy": "ambiguity_top_rate",
+  "top_rate": 0.2,
+  "n_total": 480,
+  "n_route_to_llm": 96,
+  "route_rate": 0.2,
+  "n_kept_by_mdeberta": 384,
+  "n_predicted_probable": 1,
+  "mode": "gated",
+  "model_dir": "output/at/best_model"
+}

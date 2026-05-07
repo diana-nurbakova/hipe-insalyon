@@ -1,0 +1,24 @@
+{
+  "task": "isAt",
+  "model": "FacebookAI/xlm-roberta-large",
+  "epochs": 40,
+  "lr": 2e-05,
+  "batch": 8,
+  "effective_batch": 16,
+  "label_smoothing": 0.05,
+  "class_weight_mode": "sqrt_inverse",
+  "val_macro_f1": 0.8085,
+  "train_n": 1063,
+  "val_n": 188,
+  "label_dist": {
+    "FALSE": 972,
+    "TRUE": 279
+  },
+  "class_weights": {
+    "FALSE": 0.6976,
+    "TRUE": 1.3024
+  },
+  "total_params": 559892482,
+  "trainable_params": 559892482,
+  "system_size_mb": 2136
+}

@@ -1,0 +1,40 @@
+{
+  "task": "isAt",
+  "model": "microsoft/mdeberta-v3-base",
+  "epochs": 40,
+  "lr": 2e-05,
+  "batch": 8,
+  "effective_batch": 16,
+  "label_smoothing": 0.05,
+  "class_weight_mode": "sqrt_inverse",
+  "val_macro_f1": 0.7739,
+  "train_n": 1063,
+  "val_n": 188,
+  "label_dist": {
+    "FALSE": 972,
+    "TRUE": 279
+  },
+  "class_weights": {
+    "FALSE": 0.6976,
+    "TRUE": 1.3024
+  },
+  "high_confidence_eval": {
+    "task": "isAt",
+    "threshold": 0.98,
+    "threshold_source": "manual_strict",
+    "threshold_objective": null,
+    "min_keep_rate": null,
+    "excluded_pred_labels": [],
+    "n_total": 188,
+    "n_keep_high_conf": 37,
+    "keep_rate": 0.196809,
+    "n_uncertain": 151,
+    "uncertain_rate": 0.803191,
+    "high_conf_macro_f1": 0.393443,
+    "high_conf_accuracy": 0.648649,
+    "uncertain_breakdown": {
+      "low_confidence": 151
+    },
+    "selection_score": null
+  }
+}

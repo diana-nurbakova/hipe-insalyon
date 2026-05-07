@@ -1,0 +1,23 @@
+{
+  "task": "at",
+  "model": "microsoft/mdeberta-v3-base",
+  "epochs": 40,
+  "lr": 2e-05,
+  "batch": 8,
+  "effective_batch": 16,
+  "label_smoothing": 0.05,
+  "class_weight_mode": "sqrt_inverse",
+  "val_macro_f1": 0.6312,
+  "train_n": 1063,
+  "val_n": 188,
+  "label_dist": {
+    "PROBABLE": 120,
+    "FALSE": 690,
+    "TRUE": 441
+  },
+  "class_weights": {
+    "FALSE": 0.6456,
+    "TRUE": 0.807,
+    "PROBABLE": 1.5474
+  }
+}

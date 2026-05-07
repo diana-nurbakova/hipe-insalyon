@@ -1,0 +1,123 @@
+{
+  "experiment_id": "T1.4or5_mask_C1_mask_LR_isAt_isAt-test",
+  "timestamp": "2026-05-06T15:38:28.985837+00:00",
+  "n_instances": 188,
+  "scores": {
+    "global_score": 0.5031800391389433,
+    "macro_recall_at": 0.3333333333333333,
+    "macro_recall_isAt": 0.6730267449445532,
+    "at_details": {
+      "recall_TRUE": 0.0,
+      "recall_PROBABLE": 0.0,
+      "recall_FALSE": 1.0,
+      "macro_recall": 0.3333333333333333
+    },
+    "isAt_details": {
+      "recall_TRUE": 0.47619047619047616,
+      "recall_FALSE": 0.8698630136986302,
+      "macro_recall": 0.6730267449445532
+    }
+  },
+  "at_classification_report": {
+    "TRUE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 60
+    },
+    "PROBABLE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 19
+    },
+    "FALSE": {
+      "precision": 0.5797872340425532,
+      "recall": 1.0,
+      "f1-score": 0.734006734006734,
+      "support": 109
+    },
+    "macro avg": {
+      "precision": 0.19326241134751773,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.244668911335578,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.33615323675871434,
+      "recall": 0.5797872340425532,
+      "f1-score": 0.4255677340783724,
+      "support": 188
+    }
+  },
+  "isAt_classification_report": {
+    "TRUE": {
+      "precision": 0.5128205128205128,
+      "recall": 0.47619047619047616,
+      "f1-score": 0.49382716049382713,
+      "support": 42
+    },
+    "FALSE": {
+      "precision": 0.8523489932885906,
+      "recall": 0.8698630136986302,
+      "f1-score": 0.8610169491525423,
+      "support": 146
+    },
+    "macro avg": {
+      "precision": 0.6825847530545517,
+      "recall": 0.6730267449445532,
+      "f1-score": 0.6774220548231847,
+      "support": 188
+    },
+    "weighted avg": {
+      "precision": 0.7764968859499775,
+      "recall": 0.7819148936170213,
+      "f1-score": 0.7789851878564463,
+      "support": 188
+    }
+  },
+  "at_confusion_matrix": [
+    [
+      0,
+      0,
+      60
+    ],
+    [
+      0,
+      0,
+      19
+    ],
+    [
+      0,
+      0,
+      109
+    ]
+  ],
+  "isAt_confusion_matrix": [
+    [
+      20,
+      22
+    ],
+    [
+      19,
+      127
+    ]
+  ],
+  "at_labels": [
+    "TRUE",
+    "PROBABLE",
+    "FALSE"
+  ],
+  "isAt_labels": [
+    "TRUE",
+    "FALSE"
+  ],
+  "metadata": {
+    "name": "C1_mask_LR",
+    "n_train": 1063,
+    "n_test": 188,
+    "input_dim": 768,
+    "target": "isAt",
+    "task": "isAt"
+  }
+}

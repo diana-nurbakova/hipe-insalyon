@@ -1,0 +1,77 @@
+{
+  "task": "isAt",
+  "n_train": 1063,
+  "n_test": 188,
+  "by_feature_set": {
+    "C1_mask_LR": {
+      "at": 0.5351091796770212,
+      "dim": 768,
+      "isAt": 0.6730267449445532
+    },
+    "C4_mask+e1+e2+temporal_LR": {
+      "at": 0.6461720049358871,
+      "dim": 2319,
+      "isAt": 0.6849315068493151
+    },
+    "T1.4_temporal_only_LR": {
+      "at": 0.48165674124148294,
+      "dim": 15,
+      "isAt": 0.6342139595564253
+    },
+    "T1.5_handcrafted_RF": {
+      "at": 0.6124497022372445,
+      "dim": 36,
+      "isAt": 0.7242335290280496
+    }
+  },
+  "rows": [
+    {
+      "feature_set": "C1_mask_LR",
+      "target": "at",
+      "macro_recall": 0.5351091796770212,
+      "input_dim": 768
+    },
+    {
+      "feature_set": "C1_mask_LR",
+      "target": "isAt",
+      "macro_recall": 0.6730267449445532,
+      "input_dim": 768
+    },
+    {
+      "feature_set": "C4_mask+e1+e2+temporal_LR",
+      "target": "at",
+      "macro_recall": 0.6461720049358871,
+      "input_dim": 2319
+    },
+    {
+      "feature_set": "C4_mask+e1+e2+temporal_LR",
+      "target": "isAt",
+      "macro_recall": 0.6849315068493151,
+      "input_dim": 2319
+    },
+    {
+      "feature_set": "T1.4_temporal_only_LR",
+      "target": "at",
+      "macro_recall": 0.48165674124148294,
+      "input_dim": 15
+    },
+    {
+      "feature_set": "T1.4_temporal_only_LR",
+      "target": "isAt",
+      "macro_recall": 0.6342139595564253,
+      "input_dim": 15
+    },
+    {
+      "feature_set": "T1.5_handcrafted_RF",
+      "target": "at",
+      "macro_recall": 0.6124497022372445,
+      "input_dim": 36
+    },
+    {
+      "feature_set": "T1.5_handcrafted_RF",
+      "target": "isAt",
+      "macro_recall": 0.7242335290280496,
+      "input_dim": 36
+    }
+  ]
+}

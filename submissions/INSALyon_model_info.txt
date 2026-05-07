@@ -1,5 +1,5 @@
-INSALyon — HIPE-2026 system descriptions
-=========================================
+INSALyon — HIPE-2026 system descriptions (3 official runs)
+============================================================
 
 This file documents the parameter count and on-disk model size for each
 submitted run, as required by the HIPE-2026 evaluation guidelines (the
@@ -7,11 +7,26 @@ organisers ask each team to report a single integer for "weights" and a
 single integer for "size in MB" per system).
 
 Convention: 1 MB = 1024 * 1024 bytes (binary mebibyte).
-Sizes for hosted/pretrained models are reported at BF16/FP16 precision —
-the precision actually loaded for inference.
+
+Precision convention per component:
+  - Fine-tuned encoder checkpoints (mDeBERTa, xlm-roberta, hmBERT) are
+    reported at FP32 — that is the precision saved during training and
+    loaded for inference. This matches the convention used by the
+    fine-tuning configs (e.g. xlm-roberta-large config explicitly lists
+    `total_params=559,892,482` and `system_size_mb=2136`, and
+    559,892,482 * 4 / (1024^2) = 2136 confirms FP32).
+  - Hosted LLMs (Gemma, Llama) are reported at BF16 — the precision used
+    by the hosted endpoints and by the published checkpoints.
+  - sklearn / contrastive MLP artefacts are reported as the on-disk
+    joblib / .pt size (the format actually deployed).
+
+  Note: the mDeBERTa  `total_params` / `system_size_mb` fields are
+  derived from the published microsoft/mdeberta-v3-base spec (278,043,651
+  parameters; 278,043,651 * 4 / (1024^2) = 1061 MB at FP32).
 
 -------------------------------------------------------------------------
-Run 1 — Gemma 4 31B Instruct, zero-shot PAB
+Run 1 — Multi-model ensemble: plurality(xlm, stacker, Gemma) on `at` +
+        majority(xlm, Gemma, Llama) on `isAt`        (highest performance)
 -------------------------------------------------------------------------
 Files:
   INSALyon_HIPE-2026-v1.0-impresso-test-de_run1.jsonl
@@ -20,51 +35,183 @@ Files:
   INSALyon_HIPE-2026-v1.0-surprise-test-fr_run1.jsonl
 
 System:
-  Single LLM, prompt P-AB (joint at + isAt prediction).
-  Provider: OpenRouter (google/gemma-4-31b-it).
-  Both `at` and `isAt` predictions come from the same Gemma call.
-
-Number of parameters (integer):  30700000000
-Size in MB (BF16, integer):      58556
-
-(30.7 B parameters x 2 bytes/param = 61,400,000,000 B = 58,556 MB.)
-
--------------------------------------------------------------------------
-Run 2 / Run 3 — Stacked ensemble on `at` + Gemma 4 31B on `isAt`
--------------------------------------------------------------------------
-System (planned for the stacker run, see specs/HIPE2026_Stacked_Approach.md):
-  `at` task: lookup-table stacker built on out-of-fold predictions of
-             four base models (RF, C4-SDov, OrdContM1, Gemma).
-  `isAt` task: Gemma 4 31B P-AB output (best single isAt model).
+  `at` task: 3-way plurality vote per pair over:
+             - xlm-roberta-large fine-tuned on at-task labelled pool
+             - 4-model lookup-table stacker (RF + C4-SDov + OrdContM1 + Gemma)
+             - Gemma 4 31B (P-AB) zero-shot
+             Tiebreaker = ordinal median (FALSE<PROBABLE<TRUE).
+  `isAt` task: 3-way majority vote per pair over:
+             - xlm-roberta-large fine-tuned on isAt-task labelled pool
+             - Gemma 4 31B (P-AB) zero-shot
+             - Llama 3.3 70B Instruct (P-AB) zero-shot
 
 Components and individual sizes (BF16 weights for neural models; on-disk
 joblib bytes for sklearn artefacts, with .pt for the contrastive MLP):
 
-  Component              Parameters     Disk size (MB, binary)
-  ---------              ----------     ----------------------
-  RF (handcrafted)              842,545                     20
-  C4 (StandardScaler + LR)       11,598                      1
-  OrdContM1 (contrastive MLP) 2,156,293                      8
-  hmBERT encoder            110,617,344                    424
-  Gemma 4 31B            30,700,000,000                  58,556
-  Lookup table (cells)        negligible                      0
-  ---------                ------------                  ------
-  TOTAL                  30,813,627,780                  59,009
+  Component                     Parameters     Disk size (MB, binary)
+  ---------                     ----------     ----------------------
+  RF (handcrafted)                     842,545                     20
+  C4 (StandardScaler + LR)              11,598                      1
+  OrdContM1 (contrastive MLP)        2,156,293                      8
+  hmBERT encoder                   110,617,344                    424
+  xlm-roberta-large                559,892,482                  2,136
+  Gemma 4 31B                   30,700,000,000                 58,556
+  Llama 3.3 70B Instruct        70,553,706,496                134,571
+  Lookup table (cells)               negligible                      0
+  ---------                   ----------------                --------
+  TOTAL                       101,927,226,758                195,716
 
-Number of parameters (integer):  30813627780
-Size in MB (BF16, integer):      59009
+Number of parameters (integer):  101927226758
+Size in MB (mixed FP32/BF16, integer):  195716
 
 Notes
 -----
-- The hmBERT encoder is required at inference time to produce the
-  768x3-layer MASK embeddings consumed by both C4 and OrdContM1, so it
-  is part of the system footprint.
-- The lookup-table is a small dict (4-tuple key -> majority gold)
-  built once on the training set; its memory cost is negligible.
-- Run 2 and Run 3 use identical model weights; if those slots end up
-  carrying different ablations (e.g. different tiebreaker / fallback
-  policies), only the lookup table changes — parameter count and size
-  remain the values above.
-- The Gemma weights size assumes BF16 (the precision used by the
-  hosted endpoint and by Google's published checkpoints). At INT4 /
-  NF4 quantization the on-disk size would be ~14,653 MB instead.
+- Validated MR(at) on the 188-triplet val split (mDeBERTa's split): 0.7765
+  with bootstrap 95% CI [0.6953, 0.8590], vs the 4-model-stacker alone
+  0.7269. The +0.05 lift comes from xlm-roberta's stronger PROBABLE
+  recall (0.500 vs 0.39 for RF) breaking ties between the conservative
+  stacker and the TRUE-biased Gemma.
+- Validated MR(isAt) on v1 isAt-test (n=187): 0.8411 with bootstrap 95%
+  CI [0.7747, 0.9041], vs Gemma alone 0.8273.
+- at-vote provenance on the 1118-pair official test:
+    all three agree:                432 pairs (38.6%)
+    stacker + Gemma agree:          272 pairs (24.3%)
+    xlm + stacker agree:            265 pairs (23.7%)
+    xlm + Gemma agree:              122 pairs (10.9%)
+    only one model + tiebreaker:     27 pairs ( 2.4%)
+- The Llama 70B footprint dominates the system size; if the eval
+  guideline counts only locally-deployed weights and treats the LLM API
+  endpoints as external services, the local footprint drops to
+  ~673 M parameters / ~2,589 MB (RF + C4 + OrdContM1 + hmBERT + xlm).
+
+Per-component config / source:
+  - xlm-roberta-large (used for both at and isAt heads)   
+        (model="FacebookAI/xlm-roberta-large"; epochs=40, lr=2e-5,
+        batch=8, eff_batch=16, label_smoothing=0.05,
+        class_weight_mode=sqrt_inverse;
+        total_params=559,892,482, system_size_mb=2136 listed in config;
+        val_macro_f1 (isAt) = 0.8085).
+  - 4-model lookup-table stacker on at: see specs/HIPE2026_Disagreement_Stacker_Specs.md
+    and scripts/run_full_pipeline.py. Base models trained as in Run 2/Run 3
+    of the v1.0 deployment (RF + C4-SDov + OrdContM1 + Gemma).
+  - Gemma 4 31B and Llama 3.3 70B: hosted via OpenRouter
+    (google/gemma-4-31b-it, meta-llama/llama-3.3-70b-instruct), zero-shot
+    prompt P-AB. Sizes are BF16 by convention of the hosted endpoints.
+
+-------------------------------------------------------------------------
+Run 2 — mDeBERTa-v3 base, joint at + isAt fine-tuning  (single-model baseline)
+-------------------------------------------------------------------------
+Files:
+  INSALyon_HIPE-2026-v1.0-impresso-test-de_run2.jsonl
+  INSALyon_HIPE-2026-v1.0-impresso-test-en_run2.jsonl
+  INSALyon_HIPE-2026-v1.0-impresso-test-fr_run2.jsonl
+  INSALyon_HIPE-2026-v1.0-surprise-test-fr_run2.jsonl
+
+System:
+  Single fine-tuned encoder model. Two heads — one for at (3-class:
+  TRUE/PROBABLE/FALSE), one for isAt (binary). Predictions for both
+  tasks come from the same encoder.
+
+  Architecture:    microsoft/mdeberta-v3-base
+  Training:        40 epochs, lr=2e-5, batch=8 (effective 16),
+                   label smoothing 0.05, sqrt-inverse class weights
+  Train / val:     1063 / 188 (per-task 80/20 split of the labelled pool)
+
+Components and sizes:
+
+  Component               Parameters     Disk size (MB, binary)
+  ---------               ----------     ----------------------
+  mDeBERTa-v3 base        278,043,651                  1,061
+  ---------                -----------                 ------
+  TOTAL                   278,043,651                  1,061
+
+Number of parameters (integer):  278043651
+Size in MB (FP32, integer):      1061
+
+Notes
+-----
+- val_macro_f1 from the training configs (val split = 188 instances,
+  80/20 of the labelled pool):
+    at  task: 0.6312    
+    isAt task: 0.7739   
+- Class weights used during training (sqrt_inverse mode):
+    at:    {FALSE: 0.6456, TRUE: 0.807, PROBABLE: 1.5474}
+    isAt:  {FALSE: 0.6976, TRUE: 1.3024}
+- Label distribution in the labelled pool (per task):
+    at:    {FALSE: 690, TRUE: 441, PROBABLE: 120}    (n=1251)
+    isAt:  {FALSE: 972, TRUE: 279}                   (n=1251)
+- Validated MR(at) on the 188-triplet val split: 0.6189 (95% CI
+  [0.5375, 0.7039]).
+- Validated MR(isAt) on v1 isAt-test: 0.7782 (95% CI [0.6999, 0.8521]).
+- This is the smallest deployable system in our submission set; runs
+  on a single 4 GB GPU at FP16. Useful as a single-model lower bound.
+
+-------------------------------------------------------------------------
+Run 3 — Frugal-with-encoders ensemble: plurality(xlm, mDeBERTa, RF)
+        on `at` + xlm-roberta on `isAt`           (no LLM at inference)
+-------------------------------------------------------------------------
+Files:
+  INSALyon_HIPE-2026-v1.0-impresso-test-de_run3.jsonl
+  INSALyon_HIPE-2026-v1.0-impresso-test-en_run3.jsonl
+  INSALyon_HIPE-2026-v1.0-impresso-test-fr_run3.jsonl
+  INSALyon_HIPE-2026-v1.0-surprise-test-fr_run3.jsonl
+
+System:
+  `at` task: 3-way plurality vote per pair over:
+             - xlm-roberta-large fine-tuned on at-task labelled pool
+             - mDeBERTa-v3 base fine-tuned on at-task labelled pool
+             - Random Forest over handcrafted features
+             Tiebreaker = ordinal median (FALSE<PROBABLE<TRUE).
+  `isAt` task: xlm-roberta-large alone (the same fine-tuned isAt model
+              used inside Run-1).
+
+Components and sizes:
+
+  Component               Parameters     Disk size (MB, binary)
+  ---------               ----------     ----------------------
+  RF (handcrafted)               842,545                     20
+  mDeBERTa-v3 base           278,043,651                  1,061
+  xlm-roberta-large          559,892,482                  2,136
+  ---------                ----------------               -------
+  TOTAL                      838,778,678                  3,217
+
+Number of parameters (integer):  838778678
+Size in MB (FP32, integer):      3217
+
+Per-component config / source:
+  - mDeBERTa-v3 base   : 
+                          (model="microsoft/mdeberta-v3-base"; epochs=40,
+                          lr=2e-5, batch=8, eff_batch=16, label_smoothing=0.05,
+                          class_weight_mode=sqrt_inverse).
+  - xlm-roberta-large  :                         
+                          (model="FacebookAI/xlm-roberta-large"; same training
+                          hyperparameters as mDeBERTa above; explicit
+                          total_params=559,892,482, system_size_mb=2136).
+  - RF (handcrafted)   : sklearn RandomForestClassifier on 36 handcrafted
+                          features (see scripts/extract_mask_embeddings.py
+                          and scripts/train_sklearn_full.py for the full
+                          recipe). Trained on the full 1251-instance pool.
+
+Notes
+-----
+- Validated MR(at) on the 188-triplet val split: 0.7198 (95% CI
+  [0.6275, 0.8107]) — within bootstrap CI of the 4-model-stacker alone
+  (0.7269) and ~0.057 below Run-1's 0.7765 while removing 30.7 B + 70.5 B
+  of LLM parameters.
+- Validated MR(isAt): 0.7854 on v1 isAt-test (95% CI [0.7072, 0.8609]) —
+  within CI of majority(xlm, mDeBERTa, RF)=0.7869, and avoids the
+  feature-drift collapse RF exhibits on the official test (where RF
+  isAt would predict all-FALSE due to handcrafted-feature distribution
+  shift).
+- Total footprint is ~60x smaller than Run-1: 3.2 GB vs 195.7 GB. The
+  full system fits on a single 4 GB GPU; no LLM API calls are issued at
+  inference time.
+- at-vote provenance on the 1118-pair official test:
+    all three agree (xlm + mDeBERTa + RF):  565 pairs (50.5%)
+    xlm + mDeBERTa agree, RF dissents:      216 pairs (19.3%)
+    mDeBERTa + RF agree, xlm dissents:      165 pairs (14.8%)
+    xlm + RF agree, mDeBERTa dissents:      151 pairs (13.5%)
+    only one model + ordinal tiebreaker:     21 pairs ( 1.9%)
+- The Gemma BF16 size assumes the precision used by the hosted endpoint.
+  At INT4 / NF4 quantization the on-disk size of the LLMs in Run-1 would
+  be ~73 GB instead — but Run-3 needs no LLM at all.
