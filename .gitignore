@@ -24,7 +24,7 @@ outputs/
 *.log
 
 # Models / embeddings
-models/
+#models/
 *.bin
 *.pt
 *.npy

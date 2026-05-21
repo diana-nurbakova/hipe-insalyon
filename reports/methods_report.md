@@ -140,39 +140,216 @@ Three feature representations were constructed for the HIPE-2026 task, with prog
 
 ### 3.1 Temporal features (15-d)
 
-Implemented in [`hipe/features/temporal.py`](hipe/features/temporal.py): lightweight signals derived from the article preprocessor (HeidelTime temporal expressions, OCR quality, verb-tense annotations, person life status). They are language-agnostic and serve as a dense temporal block concatenated with MASK / hmBERT embeddings.
-**The 15 temporal features:** `verb_is_present`, `verb_is_past`, `verb_is_negated`, `verb_is_future`, `sentence_position_norm`, `is_lead_paragraph`, `signal_negation`, `signal_present`, `signal_relative`, `signal_none`, `has_timex_in_window`, `nearest_timex_distance_norm`, `person_is_deceased`, `person_status_known`, `ocr_quality`.
+Implemented in [`hipe/features/temporal.py`](hipe/features/temporal.py): lightweight signals derived from the article preprocessor (HeidelTime temporal expressions, OCR quality, verb-tense annotations, person life status). They are language-agnostic and serve as a dense temporal block concatenated with MASK / hmBERT embeddings to produce the C4 input. The exact ordering matches `TEMPORAL_FEATURE_NAMES` in the source.
+| # | feature | definition |
+| --- | --- | --- |
+| 1 | `verb_is_present` | 1 if any verb cluster linking the entities is in present tense (`pres*`); aggregated by OR across `inst.tense_aspect` clusters. |
+| 2 | `verb_is_past` | 1 if any verb cluster is in past tense (`past*`). |
+| 3 | `verb_is_negated` | 1 if any verb cluster is marked `negated` — captures `ne … plus`, `nicht mehr`, `no longer`. |
+| 4 | `verb_is_future` | 1 if any verb cluster is in future tense — typically rules out current presence. |
+| 5 | `sentence_position_norm` | Sentence index of the pair within the article, clamped to `[0, 1]` via `min(1.0, pos / 50.0)`; -1 → 0. |
+| 6 | `is_lead_paragraph` | 1 when the pair appears in sentences 0–1 (inverted-pyramid lead → strong TRUE/isAt signal). |
+| 7 | `signal_negation` | 1 when the surrounding sentence carries the `negation` temporal-signal category. |
+| 8 | `signal_present` | 1 when the surrounding sentence carries the `present` category (deictic *now*, *today*, *aujourd'hui*). |
+| 9 | `signal_relative` | 1 when the category is `relative_only` (purely relative temporal expressions: *last week*, *gestern*). |
+| 10 | `signal_none` | 1 when the category is `no_signal` / empty — no explicit temporal cue near the pair. |
+| 11 | `has_timex_in_window` | 1 when there is a HeidelTime expression within ±~30 days of the publication date (spec §8.1 widening of the original ±14-d rule). |
+| 12 | `nearest_timex_distance_norm` | Absolute distance to nearest timex in days, clamped to `[0, 1]` via `min(1.0, d / 365.0)`. |
+| 13 | `person_is_deceased` | 1 when the resolved person status is `dead_historical` (Wikidata death date < publication date). |
+| 14 | `person_status_known` | 1 when status is anything other than `unknown` / `no_match` (i.e. Wikidata enrichment succeeded). |
+| 15 | `ocr_quality` | OCR-quality estimate ∈ [0, 1] from the preprocessor; 1.0 if missing. |
 
 ### 3.2 Handcrafted feature vector (36-d)
 
-Built on top of the temporal block by the same module. Adds language one-hots (`en/fr/de/lb`), person life-status one-hots (`alive_now`, `dead_historical`, `timex_after_death`, …), QID availability indicators, mention counts, hierarchy of mentions, and length-normalized text / context lengths. Used by the RandomForest classifier (model A in the stacker) and by the SD-rule mining.
-**Feature names (in source order):** `person_status_{st}`.
+Built by `extract_handcrafted_features` in the same module. The vector is the concatenation of three blocks: the 15-d temporal block (§3.1), a 12-d categorical block (language one-hot + person life status one-hot), and a 9-d entity / mention block. Total = 15 + 12 + 9 = 36-d. This is the input to the RandomForest classifier (model A in the stacker) and to the subgroup-discovery miner (§3.5). The list below documents *every* feature in source order; the first 15 are the temporal block from §3.1, repeated here only by name.
+
+**Block 1 — temporal (positions 1–15):** same 15 features as §3.1 — `verb_is_present`, `verb_is_past`, `verb_is_negated`, `verb_is_future`, `sentence_position_norm`, `is_lead_paragraph`, `signal_negation`, `signal_present`, `signal_relative`, `signal_none`, `has_timex_in_window`, `nearest_timex_distance_norm`, `person_is_deceased`, `person_status_known`, `ocr_quality`.
+
+
+**Block 2 — language + person-status one-hots (positions 16–27):**
+
+| # | feature | definition |
+| --- | --- | --- |
+| 16–19 | `lang_en`, `lang_fr`, `lang_de`, `lang_lb` | Language one-hot from `inst.language` (4-d). `lb` reserved for Luxembourgish (surprise set). |
+| 20 | `person_status_unknown` | Person life status: no Wikidata match could be attempted. |
+| 21 | `person_status_no_match` | Wikidata match attempted but no QID retrieved. |
+| 22 | `person_status_alive_past` | Birth/death dates indicate the person was alive *before* publication. |
+| 23 | `person_status_alive_now` | Person was alive *at* publication time. |
+| 24 | `person_status_alive_no_longer` | Person had died before publication, but life overlapped textual cues. |
+| 25 | `person_status_dead_historical` | Person had been dead for a long time relative to publication. |
+| 26 | `person_status_timex_in_lifespan` | Article timex falls within the person's lifespan — supports historical reference. |
+| 27 | `person_status_timex_after_death` | Article timex falls *after* the person's death — supports a memorial/historical reading. |
+
+**Block 3 — entity / mention / length features (positions 28–36):**
+
+| # | feature | definition |
+| --- | --- | --- |
+| 28 | `has_pers_qid` | 1 when the person mention is linked to a Wikidata QID. |
+| 29 | `has_loc_qid` | 1 when the location mention is linked to a Wikidata QID. |
+| 30 | `n_pers_mentions` | Count of person surface forms in the pair (`len(inst.pers_mentions_list)`). |
+| 31 | `n_loc_mentions` | Count of location surface forms. |
+| 32 | `n_temporal_expressions` | Count of HeidelTime-annotated temporal expressions in the article. |
+| 33 | `n_temporal_signals` | Count of preprocessor-tagged temporal *signals* (negation/present/relative buckets). |
+| 34 | `n_tense_aspect_clusters` | Count of `(tense, aspect, negated)` verb clusters extracted near the pair. |
+| 35 | `text_len_chars_norm` | `min(1.0, len(text) / 12000)` — full-article length, saturated. |
+| 36 | `context_len_chars_norm` | `min(1.0, len(context) / 2000)` — local window passed to the encoder, saturated. |
 
 ### 3.3 MASK + entity-span embeddings (frozen hmBERT)
 
-[`hipe/mask/encoder.py`](hipe/mask/encoder.py) extracts three 768-d token-pooled vectors from a frozen multilingual hmBERT (`dbmdz/bert-base-historic-multilingual-cased`):
+**Why a masked language model.** The dataset is tiny (1,251 labelled pairs) and multilingual; from-scratch supervised encoders quickly overfit and a fine-tuned transformer head over CLS pooling needs more than we have. The MASK-LM approach side-steps both issues: we ask a *frozen* multilingual hmBERT (`dbmdz/bert-base-historic-multilingual-cased`, ~110.6 M parameters, pre-trained on historical newspaper text) to fill in a single `[MASK]` token placed in a *question template* about the (person, location) relation. The hidden state at the MASK position is the model's compressed answer to that question — it captures the entire context surrounding the pair, including the OCR-noisy verb forms and the temporal cues, in a 768-d vector that already lives in a relation-aware sub-space of the encoder. We don't decode the MASK into a word; we use the raw hidden state as a feature.
 
-  - `MASK` — pooled representation of a `[MASK]` token inserted in a template that frames the relation question.
-  - `e1` — pooled span over the person mention (with `[E1]/[/E1]` markers).
-  - `e2` — pooled span over the location mention (with `[E2]/[/E2]` markers).
+**Template family** ([`hipe/mask/templates.py`](hipe/mask/templates.py)). Five hand-authored templates were explored — the default is **M2**, which prepends the marked article context and then poses the question in a fill-in-the-blank form:
 
-Layer combinations explored: last layer only (M1), {-1, -4, -7} concatenation (M2). The artefacts are cached in `runs/mask_dbmdz_bert_base_historic_multilingual_cased_M2.npz` and re-used across the C4 LR, the contrastive MLP, and the stacker.
+```text
+<context with [E1]..[/E1] and [E2]..[/E2] markers> The relationship between [E1] and [E2] is [MASK] .
+```
+
+Other templates we evaluated:
+
+- **M1** (minimal): `[E1] person [/E1] [MASK] [E2] location [/E2] .` — entity-pair only, no context.
+- **M3** (temporal): `Published: <date> . <ctx> At this time, [E1] is [MASK] [E2] .` — frames the question at publication time.
+- **M4** (dual-mask): two `[MASK]` slots, one targeting `at`, one targeting `isAt` — yields `mask_at_emb` and `mask_isAt_emb` separately.
+- **M5** (multi-mask): three consecutive `[MASK]` tokens for a richer 3·H-d relation embedding.
+
+Per the MASK-grid sweep ([`scripts/mask_grid_eval.py`](scripts/mask_grid_eval.py)), **M2** is the recommended default because the question-form prompt gives the MASK position the richest attention over the marked entity spans — it is the variant used to produce the cached `runs/mask_dbmdz_bert_base_historic_multilingual_cased_M2.npz` artefact that all downstream models consume.
+
+**What gets extracted** ([`hipe/mask/encoder.py`](hipe/mask/encoder.py)). Per pair, the encoder runs one forward pass through the frozen hmBERT on the rendered template and emits three 768-d vectors:
+
+  - **`mask_emb` (768-d).** Mean of the hidden states at every `[MASK]` position, taken from the last layer. Falls back to CLS when no MASK survived tokenisation (long-context truncation).
+  - **`e1_emb` (768-d).** Mean of the token hidden states inside the `[E1] … [/E1]` span (markers excluded) — a contextualised representation of the person mention.
+  - **`e2_emb` (768-d).** Same, for the location span between `[E2] … [/E2]`.
+
+When a span is missing inline, the template prepends a synthetic `[E1] mention [/E1] .` block so the marker tokens are guaranteed to be present and the span pool is non-empty.
+
+**Layer selection (multi-layer M2-L).** The spec optionally concatenates the MASK hidden state across layers `{-1, -4, -7}` (≈ layers 12, 9, 6 for a 12-layer hmBERT) to capture both syntactic (lower) and semantic (upper) cues. This produces `mask_emb_layers` of shape `3 · 768 = 2,304-d` for the MASK slot (the entity-span embeddings keep their single-layer 768-d form). The default in the deployed cache is the single-layer M2 (`DEFAULT_LAYERS = (-1,)`); the multi-layer variant is mined as ablation only.
+
+**Why this representation works for the stacker.** The four base models in the disagreement stacker (§9) consume the *same* MASK cache but interpret it differently — the C4 LR sees the linear separability in the embedding, the OrdContM1 MLP reshapes it under an ordinal-contrastive loss so PROBABLE lands between TRUE and FALSE, and the RandomForest reads the handcrafted block independently. Because hmBERT is frozen the cache is computed once (~10 minutes on a single GPU) and re-used for every downstream experiment, which keeps the iteration loop fast.
 
 ### 3.4 Composite C4 input (2,319-d)
 
-The MASK + e1 + e2 embeddings (768 × 3 = 2,304-d) concatenated with the 15-d temporal block produces the 2,319-d C4 input used by the logistic-regression classifier and the ordinal-contrastive MLP.
+The MASK + e1 + e2 embeddings (768 × 3 = 2,304-d) concatenated with the 15-d temporal block produces the 2,319-d **C4** input. Naming: C1 = MASK only, C2 = MASK + temporal, C3 = MASK + e1 + e2, C4 = MASK + e1 + e2 + temporal (the full composite). C4 is the input to both the logistic-regression classifier (model B) and the ordinal-contrastive MLP (model C).
 
-### 3.5 Subgroup-discovery (SD) rule overrides
+### 3.5 Subgroup-discovery (SD) rule overrides on PROBABLE
 
-The MCMC-COTP miner ([`hipe/subgroup_discovery/mcmc.py`](hipe/subgroup_discovery/mcmc.py)) mines high-precision subgroups whose extent is enriched in PROBABLE from the SD-H matrix (handcrafted ⊕ evidence ⊕ verb_type ⊕ hierarchy ⊕ dateline). Discovered rules with `n-WRAcc ≥ 0.05` flip the C4 LR prediction `FALSE → PROBABLE` post-hoc on instances they cover. This produces the **C4-SDov** variant. The cached rule set is stored at `runs/sd/SD-H_full_at_v2/`.
+**What we are mining.** Subgroup discovery (SD) is a pattern-mining task: given a labelled table `(X ∈ ℝ^{N×d}, y ∈ {0,1})`, find conjunctive patterns over interval / equality conditions on the features whose *extent* (the set of rows satisfying the pattern) is enriched in the positive class. The objective is **n-WRAcc** (normalised weighted relative accuracy), which trades off support against precision:
 
-### 3.6 Additional context features explored
+```text
+WRAcc(p) = |extent(p)| / N · ( |extent(p) ∩ positives| / |extent(p)| − |positives| / N )
+n-WRAcc(p) = WRAcc(p) / WRAcc_max
+```
 
-- **HeidelTime temporal expressions:** annotated and used both as features (`has_timex_in_window`, `nearest_timex_distance_norm`) and as a `<TEMPORAL>` block injected into the LLM prompt under the P-R variant.
-- **Wikidata enrichment:** for the ~43% of persons / 88% of locations with a QID, the pre-fetched cache exposes birth/death dates, occupation, residence, P19/P20/P551 and is rendered as a `<WIKIDATA>` block in the LLM prompt. About 57% of persons are NIL, so the block is empty for them.
-- **Retrieval-augmented context (RAG):** an FAISS / `BAAI/bge-m3` index of the 1,063-instance training pool retrieves Top-K similar pairs ([`hipe/retriever/index.py`](hipe/retriever)). Configurations swept: `K ∈ {1, 3, 8}`, with and without MMR diversification.
-- **Story-arc / DocTimeRel features:** experimental narrative-event extraction (BEFORE / OVERLAP / AFTER relative to the publication date) — wired as an optional pre-classifier stage in the agentic pipeline.
-- **Disagreement features (17–26-d):** vote-fraction, vote entropy, ordinal range, bimodality flag, modal indicator, per-model agreement and ordinal distance. Computed by [`hipe/stacker/disagreement.py`](hipe/stacker/disagreement.py) and used diagnostically; the production stacker uses the discrete-vote lookup table instead.
+where `WRAcc_max = p · (1 − p)` and `p` is the marginal positive rate. A high-n-WRAcc pattern is a rule that fires on a sizable chunk of the data and, within that chunk, has a much higher chance of being positive than the base rate. For HIPE we set `positive = PROBABLE` — the minority class that none of the single models recovers well.
+
+**Why MCMC.** Enumerating all interval patterns over a 42-d feature space is intractable, so [`hipe/subgroup_discovery/mcmc.py`](hipe/subgroup_discovery/mcmc.py) runs a **Metropolis–Hastings MCMC sampler** (MonteCloPi-style: see *Mathonat, Nurbakova, Boulicaut & Kaytoue, DSAA 2021*) over the space of interval-conjunction patterns. Each chain alternates five proposal moves with weights `(0.25, 0.30, 0.20, 0.15, 0.10)`:
+
+  - **meet** — jump to the tightest pattern covering two random positive instances (bottom-up exploration);
+  - **tighten** — shrink one interval to a value observed in its extent;
+  - **loosen** — widen one interval to the next observed value outside it;
+  - **add** — turn an inactive feature ON with bounds drawn from two random positives;
+  - **drop** — remove a feature constraint.
+
+After every proposal we **close on the positive (COTP)**: each active interval is shrunk to the minimum bounding rectangle of the *positives* currently in its extent. Closure is monotone in n-WRAcc — it cannot hurt the score and yields the canonical representative of an equivalence class. The chain then accepts the move via Metropolis–Hastings on the score difference with an annealed temperature `t = T₀ · (1 − step / n_steps) + 0.01`.
+
+**Run configuration (the cache deployed for the C4-SDov overlay).** `runs/sd/SD-H_full_at_v2/summary.json`: `config=SD-H`, `n_chains=10`, `n_steps=10,000`, `nwracc_threshold=0.05` (only patterns crossing this threshold are kept), `redundancy_theta=0.5` (Jaccard de-duplication on extents), `top_k=15`, `min_support=2`, mined on the **1,063 train rows only** (`train_only=true`).
+
+**Feature space used in deployment (42-d).** The miner consumed the following blocks (counted from the run's `feature_names`): the 15-d temporal block (§3.1), the 13-d **evidence-strength** block (§3.6.1), the 7-d **verb-type** block (§3.6.2), the 3-d **Wikidata location hierarchy** block (§3.6.3), and a 4-d language one-hot — totalling **42 features**. *Note:* although the current `build_sd_feature_matrix` routine appends a 5-d dateline block when called fresh, the cached `SD-H_full_at_v2` rules that drive the production overlay were mined **without** the dateline block (the cache predates that block being enabled by default — the run's `feature_names` does not list any `location_*_dateline*` entry). The dateline block is therefore available in the code but **not exercised by the deployed C4-SDov** predictions.
+
+**Top-5 PROBABLE rules by n-WRAcc** (from `runs/sd/SD-H_full_at_v2/subgroups_PROBABLE.json`). Trivial fully-open conditions (`in [0,1]` on binary features) are suppressed for readability; the patterns are the COTP closures over the 42-d feature space described above.
+| rank | n-WRAcc | pos/support (precision) | pattern (first ~6 non-trivial conditions) |
+| --- | --- | --- | --- |
+| 1 | 0.078 | 12/50 (24%) | verb_is_negated=0; verb_is_future=0; sentence_position_norm in [0,0.88]; signal_negation=0; signal_present=0; has_timex_in_window=0 … |
+| 2 | 0.072 | 9/25 (36%) | verb_is_past=0; verb_is_negated=0; verb_is_future=0; sentence_position_norm in [0,0.36]; signal_negation=0; signal_present=0 … |
+| 3 | 0.069 | 7/7 (100%) | verb_is_future=0; sentence_position_norm in [0.16,0.42]; is_lead_paragraph=0; signal_negation=0; signal_present=0; signal_relative=0 … |
+| 4 | 0.068 | 7/8 (88%) | verb_is_future=0; sentence_position_norm in [0.08,0.24]; is_lead_paragraph=0; signal_negation=0; signal_present=0; has_timex_in_window=0 … |
+| 5 | 0.068 | 7/8 (88%) | verb_is_future=0; sentence_position_norm in [0.06,0.08]; is_lead_paragraph=0; signal_negation=0; signal_none=0; has_timex_in_window=0 … |
+
+*How to read the rules.* Rule #3 has n-WRAcc = 0.069 with `support_pos / support = 7 / 7 = 100% precision`: every one of the 7 training instances matched by the pattern is gold-PROBABLE. Rule #1 is the broadest (50 instances covered, 24% precision — ≈2.5× the base rate of 9.6%) and acts more like a *recall* booster, while rules #3–#5 are narrow but near-perfect *precision* anchors. The MCMC chain naturally surfaces both regimes because n-WRAcc rewards the product of support and precision-lift.
+
+**How the rules are applied (`C4-SDov`).** [`hipe/subgroup_discovery/integration.py`](hipe/subgroup_discovery/integration.py) loads the cached patterns and computes a binary `match` mask per dev instance via `Subgroup.matches(X)` — checking all active intervals. For every instance covered by *at least one* rule with `n-WRAcc ≥ 0.05` and `precision ≥ τ`, the C4 LR prediction is flipped `FALSE → PROBABLE` (the spec calls this the `PROBABLE_from_FALSE_nw0.05` overlay). Other transitions are not touched — the overlay only promotes false-negatives that the LR missed but the SD rules confidently mark as PROBABLE. This lifted MR(`at`) from 0.5700 to 0.5821 on the 188-instance dev split, and the recovered-PROBABLE instances are the ones that the disagreement stacker later relies on through the (P, *, T) and (P, F, T) cells (see §9.3 and §8).
+
+### 3.6 Additional features explored
+
+Beyond the temporal + handcrafted + MASK blocks, the SD miner and the LLM prompts consume additional engineered blocks. Each block is self-contained (own module, own feature-name list) so it can be enabled / disabled independently.
+
+#### 3.6.1 Evidence-strength features (13-d, [`hipe/subgroup_discovery/evidence.py`](hipe/subgroup_discovery/evidence.py))
+Captures *how directly* the surface text connects the person to the location — the TRUE↔PROBABLE distinction that the temporal block is blind to. Pure regex / counting, no NLP model. Lexicons cover FR / DE / EN / LB (German also serves as fallback for Luxembourgish).
+| # | feature | definition |
+| --- | --- | --- |
+| 1 | `entity_char_distance` | Minimum character gap between any person and any location mention in the context, normalised to `[0, 1]` via `min(d / 500, 1.0)`. 1.0 when no co-occurrence found. |
+| 2 | `entities_adjacent` | 1 when that gap is < 20 chars — strong direct-link signal. |
+| 3 | `has_preposition_link` | 1 when the regex `<pers> <prep> <loc>` matches with prep ∈ {de, à, en, au, du, in, at, from, of, to, von, aus, nach, zu, vu, an, op, bei}. |
+| 4 | `has_genitive_construction` | 1 when the location appears in a genitive marker pattern (`de Lyon`, `du roi`, `des Königs`, `von …`, `of …`). |
+| 5 | `has_role_title` | 1 when the context contains any role word from the lexicon (FR: archevêque, ministre, président…; EN: bishop, governor, mayor…; DE: Erzbischof, Bürgermeister, Direktor…; LB equivalents). |
+| 6 | `has_hedging` | 1 when *any* hedging word fires (FR: vraisemblablement, sans doute, peut-être, paraît-il…; EN: reportedly, allegedly, possibly…; DE: angeblich, vermutlich, offenbar, wahrscheinlich…; LB: wahrscheinlech, vläicht…). |
+| 7 | `n_hedging_words` | Count of hedging words / 3, clamped — denser hedging supports PROBABLE over TRUE. |
+| 8 | `entity_in_quotes` | 1 when *any* entity mention lies inside a balanced quotation span (handles « », ", “ ”, ', ’). Quoted speech often weakens the assertion. |
+| 9 | `has_subjunctive` | 1 when a subjunctive / conditional marker fires (FR: aurait, pourrait, serait, eût; DE: dürfte, könnte, würde, hätte, wäre; EN: would, might, could; LB: géif, kéint, sollt). Strong PROBABLE indicator. |
+| 10 | `person_mention_count` | Total occurrences of any person mention (including expanded titles and same-sentence pronouns), `min(count / 10, 1.0)`. |
+| 11 | `location_mention_count` | Same, for location mentions (Wikidata aliases included when available). |
+| 12 | `cooccurrence_sentences` | Count of sentences containing *both* a person and a location surface form, `min(count / 5, 1.0)`. |
+| 13 | `n_competing_locations` | Heuristic count of *other* capitalised tokens following a locative preposition in the text — distractors that weaken the focal pair, `min(n / 10, 1.0)`. |
+*Mention expansion (Specs v2 §4.1.1).* Before computing counts, the original `pers_mentions_list` is augmented with (a) titles found within ±80 chars of a named mention, and (b) third-person pronouns (`il/elle`, `er/sie`, `he/she`, `hien/si`) in the same sentence as a named mention. Location mentions are augmented with Wikidata aliases when the QID is present. Exact-match features (`has_preposition_link`, `has_genitive_construction`) keep using the original lists.
+
+#### 3.6.2 Verb-type classification (7-d, [`hipe/subgroup_discovery/evidence.py`](hipe/subgroup_discovery/evidence.py))
+Five-way verb-class detection over a multilingual lexicon, plus two composite signals derived from those classes:
+| # | feature | definition |
+| --- | --- | --- |
+| 1 | `verb_type_movement` | Fires on motion verbs that imply transit through the location (FR: arriver, partir, voyager, se rendre, débarquer…; EN: arrive, depart, travel, journey, flee, emigrate…; DE: ankommen, abreisen, reisen, fahren, zurückkehren…; LB equivalents). |
+| 2 | `verb_type_stative` | Fires on stative residence verbs (FR: résider, habiter, vivre, séjourner, demeurer…; EN: reside, live, dwell, stay…; DE: wohnen, leben, residieren…). |
+| 3 | `verb_type_role` | Fires on role-occupation verbs (FR: servir, exercer, diriger, gouverner…; EN: serve, lead, govern, command, preside…; DE: dienen, leiten, regieren, verwalten…). |
+| 4 | `verb_type_birth_death` | Fires on biographical events (FR: naître, mourir, décéder…; EN: born, die, pass away, be buried; DE: geboren werden, sterben, versterben; LB equivalents). |
+| 5 | `verb_type_communication` | Fires on reporting verbs (FR: déclarer, annoncer, rapporter…; EN: declare, announce, report, claim…; DE: erklären, ankündigen, berichten…). Indirect-evidence signal. |
+| 6 | `verb_strong_evidence` | Composite: 1 when *role* OR *stative* is set — the two classes that most directly anchor a person at a place. |
+| 7 | `verb_indirect_evidence` | Composite: 1 when *communication* is set — the verb implies a reported quote rather than direct evidence. |
+
+#### 3.6.3 Wikidata P131 location-hierarchy features (3-d, [`hipe/subgroup_discovery/hierarchy.py`](hipe/subgroup_discovery/hierarchy.py))
+Optional block that exploits the *administrative containment* chain mined from Wikidata via SPARQL (P131 = *located in the administrative territorial entity of*). For each location QID we cache the chain from specific to general (`Lyon → Métropole de Lyon → Rhône → Auvergne-Rhône-Alpes → France`). If no cache is supplied, the block falls back to zeros so callers can opt out without code changes.
+| # | feature | definition |
+| --- | --- | --- |
+| 1 | `direct_loc_count` | Count of direct mentions of the focal location surface form in the article, normalised (`/10`). |
+| 2 | `hierarchical_loc_count` | Count of mentions of *any* location in the focal location's P131 chain (a mention of *Rhône* or *France* counts toward Lyon's score). Same normalisation. |
+| 3 | `parent_location_mentioned` | 1 when at least one *strict* parent of the focal location appears in the text — implicit support for the association without a direct mention. |
+
+#### 3.6.4 Dateline detection (5-d, [`hipe/subgroup_discovery/dateline.py`](hipe/subgroup_discovery/dateline.py))
+Newspaper articles open and close with **datelines** — `<place>, <date>` blocks that mark *where the report was filed from*, not where the article's subjects are located. Cross-config disagreement analysis (§8) shows that 4+ of the universally-wrong `at` instances are dateline confusions: the location appears adjacent to the person but is purely a reporting-origin marker. The block is regex-only (FR / DE / EN / LB month vocabularies) and exposes 5 binary features:
+| # | feature | definition |
+| --- | --- | --- |
+| 1 | `location_is_dateline` | 1 when the focal location appears in *any* dateline region. |
+| 2 | `location_is_opening_dateline` | 1 when the location appears in the opening (head ~100 chars) dateline. |
+| 3 | `location_is_closing_dateline` | 1 when the location appears in the closing (tail ~100 chars) dateline. |
+| 4 | `location_is_mid_dateline` | 1 when a mid-article dateline-shaped pattern wraps the location. |
+| 5 | `location_dateline_only` | Strongest signal: 1 when the location appears *exclusively* in datelines and never in the article body — almost certainly a reporting-origin marker, supports FALSE for both `at` and `isAt`. |
+*Status in deployment.* The block is implemented and tested in isolation, but — as noted in §3.5 — the cached SD-H mining run used by the production C4-SDov overlay was performed **before** the dateline block was added to the SD feature stack; the deployed rules therefore do not exercise these 5 columns. Re-mining with dateline is a candidate ablation for future runs.
+
+#### 3.6.5 Retrieval-augmented context (RAG)
+[`hipe/retriever/`](hipe/retriever/) builds an FAISS index over `BAAI/bge-m3` embeddings of the 1,063-instance training pool ([`scripts/build_retrieval_index.py`](scripts/build_retrieval_index.py)).
+ For each dev / test instance we render a compact query string `<PERSON>…</PERSON> ↔ <LOCATION>…</LOCATION> | <article_excerpt>` and retrieve the Top-K nearest training pairs. Each retrieved example is rendered into the LLM user message as a `<RETRIEVED_EXAMPLES>` block (entity-marked text + gold label + brief gloss). Two sweeps were run: a `K ∈ {1, 3, 8}` retrieval-K sweep on the dev split ([`scripts/run_retrieval_k_sweep.py`](scripts/run_retrieval_k_sweep.py)) and a diversification on/off comparison (Maximal Marginal Relevance toggle). The K=8 / no-diversify configuration produced the strongest single-LLM score (global = 0.5922 on Llama 3.1 8B P-R; see §6.3). None of the RAG configurations entered the final submissions — Gemma 4 31B P-AB zero-shot was preferred for cost and reproducibility.
+
+#### 3.6.6 Wikidata entity enrichment (`<WIKIDATA>` block in the LLM prompt)
+For every entity with a QID we fetch from a local Wikidata cache:  (a) for persons — `P19` (place of birth), `P20` (place of death), `P551` (residence), `P569` (date of birth), `P570` (date of death), `P106` (occupation), label, aliases; (b) for locations — `P31` (instance of), `P17` (country), `P131` (administrative parent), coordinates, label, aliases. The rendered block is a single line per entity (≤ ~80 tokens). Coverage on the labelled pool is 43.1% for persons and 75.9% for locations (§1.5) — i.e. **57% of persons are NIL** and contribute an empty block, which is precisely why injecting the block uniformly hurts the small LLM and we drop it from the final Gemma configuration (§5).
+
+#### 3.6.7 Story-arc / DocTimeRel features (agentic-pipeline only)
+An optional pre-classifier stage in the agentic pipeline ([`scripts/run_agentic_pipeline.py`](scripts/run_agentic_pipeline.py)) runs a Narrative Agent that extracts events `(participants, locations, temporal expressions)` and a DocTimeRel classifier that labels each event with one of `BEFORE / OVERLAP / AFTER` relative to the publication date. The resulting story-arc + DCT labels are injected back into the classifier's prompt. The stage is intended for hard temporal cases where verb-tense alone is ambiguous (French *présent historique*, passé composé). In our experiments it produces traceability rather than score lift (+0.004 over P-R zero-shot on Llama 3.1 8B); the block is not used in any official submission.
+
+#### 3.6.8 Disagreement features (17–26-d, [`hipe/stacker/disagreement.py`](hipe/stacker/disagreement.py))
+These are *meta-features* defined per dev / test instance from the votes of K base models. They are computed for diagnostics and as the input to the continuous-feature meta-classifier path (an alternative to the deployed lookup table).
+| feature | definition |
+| --- | --- |
+| `vote_frac_{TRUE,PROBABLE,FALSE}` | Per-label fraction of votes across the K models (3-d for `at`, 2-d for `isAt`). |
+| `vote_entropy` | Shannon entropy of the vote distribution — 0 when models agree, log K when they split evenly. |
+| `unanimous` | 1 when all K models pick the same label. |
+| `pairwise_disagreement` | Fraction of distinct vote pairs `(k₁, k₂)` that disagree, normalised by `K·(K−1)/2`. |
+| `ordinal_range` | `max(ordinal_votes) − min(ordinal_votes)` over the FALSE=0/PROBABLE=1/TRUE=2 mapping. Range 2 means a TRUE↔FALSE split — the *bimodal* shape that most often hides PROBABLE. |
+| `ordinal_std` | Standard deviation of the ordinal votes — a continuous companion to `ordinal_range`. |
+| `bimodal_true_false` | **The single strongest PROBABLE indicator.** 1 ↔ TRUE ∈ votes ∧ FALSE ∈ votes ∧ PROBABLE ∉ votes. Per Wang et al. 2022, this is the canonical *uncertain* pattern in a 3-way ensemble. |
+| `modal_count` | Vote share of the most-frequent label, `max_count / K`. |
+| `modal_is_probable` | 1 when the modal vote is PROBABLE. |
+| `model_{k}_agrees` | Per model k: 1 when model k voted the modal label. |
+| `model_{k}_ordinal_dist` | Per model k: ordinal distance between model k's vote and the modal label. |
+| `model_{k}_confidence (optional)` | When per-model confidence is available, the probability assigned to model k's predicted label. |
+| `model_{k}_max_confidence (optional)` | Maximum class probability for model k. |
+| `model_{k}_entropy (optional)` | Shannon entropy of model k's class probabilities. |
+*Where they are used.* The 17 categorical features (no-confidence variant) sit alongside the discrete vote tuple in the stacker's input. The production stacker (§9.3) consumes only the discrete tuple via the lookup table — the continuous features are kept as a ready-to-use input for a larger-scale meta-classifier.
 
 
 ## 4. Models tested
