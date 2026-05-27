@@ -62,3 +62,30 @@ recomputed from the base-model prediction files in `logs/official_test/` and
 - `logs/official_test/llama_33_70b_PAB_official_test_predictions.jsonl`
 - xlm-roberta-large + mDeBERTa-v3 official-test outputs: `runs/materials/` and
   `runs/test_outputs_mdeberta/` (configs: `*_task_*_config.json`).
+
+## 4-model stacker — per-model result files
+
+The `at` lookup stacker (`RF + C4-SDov + OrdContM1 + Gemma`) uses each base
+model's predictions in two phases: **OOF predictions on the labelled set
+(n=1251) to build the lookup table**, and **official-test predictions
+(n=1118) to apply it**. Gemma uses the full-dataset file (not k-fold OOF):
+it is zero-shot, so there is no training fold to leak from.
+
+| Model | OOF / full-dataset (builds lookup) | Official-test (gets stacked) | OOF MR(at) |
+|-------|------------------------------------|------------------------------|------------|
+| RF (handcrafted) | `logs/kfold_oof/RF_handcrafted_at_oof_predictions.jsonl` | `logs/official_test/RF_official_test_at_predictions.jsonl` | 0.5844 |
+| C4-SDov (mask+e1+e2+temporal LR) | `logs/kfold_oof/C4_mask_e1e2_temp_at_oof_predictions.jsonl` | `logs/official_test/C4_official_test_at_predictions.jsonl` | 0.5787 |
+| OrdContM1 (contrastive MLP) | `logs/kfold_oof/OrdContM1_at_oof_predictions.jsonl` | `logs/official_test/OrdContM1_official_test_at_predictions.jsonl` | 0.5545 |
+| Gemma 4 31B (P-AB) | `logs/llm_full/gemma4_31b_PAB_full_dataset_predictions.jsonl` (1250 rows) | `logs/official_test/gemma4_31b_PAB_official_test_predictions.jsonl` | 0.5506 |
+
+Per-model OOF MR(at) for RF and C4 (with per-fold breakdowns) is also in
+`logs/kfold_oof/oof_summary_seed42_n5.json`; that summary predates OrdContM1
+and Gemma, so it lists only those two.
+
+Stacker output + evaluation:
+- Combined predictions: `submissions/4-model-stacker/INSALyon_run1_predictions.jsonl`
+  (plus the 4 per-test-file JSONLs in that folder).
+- Reports: `logs/ablations/T1_hybrid_DisStacker4_RF_C4SDov_OrdContM1_Gemma_at_GemmaIsAt_report.json`
+  (+ `.bootstrap.json`); `logs/ablations/T1_hybrid_LookupStackerAt_Gemma431BIsAt_report.json`
+  (+ bootstrap); nested-CV in `logs/cv/T1_stacker_4models_nested_cv_summary.json`.
+- Headline: 4-model stacker `at` + Gemma `isAt` → global 0.8172 (CI [0.764, 0.866]).
