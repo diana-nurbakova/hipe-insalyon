@@ -11,6 +11,7 @@ dependencies = [
     "python-dotenv>=1.0",
     "tqdm>=4.66",
     "jsonschema>=4.18",
+    "scikit-learn>=1.5",
 ]
 
 [project.optional-dependencies]

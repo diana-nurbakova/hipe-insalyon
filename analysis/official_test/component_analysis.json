@@ -1,0 +1,3392 @@
+{
+  "meta": {
+    "n_pairs": 1118,
+    "reference_dir": "C:\\Users\\dnurb\\Documents\\MilitIA\\HIPE\\data\\reference",
+    "reference_source": "https://github.com/hipe-eval/hipe-2026-eval/tree/main/data/reference",
+    "gold_dist_at": {
+      "FALSE": 629,
+      "PROBABLE": 145,
+      "TRUE": 344
+    },
+    "gold_dist_isAt_testA": {
+      "FALSE": 425,
+      "TRUE": 213
+    }
+  },
+  "at_components": {
+    "RF (handcrafted)": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.5408,
+        "macro_precision": 0.3741,
+        "macro_recall": 0.3473,
+        "macro_f1": 0.2707,
+        "weighted_f1": 0.4085,
+        "cohen_kappa": 0.0352,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.5833,
+            "recall": 0.0654,
+            "f1": 0.1176,
+            "support": 214
+          },
+          "PROBABLE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 85
+          },
+          "FALSE": {
+            "precision": 0.5391,
+            "recall": 0.9764,
+            "f1": 0.6946,
+            "support": 339
+          }
+        },
+        "recall_TRUE": 0.0654,
+        "recall_PROBABLE": 0.0,
+        "recall_FALSE": 0.9764
+      },
+      "testB": {
+        "n": 480,
+        "accuracy": 0.6021,
+        "macro_precision": 0.3889,
+        "macro_recall": 0.3776,
+        "macro_f1": 0.3591,
+        "weighted_f1": 0.5382,
+        "cohen_kappa": 0.1284,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4603,
+            "recall": 0.2231,
+            "f1": 0.3005,
+            "support": 130
+          },
+          "PROBABLE": {
+            "precision": 0.0588,
+            "recall": 0.0167,
+            "f1": 0.026,
+            "support": 60
+          },
+          "FALSE": {
+            "precision": 0.6475,
+            "recall": 0.8931,
+            "f1": 0.7507,
+            "support": 290
+          }
+        },
+        "recall_TRUE": 0.2231,
+        "recall_PROBABLE": 0.0167,
+        "recall_FALSE": 0.8931
+      },
+      "all": {
+        "n": 1118,
+        "accuracy": 0.5671,
+        "macro_precision": 0.3783,
+        "macro_recall": 0.3566,
+        "macro_f1": 0.31,
+        "weighted_f1": 0.467,
+        "cohen_kappa": 0.0666,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4943,
+            "recall": 0.125,
+            "f1": 0.1995,
+            "support": 344
+          },
+          "PROBABLE": {
+            "precision": 0.0588,
+            "recall": 0.0069,
+            "f1": 0.0123,
+            "support": 145
+          },
+          "FALSE": {
+            "precision": 0.5819,
+            "recall": 0.938,
+            "f1": 0.7182,
+            "support": 629
+          }
+        },
+        "recall_TRUE": 0.125,
+        "recall_PROBABLE": 0.0069,
+        "recall_FALSE": 0.938
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 14,
+          "PROBABLE": 0,
+          "FALSE": 200
+        },
+        "PROBABLE": {
+          "TRUE": 2,
+          "PROBABLE": 0,
+          "FALSE": 83
+        },
+        "FALSE": {
+          "TRUE": 8,
+          "PROBABLE": 0,
+          "FALSE": 331
+        }
+      },
+      "per_language": {
+        "de": 0.3288,
+        "en": 0.3463,
+        "fr": 0.3519
+      },
+      "pred_dist": {
+        "FALSE": 1014,
+        "TRUE": 87,
+        "PROBABLE": 17
+      },
+      "cv_MR_at": 0.5844,
+      "shift_gap": -0.2371
+    },
+    "C4-SDov": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.5658,
+        "macro_precision": 0.4398,
+        "macro_recall": 0.4187,
+        "macro_f1": 0.4108,
+        "weighted_f1": 0.5264,
+        "cohen_kappa": 0.1929,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.5159,
+            "recall": 0.3037,
+            "f1": 0.3824,
+            "support": 214
+          },
+          "PROBABLE": {
+            "precision": 0.1837,
+            "recall": 0.1059,
+            "f1": 0.1343,
+            "support": 85
+          },
+          "FALSE": {
+            "precision": 0.6199,
+            "recall": 0.8466,
+            "f1": 0.7157,
+            "support": 339
+          }
+        },
+        "recall_TRUE": 0.3037,
+        "recall_PROBABLE": 0.1059,
+        "recall_FALSE": 0.8466
+      },
+      "testB": {
+        "n": 480,
+        "accuracy": 0.6125,
+        "macro_precision": 0.4445,
+        "macro_recall": 0.4049,
+        "macro_f1": 0.3959,
+        "weighted_f1": 0.5614,
+        "cohen_kappa": 0.1742,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4368,
+            "recall": 0.2923,
+            "f1": 0.3502,
+            "support": 130
+          },
+          "PROBABLE": {
+            "precision": 0.2308,
+            "recall": 0.05,
+            "f1": 0.0822,
+            "support": 60
+          },
+          "FALSE": {
+            "precision": 0.6658,
+            "recall": 0.8724,
+            "f1": 0.7552,
+            "support": 290
+          }
+        },
+        "recall_TRUE": 0.2923,
+        "recall_PROBABLE": 0.05,
+        "recall_FALSE": 0.8724
+      },
+      "all": {
+        "n": 1118,
+        "accuracy": 0.5859,
+        "macro_precision": 0.4392,
+        "macro_recall": 0.4136,
+        "macro_f1": 0.4065,
+        "weighted_f1": 0.5416,
+        "cohen_kappa": 0.1879,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4836,
+            "recall": 0.2994,
+            "f1": 0.3698,
+            "support": 344
+          },
+          "PROBABLE": {
+            "precision": 0.1935,
+            "recall": 0.0828,
+            "f1": 0.1159,
+            "support": 145
+          },
+          "FALSE": {
+            "precision": 0.6406,
+            "recall": 0.8585,
+            "f1": 0.7337,
+            "support": 629
+          }
+        },
+        "recall_TRUE": 0.2994,
+        "recall_PROBABLE": 0.0828,
+        "recall_FALSE": 0.8585
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 65,
+          "PROBABLE": 22,
+          "FALSE": 127
+        },
+        "PROBABLE": {
+          "TRUE": 27,
+          "PROBABLE": 9,
+          "FALSE": 49
+        },
+        "FALSE": {
+          "TRUE": 34,
+          "PROBABLE": 18,
+          "FALSE": 287
+        }
+      },
+      "per_language": {
+        "de": 0.4228,
+        "en": 0.3985,
+        "fr": 0.3916
+      },
+      "pred_dist": {
+        "FALSE": 843,
+        "PROBABLE": 62,
+        "TRUE": 213
+      },
+      "cv_MR_at": 0.5787,
+      "shift_gap": -0.16
+    },
+    "OrdContM1": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.5235,
+        "macro_precision": 0.4095,
+        "macro_recall": 0.3785,
+        "macro_f1": 0.3594,
+        "weighted_f1": 0.4827,
+        "cohen_kappa": 0.109,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.3869,
+            "recall": 0.3598,
+            "f1": 0.3729,
+            "support": 214
+          },
+          "PROBABLE": {
+            "precision": 0.25,
+            "recall": 0.0235,
+            "f1": 0.043,
+            "support": 85
+          },
+          "FALSE": {
+            "precision": 0.5916,
+            "recall": 0.7522,
+            "f1": 0.6623,
+            "support": 339
+          }
+        },
+        "recall_TRUE": 0.3598,
+        "recall_PROBABLE": 0.0235,
+        "recall_FALSE": 0.7522
+      },
+      "testB": {
+        "n": 480,
+        "accuracy": 0.5813,
+        "macro_precision": 0.3397,
+        "macro_recall": 0.3801,
+        "macro_f1": 0.3558,
+        "weighted_f1": 0.5292,
+        "cohen_kappa": 0.1158,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.375,
+            "recall": 0.3231,
+            "f1": 0.3471,
+            "support": 130
+          },
+          "PROBABLE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 60
+          },
+          "FALSE": {
+            "precision": 0.644,
+            "recall": 0.8172,
+            "f1": 0.7204,
+            "support": 290
+          }
+        },
+        "recall_TRUE": 0.3231,
+        "recall_PROBABLE": 0.0,
+        "recall_FALSE": 0.8172
+      },
+      "all": {
+        "n": 1118,
+        "accuracy": 0.5483,
+        "macro_precision": 0.4161,
+        "macro_recall": 0.3806,
+        "macro_f1": 0.3595,
+        "weighted_f1": 0.5029,
+        "cohen_kappa": 0.1167,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.3826,
+            "recall": 0.3459,
+            "f1": 0.3634,
+            "support": 344
+          },
+          "PROBABLE": {
+            "precision": 0.25,
+            "recall": 0.0138,
+            "f1": 0.0261,
+            "support": 145
+          },
+          "FALSE": {
+            "precision": 0.6158,
+            "recall": 0.7822,
+            "f1": 0.6891,
+            "support": 629
+          }
+        },
+        "recall_TRUE": 0.3459,
+        "recall_PROBABLE": 0.0138,
+        "recall_FALSE": 0.7822
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 77,
+          "PROBABLE": 5,
+          "FALSE": 132
+        },
+        "PROBABLE": {
+          "TRUE": 39,
+          "PROBABLE": 2,
+          "FALSE": 44
+        },
+        "FALSE": {
+          "TRUE": 83,
+          "PROBABLE": 1,
+          "FALSE": 255
+        }
+      },
+      "per_language": {
+        "de": 0.3914,
+        "en": 0.3664,
+        "fr": 0.3666
+      },
+      "pred_dist": {
+        "FALSE": 799,
+        "TRUE": 311,
+        "PROBABLE": 8
+      },
+      "cv_MR_at": 0.5545,
+      "shift_gap": -0.176
+    },
+    "Gemma 4 31B (PAB)": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.7006,
+        "macro_precision": 0.5228,
+        "macro_recall": 0.5625,
+        "macro_f1": 0.5155,
+        "weighted_f1": 0.6732,
+        "cohen_kappa": 0.4977,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.571,
+            "recall": 0.9766,
+            "f1": 0.7207,
+            "support": 214
+          },
+          "PROBABLE": {
+            "precision": 0.0417,
+            "recall": 0.0118,
+            "f1": 0.0183,
+            "support": 85
+          },
+          "FALSE": {
+            "precision": 0.9556,
+            "recall": 0.6991,
+            "f1": 0.8075,
+            "support": 339
+          }
+        },
+        "recall_TRUE": 0.9766,
+        "recall_PROBABLE": 0.0118,
+        "recall_FALSE": 0.6991
+      },
+      "testB": {
+        "n": 480,
+        "accuracy": 0.6312,
+        "macro_precision": 0.4961,
+        "macro_recall": 0.5352,
+        "macro_f1": 0.4632,
+        "weighted_f1": 0.6201,
+        "cohen_kappa": 0.3982,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4526,
+            "recall": 0.9923,
+            "f1": 0.6217,
+            "support": 130
+          },
+          "PROBABLE": {
+            "precision": 0.0526,
+            "recall": 0.0167,
+            "f1": 0.0253,
+            "support": 60
+          },
+          "FALSE": {
+            "precision": 0.983,
+            "recall": 0.5966,
+            "f1": 0.7425,
+            "support": 290
+          }
+        },
+        "recall_TRUE": 0.9923,
+        "recall_PROBABLE": 0.0167,
+        "recall_FALSE": 0.5966
+      },
+      "all": {
+        "n": 1118,
+        "accuracy": 0.6708,
+        "macro_precision": 0.5109,
+        "macro_recall": 0.5494,
+        "macro_f1": 0.4931,
+        "weighted_f1": 0.6499,
+        "cohen_kappa": 0.4537,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.5192,
+            "recall": 0.9826,
+            "f1": 0.6794,
+            "support": 344
+          },
+          "PROBABLE": {
+            "precision": 0.0465,
+            "recall": 0.0138,
+            "f1": 0.0213,
+            "support": 145
+          },
+          "FALSE": {
+            "precision": 0.967,
+            "recall": 0.6518,
+            "f1": 0.7787,
+            "support": 629
+          }
+        },
+        "recall_TRUE": 0.9826,
+        "recall_PROBABLE": 0.0138,
+        "recall_FALSE": 0.6518
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 209,
+          "PROBABLE": 1,
+          "FALSE": 4
+        },
+        "PROBABLE": {
+          "TRUE": 77,
+          "PROBABLE": 1,
+          "FALSE": 7
+        },
+        "FALSE": {
+          "TRUE": 80,
+          "PROBABLE": 22,
+          "FALSE": 237
+        }
+      },
+      "per_language": {
+        "de": 0.5662,
+        "en": 0.5058,
+        "fr": 0.5828
+      },
+      "pred_dist": {
+        "FALSE": 424,
+        "TRUE": 651,
+        "PROBABLE": 43
+      },
+      "cv_MR_at": 0.5506,
+      "shift_gap": 0.0119
+    },
+    "Llama 3.3 70B (PAB)": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.6144,
+        "macro_precision": 0.5114,
+        "macro_recall": 0.5138,
+        "macro_f1": 0.4752,
+        "weighted_f1": 0.5966,
+        "cohen_kappa": 0.3701,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.5103,
+            "recall": 0.9252,
+            "f1": 0.6578,
+            "support": 214
+          },
+          "PROBABLE": {
+            "precision": 0.1282,
+            "recall": 0.0588,
+            "f1": 0.0806,
+            "support": 85
+          },
+          "FALSE": {
+            "precision": 0.8957,
+            "recall": 0.5575,
+            "f1": 0.6873,
+            "support": 339
+          }
+        },
+        "recall_TRUE": 0.9252,
+        "recall_PROBABLE": 0.0588,
+        "recall_FALSE": 0.5575
+      },
+      "testB": {
+        "n": 480,
+        "accuracy": 0.5792,
+        "macro_precision": 0.4861,
+        "macro_recall": 0.511,
+        "macro_f1": 0.4445,
+        "weighted_f1": 0.5727,
+        "cohen_kappa": 0.3309,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4437,
+            "recall": 0.9692,
+            "f1": 0.6087,
+            "support": 130
+          },
+          "PROBABLE": {
+            "precision": 0.0833,
+            "recall": 0.05,
+            "f1": 0.0625,
+            "support": 60
+          },
+          "FALSE": {
+            "precision": 0.9313,
+            "recall": 0.5138,
+            "f1": 0.6622,
+            "support": 290
+          }
+        },
+        "recall_TRUE": 0.9692,
+        "recall_PROBABLE": 0.05,
+        "recall_FALSE": 0.5138
+      },
+      "all": {
+        "n": 1118,
+        "accuracy": 0.5993,
+        "macro_precision": 0.5,
+        "macro_recall": 0.5115,
+        "macro_f1": 0.4622,
+        "weighted_f1": 0.586,
+        "cohen_kappa": 0.3533,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4821,
+            "recall": 0.9419,
+            "f1": 0.6378,
+            "support": 344
+          },
+          "PROBABLE": {
+            "precision": 0.1067,
+            "recall": 0.0552,
+            "f1": 0.0727,
+            "support": 145
+          },
+          "FALSE": {
+            "precision": 0.9111,
+            "recall": 0.5374,
+            "f1": 0.676,
+            "support": 629
+          }
+        },
+        "recall_TRUE": 0.9419,
+        "recall_PROBABLE": 0.0552,
+        "recall_FALSE": 0.5374
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 198,
+          "PROBABLE": 3,
+          "FALSE": 13
+        },
+        "PROBABLE": {
+          "TRUE": 71,
+          "PROBABLE": 5,
+          "FALSE": 9
+        },
+        "FALSE": {
+          "TRUE": 119,
+          "PROBABLE": 31,
+          "FALSE": 189
+        }
+      },
+      "per_language": {
+        "de": 0.5218,
+        "en": 0.4705,
+        "fr": 0.5235
+      },
+      "pred_dist": {
+        "FALSE": 371,
+        "TRUE": 672,
+        "PROBABLE": 75
+      }
+    },
+    "xlm-roberta-large": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.4592,
+        "macro_precision": 0.3191,
+        "macro_recall": 0.3416,
+        "macro_f1": 0.3249,
+        "weighted_f1": 0.4354,
+        "cohen_kappa": 0.0275,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.3577,
+            "recall": 0.4112,
+            "f1": 0.3826,
+            "support": 214
+          },
+          "PROBABLE": {
+            "precision": 0.0526,
+            "recall": 0.0118,
+            "f1": 0.0192,
+            "support": 85
+          },
+          "FALSE": {
+            "precision": 0.5469,
+            "recall": 0.6018,
+            "f1": 0.573,
+            "support": 339
+          }
+        },
+        "recall_TRUE": 0.4112,
+        "recall_PROBABLE": 0.0118,
+        "recall_FALSE": 0.6018
+      },
+      "testB": {
+        "n": 480,
+        "accuracy": 0.5583,
+        "macro_precision": 0.3136,
+        "macro_recall": 0.3505,
+        "macro_f1": 0.3248,
+        "weighted_f1": 0.4989,
+        "cohen_kappa": 0.0449,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.3226,
+            "recall": 0.2308,
+            "f1": 0.2691,
+            "support": 130
+          },
+          "PROBABLE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 60
+          },
+          "FALSE": {
+            "precision": 0.6182,
+            "recall": 0.8207,
+            "f1": 0.7052,
+            "support": 290
+          }
+        },
+        "recall_TRUE": 0.2308,
+        "recall_PROBABLE": 0.0,
+        "recall_FALSE": 0.8207
+      },
+      "all": {
+        "n": 1118,
+        "accuracy": 0.5018,
+        "macro_precision": 0.3263,
+        "macro_recall": 0.3509,
+        "macro_f1": 0.3316,
+        "weighted_f1": 0.4664,
+        "cohen_kappa": 0.0471,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.3481,
+            "recall": 0.343,
+            "f1": 0.3455,
+            "support": 344
+          },
+          "PROBABLE": {
+            "precision": 0.0476,
+            "recall": 0.0069,
+            "f1": 0.012,
+            "support": 145
+          },
+          "FALSE": {
+            "precision": 0.5831,
+            "recall": 0.7027,
+            "f1": 0.6373,
+            "support": 629
+          }
+        },
+        "recall_TRUE": 0.343,
+        "recall_PROBABLE": 0.0069,
+        "recall_FALSE": 0.7027
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 88,
+          "PROBABLE": 4,
+          "FALSE": 122
+        },
+        "PROBABLE": {
+          "TRUE": 37,
+          "PROBABLE": 1,
+          "FALSE": 47
+        },
+        "FALSE": {
+          "TRUE": 121,
+          "PROBABLE": 14,
+          "FALSE": 204
+        }
+      },
+      "per_language": {
+        "de": 0.3264,
+        "en": 0.3275,
+        "fr": 0.3063
+      },
+      "pred_dist": {
+        "FALSE": 758,
+        "TRUE": 339,
+        "PROBABLE": 21
+      }
+    },
+    "mDeBERTa-v3": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.5737,
+        "macro_precision": 0.3742,
+        "macro_recall": 0.4208,
+        "macro_f1": 0.3958,
+        "weighted_f1": 0.5364,
+        "cohen_kappa": 0.2199,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4711,
+            "recall": 0.4953,
+            "f1": 0.4829,
+            "support": 214
+          },
+          "PROBABLE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 85
+          },
+          "FALSE": {
+            "precision": 0.6516,
+            "recall": 0.767,
+            "f1": 0.7046,
+            "support": 339
+          }
+        },
+        "recall_TRUE": 0.4953,
+        "recall_PROBABLE": 0.0,
+        "recall_FALSE": 0.767
+      },
+      "testB": {
+        "n": 480,
+        "accuracy": 0.6438,
+        "macro_precision": 0.4001,
+        "macro_recall": 0.4231,
+        "macro_f1": 0.4014,
+        "weighted_f1": 0.5828,
+        "cohen_kappa": 0.2256,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.5275,
+            "recall": 0.3692,
+            "f1": 0.4344,
+            "support": 130
+          },
+          "PROBABLE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 60
+          },
+          "FALSE": {
+            "precision": 0.6727,
+            "recall": 0.9,
+            "f1": 0.7699,
+            "support": 290
+          }
+        },
+        "recall_TRUE": 0.3692,
+        "recall_PROBABLE": 0.0,
+        "recall_FALSE": 0.9
+      },
+      "all": {
+        "n": 1118,
+        "accuracy": 0.6038,
+        "macro_precision": 0.3831,
+        "macro_recall": 0.4253,
+        "macro_f1": 0.4009,
+        "weighted_f1": 0.5576,
+        "cohen_kappa": 0.231,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4873,
+            "recall": 0.4477,
+            "f1": 0.4667,
+            "support": 344
+          },
+          "PROBABLE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 145
+          },
+          "FALSE": {
+            "precision": 0.662,
+            "recall": 0.8283,
+            "f1": 0.7359,
+            "support": 629
+          }
+        },
+        "recall_TRUE": 0.4477,
+        "recall_PROBABLE": 0.0,
+        "recall_FALSE": 0.8283
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 106,
+          "PROBABLE": 4,
+          "FALSE": 104
+        },
+        "PROBABLE": {
+          "TRUE": 50,
+          "PROBABLE": 0,
+          "FALSE": 35
+        },
+        "FALSE": {
+          "TRUE": 69,
+          "PROBABLE": 10,
+          "FALSE": 260
+        }
+      },
+      "per_language": {
+        "de": 0.3792,
+        "en": 0.4514,
+        "fr": 0.4045
+      },
+      "pred_dist": {
+        "FALSE": 787,
+        "TRUE": 316,
+        "PROBABLE": 15
+      }
+    }
+  },
+  "isAt_components": {
+    "RF isAt": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.6661,
+        "macro_precision": 0.3331,
+        "macro_recall": 0.5,
+        "macro_f1": 0.3998,
+        "weighted_f1": 0.5326,
+        "cohen_kappa": 0.0,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 213
+          },
+          "FALSE": {
+            "precision": 0.6661,
+            "recall": 1.0,
+            "f1": 0.7996,
+            "support": 425
+          }
+        },
+        "recall_TRUE": 0.0,
+        "recall_FALSE": 1.0
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 0,
+          "FALSE": 213
+        },
+        "FALSE": {
+          "TRUE": 0,
+          "FALSE": 425
+        }
+      },
+      "pred_dist_testA": {
+        "FALSE": 638
+      }
+    },
+    "RF isAt (calibrated)": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.5298,
+        "macro_precision": 0.4515,
+        "macro_recall": 0.455,
+        "macro_f1": 0.4522,
+        "weighted_f1": 0.5207,
+        "cohen_kappa": -0.093,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.2649,
+            "recall": 0.23,
+            "f1": 0.2462,
+            "support": 213
+          },
+          "FALSE": {
+            "precision": 0.638,
+            "recall": 0.68,
+            "f1": 0.6583,
+            "support": 425
+          }
+        },
+        "recall_TRUE": 0.23,
+        "recall_FALSE": 0.68
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 49,
+          "FALSE": 164
+        },
+        "FALSE": {
+          "TRUE": 136,
+          "FALSE": 289
+        }
+      },
+      "pred_dist_testA": {
+        "TRUE": 185,
+        "FALSE": 453
+      }
+    },
+    "C4 isAt": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.6567,
+        "macro_precision": 0.58,
+        "macro_recall": 0.5468,
+        "macro_f1": 0.5344,
+        "weighted_f1": 0.6138,
+        "cohen_kappa": 0.1082,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4694,
+            "recall": 0.216,
+            "f1": 0.2958,
+            "support": 213
+          },
+          "FALSE": {
+            "precision": 0.6907,
+            "recall": 0.8776,
+            "f1": 0.7731,
+            "support": 425
+          }
+        },
+        "recall_TRUE": 0.216,
+        "recall_FALSE": 0.8776
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 46,
+          "FALSE": 167
+        },
+        "FALSE": {
+          "TRUE": 52,
+          "FALSE": 373
+        }
+      },
+      "pred_dist_testA": {
+        "FALSE": 540,
+        "TRUE": 98
+      }
+    },
+    "Gemma isAt": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.8339,
+        "macro_precision": 0.8139,
+        "macro_recall": 0.8109,
+        "macro_f1": 0.8124,
+        "weighted_f1": 0.8335,
+        "cohen_kappa": 0.6247,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.756,
+            "recall": 0.7418,
+            "f1": 0.7488,
+            "support": 213
+          },
+          "FALSE": {
+            "precision": 0.8718,
+            "recall": 0.88,
+            "f1": 0.8759,
+            "support": 425
+          }
+        },
+        "recall_TRUE": 0.7418,
+        "recall_FALSE": 0.88
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 158,
+          "FALSE": 55
+        },
+        "FALSE": {
+          "TRUE": 51,
+          "FALSE": 374
+        }
+      },
+      "pred_dist_testA": {
+        "FALSE": 429,
+        "TRUE": 209
+      }
+    },
+    "Llama isAt": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.7524,
+        "macro_precision": 0.742,
+        "macro_recall": 0.7708,
+        "macro_f1": 0.7419,
+        "weighted_f1": 0.7591,
+        "cohen_kappa": 0.4931,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.5926,
+            "recall": 0.8263,
+            "f1": 0.6902,
+            "support": 213
+          },
+          "FALSE": {
+            "precision": 0.8915,
+            "recall": 0.7153,
+            "f1": 0.7937,
+            "support": 425
+          }
+        },
+        "recall_TRUE": 0.8263,
+        "recall_FALSE": 0.7153
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 176,
+          "FALSE": 37
+        },
+        "FALSE": {
+          "TRUE": 121,
+          "FALSE": 304
+        }
+      },
+      "pred_dist_testA": {
+        "FALSE": 341,
+        "TRUE": 297
+      }
+    },
+    "xlm-roberta-large": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.6034,
+        "macro_precision": 0.5789,
+        "macro_recall": 0.5864,
+        "macro_f1": 0.5779,
+        "weighted_f1": 0.6124,
+        "cohen_kappa": 0.1624,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4254,
+            "recall": 0.5352,
+            "f1": 0.474,
+            "support": 213
+          },
+          "FALSE": {
+            "precision": 0.7324,
+            "recall": 0.6376,
+            "f1": 0.6818,
+            "support": 425
+          }
+        },
+        "recall_TRUE": 0.5352,
+        "recall_FALSE": 0.6376
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 114,
+          "FALSE": 99
+        },
+        "FALSE": {
+          "TRUE": 154,
+          "FALSE": 271
+        }
+      },
+      "pred_dist_testA": {
+        "TRUE": 268,
+        "FALSE": 370
+      }
+    },
+    "mDeBERTa-v3": {
+      "n": 1118,
+      "testA": {
+        "n": 638,
+        "accuracy": 0.6646,
+        "macro_precision": 0.5859,
+        "macro_recall": 0.5304,
+        "macro_f1": 0.4946,
+        "weighted_f1": 0.592,
+        "cohen_kappa": 0.0747,
+        "per_class": {
+          "TRUE": {
+            "precision": 0.4909,
+            "recall": 0.1268,
+            "f1": 0.2015,
+            "support": 213
+          },
+          "FALSE": {
+            "precision": 0.681,
+            "recall": 0.9341,
+            "f1": 0.7877,
+            "support": 425
+          }
+        },
+        "recall_TRUE": 0.1268,
+        "recall_FALSE": 0.9341
+      },
+      "confusion_testA": {
+        "TRUE": {
+          "TRUE": 27,
+          "FALSE": 186
+        },
+        "FALSE": {
+          "TRUE": 28,
+          "FALSE": 397
+        }
+      },
+      "pred_dist_testA": {
+        "FALSE": 583,
+        "TRUE": 55
+      }
+    }
+  },
+  "stacker_final": {
+    "n": 1118,
+    "testA_at": {
+      "n": 638,
+      "accuracy": 0.652,
+      "macro_precision": 0.4246,
+      "macro_recall": 0.4659,
+      "macro_f1": 0.4349,
+      "weighted_f1": 0.5906,
+      "cohen_kappa": 0.3304,
+      "per_class": {
+        "TRUE": {
+          "precision": 0.6037,
+          "recall": 0.4626,
+          "f1": 0.5238,
+          "support": 214
+        },
+        "PROBABLE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 85
+        },
+        "FALSE": {
+          "precision": 0.6702,
+          "recall": 0.9351,
+          "f1": 0.7808,
+          "support": 339
+        }
+      },
+      "recall_TRUE": 0.4626,
+      "recall_PROBABLE": 0.0,
+      "recall_FALSE": 0.9351
+    },
+    "testB_at": {
+      "n": 480,
+      "accuracy": 0.6687,
+      "macro_precision": 0.4566,
+      "macro_recall": 0.4611,
+      "macro_f1": 0.4441,
+      "weighted_f1": 0.6236,
+      "cohen_kappa": 0.3185,
+      "per_class": {
+        "TRUE": {
+          "precision": 0.5299,
+          "recall": 0.4769,
+          "f1": 0.502,
+          "support": 130
+        },
+        "PROBABLE": {
+          "precision": 0.1111,
+          "recall": 0.0167,
+          "f1": 0.029,
+          "support": 60
+        },
+        "FALSE": {
+          "precision": 0.7288,
+          "recall": 0.8897,
+          "f1": 0.8012,
+          "support": 290
+        }
+      },
+      "recall_TRUE": 0.4769,
+      "recall_PROBABLE": 0.0167,
+      "recall_FALSE": 0.8897
+    },
+    "testA_isAt": {
+      "n": 638,
+      "accuracy": 0.7586,
+      "macro_precision": 0.78,
+      "macro_recall": 0.6595,
+      "macro_f1": 0.6704,
+      "weighted_f1": 0.7271,
+      "cohen_kappa": 0.3703,
+      "per_class": {
+        "TRUE": {
+          "precision": 0.8105,
+          "recall": 0.3615,
+          "f1": 0.5,
+          "support": 213
+        },
+        "FALSE": {
+          "precision": 0.7495,
+          "recall": 0.9576,
+          "f1": 0.8409,
+          "support": 425
+        }
+      },
+      "recall_TRUE": 0.3615,
+      "recall_FALSE": 0.9576
+    },
+    "confusion_testA_at": {
+      "TRUE": {
+        "TRUE": 99,
+        "PROBABLE": 0,
+        "FALSE": 115
+      },
+      "PROBABLE": {
+        "TRUE": 44,
+        "PROBABLE": 0,
+        "FALSE": 41
+      },
+      "FALSE": {
+        "TRUE": 21,
+        "PROBABLE": 1,
+        "FALSE": 317
+      }
+    },
+    "cv_MR_at": 0.6443,
+    "testA_global": 0.5627,
+    "shift_gap_at": -0.1784
+  },
+  "agreement_at": {
+    "pairwise": {
+      "RF (handcrafted) vs C4-SDov": 0.7272,
+      "RF (handcrafted) vs OrdContM1": 0.6807,
+      "RF (handcrafted) vs Gemma 4 31B (PAB)": 0.424,
+      "C4-SDov vs OrdContM1": 0.7621,
+      "C4-SDov vs Gemma 4 31B (PAB)": 0.4821,
+      "OrdContM1 vs Gemma 4 31B (PAB)": 0.483
+    },
+    "all_four_agree": 0.2889,
+    "n": 1118
+  },
+  "oracle_at": {
+    "oracle_accuracy": 0.8792,
+    "individual_accuracy": {
+      "RF (handcrafted)": 0.5671,
+      "C4-SDov": 0.5859,
+      "OrdContM1": 0.5483,
+      "Gemma 4 31B (PAB)": 0.6708
+    },
+    "n": 1118
+  },
+  "lookup_cells": {
+    "order": [
+      "RF (handcrafted)",
+      "C4-SDov",
+      "OrdContM1",
+      "Gemma 4 31B (PAB)"
+    ],
+    "top_cells": [
+      {
+        "cell_RF_C4_Ord_Gemma": "FFFT",
+        "n": 321,
+        "stacker_correct": 122
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "FFFF",
+        "n": 304,
+        "stacker_correct": 294
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "FTTT",
+        "n": 92,
+        "stacker_correct": 51
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "FFTT",
+        "n": 67,
+        "stacker_correct": 39
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "FFTF",
+        "n": 52,
+        "stacker_correct": 51
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "FTFT",
+        "n": 39,
+        "stacker_correct": 5
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "TFFT",
+        "n": 32,
+        "stacker_correct": 18
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "FTTF",
+        "n": 28,
+        "stacker_correct": 28
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "FFFP",
+        "n": 25,
+        "stacker_correct": 23
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "FPFT",
+        "n": 25,
+        "stacker_correct": 15
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "TTTT",
+        "n": 19,
+        "stacker_correct": 14
+      },
+      {
+        "cell_RF_C4_Ord_Gemma": "FPTT",
+        "n": 18,
+        "stacker_correct": 9
+      }
+    ]
+  },
+  "per_test_file": {
+    "de": {
+      "file": "HIPE-2026-v1.0-impresso-test-de.jsonl",
+      "n": 238,
+      "gold_at": {
+        "FALSE": 146,
+        "PROBABLE": 38,
+        "TRUE": 54
+      },
+      "at_components": {
+        "RF (handcrafted)": {
+          "n": 238,
+          "accuracy": 0.605,
+          "macro_precision": 0.2043,
+          "macro_recall": 0.3288,
+          "macro_f1": 0.252,
+          "weighted_f1": 0.4637,
+          "cohen_kappa": -0.009,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 54
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 38
+            },
+            "FALSE": {
+              "precision": 0.6128,
+              "recall": 0.9863,
+              "f1": 0.7559,
+              "support": 146
+            }
+          },
+          "recall_TRUE": 0.0,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.9863
+        },
+        "C4-SDov": {
+          "n": 238,
+          "accuracy": 0.5966,
+          "macro_precision": 0.4394,
+          "macro_recall": 0.4228,
+          "macro_f1": 0.4252,
+          "weighted_f1": 0.5744,
+          "cohen_kappa": 0.2095,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.25,
+              "recall": 0.2222,
+              "f1": 0.2353,
+              "support": 54
+            },
+            "PROBABLE": {
+              "precision": 0.3333,
+              "recall": 0.2105,
+              "f1": 0.2581,
+              "support": 38
+            },
+            "FALSE": {
+              "precision": 0.7349,
+              "recall": 0.8356,
+              "f1": 0.7821,
+              "support": 146
+            }
+          },
+          "recall_TRUE": 0.2222,
+          "recall_PROBABLE": 0.2105,
+          "recall_FALSE": 0.8356
+        },
+        "OrdContM1": {
+          "n": 238,
+          "accuracy": 0.5294,
+          "macro_precision": 0.3986,
+          "macro_recall": 0.3914,
+          "macro_f1": 0.3624,
+          "weighted_f1": 0.5186,
+          "cohen_kappa": 0.1525,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.2551,
+              "recall": 0.463,
+              "f1": 0.3289,
+              "support": 54
+            },
+            "PROBABLE": {
+              "precision": 0.2,
+              "recall": 0.0263,
+              "f1": 0.0465,
+              "support": 38
+            },
+            "FALSE": {
+              "precision": 0.7407,
+              "recall": 0.6849,
+              "f1": 0.7117,
+              "support": 146
+            }
+          },
+          "recall_TRUE": 0.463,
+          "recall_PROBABLE": 0.0263,
+          "recall_FALSE": 0.6849
+        },
+        "Gemma 4 31B (PAB)": {
+          "n": 238,
+          "accuracy": 0.6555,
+          "macro_precision": 0.4809,
+          "macro_recall": 0.5662,
+          "macro_f1": 0.4787,
+          "weighted_f1": 0.6438,
+          "cohen_kappa": 0.4365,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.4426,
+              "recall": 1.0,
+              "f1": 0.6136,
+              "support": 54
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 38
+            },
+            "FALSE": {
+              "precision": 1.0,
+              "recall": 0.6986,
+              "f1": 0.8226,
+              "support": 146
+            }
+          },
+          "recall_TRUE": 1.0,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.6986
+        },
+        "Llama 3.3 70B (PAB)": {
+          "n": 238,
+          "accuracy": 0.5714,
+          "macro_precision": 0.4754,
+          "macro_recall": 0.5218,
+          "macro_f1": 0.4449,
+          "weighted_f1": 0.5713,
+          "cohen_kappa": 0.3245,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.3984,
+              "recall": 0.9444,
+              "f1": 0.5604,
+              "support": 54
+            },
+            "PROBABLE": {
+              "precision": 0.0952,
+              "recall": 0.0526,
+              "f1": 0.0678,
+              "support": 38
+            },
+            "FALSE": {
+              "precision": 0.9326,
+              "recall": 0.5685,
+              "f1": 0.7064,
+              "support": 146
+            }
+          },
+          "recall_TRUE": 0.9444,
+          "recall_PROBABLE": 0.0526,
+          "recall_FALSE": 0.5685
+        },
+        "xlm-roberta-large": {
+          "n": 238,
+          "accuracy": 0.4958,
+          "macro_precision": 0.309,
+          "macro_recall": 0.3264,
+          "macro_f1": 0.3117,
+          "weighted_f1": 0.4689,
+          "cohen_kappa": 0.0116,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.2097,
+              "recall": 0.2407,
+              "f1": 0.2241,
+              "support": 54
+            },
+            "PROBABLE": {
+              "precision": 0.0833,
+              "recall": 0.0263,
+              "f1": 0.04,
+              "support": 38
+            },
+            "FALSE": {
+              "precision": 0.6341,
+              "recall": 0.7123,
+              "f1": 0.671,
+              "support": 146
+            }
+          },
+          "recall_TRUE": 0.2407,
+          "recall_PROBABLE": 0.0263,
+          "recall_FALSE": 0.7123
+        },
+        "mDeBERTa-v3": {
+          "n": 238,
+          "accuracy": 0.5546,
+          "macro_precision": 0.3315,
+          "macro_recall": 0.3792,
+          "macro_f1": 0.3531,
+          "weighted_f1": 0.5252,
+          "cohen_kappa": 0.1424,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.2857,
+              "recall": 0.3704,
+              "f1": 0.3226,
+              "support": 54
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 38
+            },
+            "FALSE": {
+              "precision": 0.7089,
+              "recall": 0.7671,
+              "f1": 0.7368,
+              "support": 146
+            }
+          },
+          "recall_TRUE": 0.3704,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.7671
+        },
+        "STACKER (final)": {
+          "n": 238,
+          "accuracy": 0.7101,
+          "macro_precision": 0.4214,
+          "macro_recall": 0.5064,
+          "macro_f1": 0.4597,
+          "weighted_f1": 0.6527,
+          "cohen_kappa": 0.4205,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.4429,
+              "recall": 0.5741,
+              "f1": 0.5,
+              "support": 54
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 38
+            },
+            "FALSE": {
+              "precision": 0.8214,
+              "recall": 0.9452,
+              "f1": 0.879,
+              "support": 146
+            }
+          },
+          "recall_TRUE": 0.5741,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.9452
+        }
+      },
+      "isAt_components": {
+        "RF isAt": {
+          "n": 238,
+          "accuracy": 0.7185,
+          "macro_precision": 0.3593,
+          "macro_recall": 0.5,
+          "macro_f1": 0.4181,
+          "weighted_f1": 0.6008,
+          "cohen_kappa": 0.0,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 67
+            },
+            "FALSE": {
+              "precision": 0.7185,
+              "recall": 1.0,
+              "f1": 0.8362,
+              "support": 171
+            }
+          },
+          "recall_TRUE": 0.0,
+          "recall_FALSE": 1.0
+        },
+        "RF isAt (calibrated)": {
+          "n": 238,
+          "accuracy": 0.4874,
+          "macro_precision": 0.5021,
+          "macro_recall": 0.5026,
+          "macro_f1": 0.4693,
+          "weighted_f1": 0.5121,
+          "cohen_kappa": 0.004,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.2835,
+              "recall": 0.5373,
+              "f1": 0.3711,
+              "support": 67
+            },
+            "FALSE": {
+              "precision": 0.7207,
+              "recall": 0.4678,
+              "f1": 0.5674,
+              "support": 171
+            }
+          },
+          "recall_TRUE": 0.5373,
+          "recall_FALSE": 0.4678
+        },
+        "C4 isAt": {
+          "n": 238,
+          "accuracy": 0.6513,
+          "macro_precision": 0.5414,
+          "macro_recall": 0.535,
+          "macro_f1": 0.535,
+          "weighted_f1": 0.6366,
+          "cohen_kappa": 0.0749,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.3462,
+              "recall": 0.2687,
+              "f1": 0.3025,
+              "support": 67
+            },
+            "FALSE": {
+              "precision": 0.7366,
+              "recall": 0.8012,
+              "f1": 0.7675,
+              "support": 171
+            }
+          },
+          "recall_TRUE": 0.2687,
+          "recall_FALSE": 0.8012
+        },
+        "Gemma isAt": {
+          "n": 238,
+          "accuracy": 0.9244,
+          "macro_precision": 0.898,
+          "macro_recall": 0.9247,
+          "macro_f1": 0.9097,
+          "weighted_f1": 0.9256,
+          "cohen_kappa": 0.8196,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.8267,
+              "recall": 0.9254,
+              "f1": 0.8732,
+              "support": 67
+            },
+            "FALSE": {
+              "precision": 0.9693,
+              "recall": 0.924,
+              "f1": 0.9461,
+              "support": 171
+            }
+          },
+          "recall_TRUE": 0.9254,
+          "recall_FALSE": 0.924
+        },
+        "Llama isAt": {
+          "n": 238,
+          "accuracy": 0.7605,
+          "macro_precision": 0.7454,
+          "macro_recall": 0.8015,
+          "macro_f1": 0.7437,
+          "weighted_f1": 0.7724,
+          "cohen_kappa": 0.5046,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5455,
+              "recall": 0.8955,
+              "f1": 0.678,
+              "support": 67
+            },
+            "FALSE": {
+              "precision": 0.9453,
+              "recall": 0.7076,
+              "f1": 0.8094,
+              "support": 171
+            }
+          },
+          "recall_TRUE": 0.8955,
+          "recall_FALSE": 0.7076
+        },
+        "xlm-roberta-large": {
+          "n": 238,
+          "accuracy": 0.5798,
+          "macro_precision": 0.5227,
+          "macro_recall": 0.5261,
+          "macro_f1": 0.52,
+          "weighted_f1": 0.594,
+          "cohen_kappa": 0.0478,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.3103,
+              "recall": 0.403,
+              "f1": 0.3506,
+              "support": 67
+            },
+            "FALSE": {
+              "precision": 0.7351,
+              "recall": 0.6491,
+              "f1": 0.6894,
+              "support": 171
+            }
+          },
+          "recall_TRUE": 0.403,
+          "recall_FALSE": 0.6491
+        },
+        "mDeBERTa-v3": {
+          "n": 238,
+          "accuracy": 0.7101,
+          "macro_precision": 0.5484,
+          "macro_recall": 0.5078,
+          "macro_f1": 0.4539,
+          "weighted_f1": 0.6174,
+          "cohen_kappa": 0.0212,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.375,
+              "recall": 0.0448,
+              "f1": 0.08,
+              "support": 67
+            },
+            "FALSE": {
+              "precision": 0.7217,
+              "recall": 0.9708,
+              "f1": 0.8279,
+              "support": 171
+            }
+          },
+          "recall_TRUE": 0.0448,
+          "recall_FALSE": 0.9708
+        },
+        "STACKER (final)": {
+          "n": 238,
+          "accuracy": 0.8487,
+          "macro_precision": 0.8416,
+          "macro_recall": 0.7676,
+          "macro_f1": 0.7924,
+          "weighted_f1": 0.8397,
+          "cohen_kappa": 0.5887,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.8298,
+              "recall": 0.5821,
+              "f1": 0.6842,
+              "support": 67
+            },
+            "FALSE": {
+              "precision": 0.8534,
+              "recall": 0.9532,
+              "f1": 0.9006,
+              "support": 171
+            }
+          },
+          "recall_TRUE": 0.5821,
+          "recall_FALSE": 0.9532
+        }
+      },
+      "submissions": {
+        "4-model-stacker": {
+          "MR_at": 0.5064,
+          "acc_at": 0.7101,
+          "macroF1_at": 0.4597,
+          "MR_isAt": 0.7676,
+          "macroF1_isAt": 0.7924,
+          "global": 0.637,
+          "global_F1": 0.62605
+        },
+        "ambig-route-isAt": {
+          "MR_at": 0.3792,
+          "acc_at": 0.5546,
+          "macroF1_at": 0.3531,
+          "MR_isAt": 0.6678,
+          "macroF1_isAt": 0.6881,
+          "global": 0.5235,
+          "global_F1": 0.5206000000000001
+        },
+        "pure-gemma": {
+          "MR_at": 0.5662,
+          "acc_at": 0.6555,
+          "macroF1_at": 0.4787,
+          "MR_isAt": 0.9247,
+          "macroF1_isAt": 0.9097,
+          "global": 0.74545,
+          "global_F1": 0.6941999999999999
+        },
+        "run1": {
+          "MR_at": 0.4953,
+          "acc_at": 0.6681,
+          "macroF1_at": 0.4507,
+          "MR_isAt": 0.8497,
+          "macroF1_isAt": 0.8147,
+          "global": 0.6725,
+          "global_F1": 0.6327
+        },
+        "run2": {
+          "MR_at": 0.3792,
+          "acc_at": 0.5546,
+          "macroF1_at": 0.3531,
+          "MR_isAt": 0.5078,
+          "macroF1_isAt": 0.4539,
+          "global": 0.4435,
+          "global_F1": 0.4035
+        },
+        "run3": {
+          "MR_at": 0.3442,
+          "acc_at": 0.5546,
+          "macroF1_at": 0.3208,
+          "MR_isAt": 0.5261,
+          "macroF1_isAt": 0.52,
+          "global": 0.43515000000000004,
+          "global_F1": 0.4204
+        },
+        "run4": {
+          "MR_at": 0.3792,
+          "acc_at": 0.5546,
+          "macroF1_at": 0.3531,
+          "MR_isAt": 0.8497,
+          "macroF1_isAt": 0.8147,
+          "global": 0.6144499999999999,
+          "global_F1": 0.5839
+        },
+        "run5": {
+          "MR_at": 0.5064,
+          "acc_at": 0.7101,
+          "macroF1_at": 0.4597,
+          "MR_isAt": 0.8497,
+          "macroF1_isAt": 0.8147,
+          "global": 0.67805,
+          "global_F1": 0.6372
+        },
+        "run6": {
+          "MR_at": 0.4953,
+          "acc_at": 0.6681,
+          "macroF1_at": 0.4507,
+          "MR_isAt": 0.8497,
+          "macroF1_isAt": 0.8147,
+          "global": 0.6725,
+          "global_F1": 0.6327
+        }
+      },
+      "gold_isAt": {
+        "FALSE": 171,
+        "TRUE": 67
+      }
+    },
+    "en": {
+      "file": "HIPE-2026-v1.0-impresso-test-en.jsonl",
+      "n": 162,
+      "gold_at": {
+        "TRUE": 75,
+        "FALSE": 59,
+        "PROBABLE": 28
+      },
+      "at_components": {
+        "RF (handcrafted)": {
+          "n": 162,
+          "accuracy": 0.3889,
+          "macro_precision": 0.3445,
+          "macro_recall": 0.3463,
+          "macro_f1": 0.2367,
+          "weighted_f1": 0.2768,
+          "cohen_kappa": 0.0276,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.6667,
+              "recall": 0.1067,
+              "f1": 0.1839,
+              "support": 75
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 28
+            },
+            "FALSE": {
+              "precision": 0.3667,
+              "recall": 0.9322,
+              "f1": 0.5263,
+              "support": 59
+            }
+          },
+          "recall_TRUE": 0.1067,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.9322
+        },
+        "C4-SDov": {
+          "n": 162,
+          "accuracy": 0.4815,
+          "macro_precision": 0.3599,
+          "macro_recall": 0.3985,
+          "macro_f1": 0.3633,
+          "weighted_f1": 0.4501,
+          "cohen_kappa": 0.1556,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.6364,
+              "recall": 0.4667,
+              "f1": 0.5385,
+              "support": 75
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 28
+            },
+            "FALSE": {
+              "precision": 0.4433,
+              "recall": 0.7288,
+              "f1": 0.5513,
+              "support": 59
+            }
+          },
+          "recall_TRUE": 0.4667,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.7288
+        },
+        "OrdContM1": {
+          "n": 162,
+          "accuracy": 0.4383,
+          "macro_precision": 0.4107,
+          "macro_recall": 0.3664,
+          "macro_f1": 0.3401,
+          "weighted_f1": 0.4065,
+          "cohen_kappa": 0.0614,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5075,
+              "recall": 0.4533,
+              "f1": 0.4789,
+              "support": 75
+            },
+            "PROBABLE": {
+              "precision": 0.3333,
+              "recall": 0.0357,
+              "f1": 0.0645,
+              "support": 28
+            },
+            "FALSE": {
+              "precision": 0.3913,
+              "recall": 0.6102,
+              "f1": 0.4768,
+              "support": 59
+            }
+          },
+          "recall_TRUE": 0.4533,
+          "recall_PROBABLE": 0.0357,
+          "recall_FALSE": 0.6102
+        },
+        "Gemma 4 31B (PAB)": {
+          "n": 162,
+          "accuracy": 0.642,
+          "macro_precision": 0.5303,
+          "macro_recall": 0.5058,
+          "macro_f1": 0.4788,
+          "weighted_f1": 0.5862,
+          "cohen_kappa": 0.3723,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.6134,
+              "recall": 0.9733,
+              "f1": 0.7526,
+              "support": 75
+            },
+            "PROBABLE": {
+              "precision": 0.1667,
+              "recall": 0.0357,
+              "f1": 0.0588,
+              "support": 28
+            },
+            "FALSE": {
+              "precision": 0.8108,
+              "recall": 0.5085,
+              "f1": 0.625,
+              "support": 59
+            }
+          },
+          "recall_TRUE": 0.9733,
+          "recall_PROBABLE": 0.0357,
+          "recall_FALSE": 0.5085
+        },
+        "Llama 3.3 70B (PAB)": {
+          "n": 162,
+          "accuracy": 0.5926,
+          "macro_precision": 0.6019,
+          "macro_recall": 0.4705,
+          "macro_f1": 0.4497,
+          "weighted_f1": 0.5362,
+          "cohen_kappa": 0.2773,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5556,
+              "recall": 0.9333,
+              "f1": 0.6965,
+              "support": 75
+            },
+            "PROBABLE": {
+              "precision": 0.5,
+              "recall": 0.0714,
+              "f1": 0.125,
+              "support": 28
+            },
+            "FALSE": {
+              "precision": 0.75,
+              "recall": 0.4068,
+              "f1": 0.5275,
+              "support": 59
+            }
+          },
+          "recall_TRUE": 0.9333,
+          "recall_PROBABLE": 0.0714,
+          "recall_FALSE": 0.4068
+        },
+        "xlm-roberta-large": {
+          "n": 162,
+          "accuracy": 0.4198,
+          "macro_precision": 0.2815,
+          "macro_recall": 0.3275,
+          "macro_f1": 0.3026,
+          "weighted_f1": 0.3865,
+          "cohen_kappa": 0.0142,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5165,
+              "recall": 0.6267,
+              "f1": 0.5663,
+              "support": 75
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 28
+            },
+            "FALSE": {
+              "precision": 0.3281,
+              "recall": 0.3559,
+              "f1": 0.3415,
+              "support": 59
+            }
+          },
+          "recall_TRUE": 0.6267,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.3559
+        },
+        "mDeBERTa-v3": {
+          "n": 162,
+          "accuracy": 0.5617,
+          "macro_precision": 0.3823,
+          "macro_recall": 0.4514,
+          "macro_f1": 0.414,
+          "weighted_f1": 0.5157,
+          "cohen_kappa": 0.254,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5977,
+              "recall": 0.6933,
+              "f1": 0.642,
+              "support": 75
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 28
+            },
+            "FALSE": {
+              "precision": 0.5493,
+              "recall": 0.661,
+              "f1": 0.6,
+              "support": 59
+            }
+          },
+          "recall_TRUE": 0.6933,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.661
+        },
+        "STACKER (final)": {
+          "n": 162,
+          "accuracy": 0.5432,
+          "macro_precision": 0.3786,
+          "macro_recall": 0.449,
+          "macro_f1": 0.3973,
+          "weighted_f1": 0.4922,
+          "cohen_kappa": 0.2384,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.6557,
+              "recall": 0.5333,
+              "f1": 0.5882,
+              "support": 75
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 28
+            },
+            "FALSE": {
+              "precision": 0.48,
+              "recall": 0.8136,
+              "f1": 0.6038,
+              "support": 59
+            }
+          },
+          "recall_TRUE": 0.5333,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.8136
+        }
+      },
+      "isAt_components": {
+        "RF isAt": {
+          "n": 162,
+          "accuracy": 0.5988,
+          "macro_precision": 0.2994,
+          "macro_recall": 0.5,
+          "macro_f1": 0.3745,
+          "weighted_f1": 0.4485,
+          "cohen_kappa": 0.0,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 65
+            },
+            "FALSE": {
+              "precision": 0.5988,
+              "recall": 1.0,
+              "f1": 0.749,
+              "support": 97
+            }
+          },
+          "recall_TRUE": 0.0,
+          "recall_FALSE": 1.0
+        },
+        "RF isAt (calibrated)": {
+          "n": 162,
+          "accuracy": 0.5679,
+          "macro_precision": 0.293,
+          "macro_recall": 0.4743,
+          "macro_f1": 0.3622,
+          "weighted_f1": 0.4337,
+          "cohen_kappa": -0.0608,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 65
+            },
+            "FALSE": {
+              "precision": 0.586,
+              "recall": 0.9485,
+              "f1": 0.7244,
+              "support": 97
+            }
+          },
+          "recall_TRUE": 0.0,
+          "recall_FALSE": 0.9485
+        },
+        "C4 isAt": {
+          "n": 162,
+          "accuracy": 0.5802,
+          "macro_precision": 0.5112,
+          "macro_recall": 0.5049,
+          "macro_f1": 0.4536,
+          "weighted_f1": 0.5056,
+          "cohen_kappa": 0.011,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.4211,
+              "recall": 0.1231,
+              "f1": 0.1905,
+              "support": 65
+            },
+            "FALSE": {
+              "precision": 0.6014,
+              "recall": 0.8866,
+              "f1": 0.7167,
+              "support": 97
+            }
+          },
+          "recall_TRUE": 0.1231,
+          "recall_FALSE": 0.8866
+        },
+        "Gemma isAt": {
+          "n": 162,
+          "accuracy": 0.7654,
+          "macro_precision": 0.7627,
+          "macro_recall": 0.7407,
+          "macro_f1": 0.7468,
+          "weighted_f1": 0.7603,
+          "cohen_kappa": 0.4965,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.7547,
+              "recall": 0.6154,
+              "f1": 0.678,
+              "support": 65
+            },
+            "FALSE": {
+              "precision": 0.7706,
+              "recall": 0.866,
+              "f1": 0.8155,
+              "support": 97
+            }
+          },
+          "recall_TRUE": 0.6154,
+          "recall_FALSE": 0.866
+        },
+        "Llama isAt": {
+          "n": 162,
+          "accuracy": 0.716,
+          "macro_precision": 0.7083,
+          "macro_recall": 0.7147,
+          "macro_f1": 0.7097,
+          "weighted_f1": 0.7182,
+          "cohen_kappa": 0.4208,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.6301,
+              "recall": 0.7077,
+              "f1": 0.6667,
+              "support": 65
+            },
+            "FALSE": {
+              "precision": 0.7865,
+              "recall": 0.7216,
+              "f1": 0.7527,
+              "support": 97
+            }
+          },
+          "recall_TRUE": 0.7077,
+          "recall_FALSE": 0.7216
+        },
+        "xlm-roberta-large": {
+          "n": 162,
+          "accuracy": 0.5926,
+          "macro_precision": 0.613,
+          "macro_recall": 0.6141,
+          "macro_f1": 0.5926,
+          "weighted_f1": 0.5935,
+          "cohen_kappa": 0.2121,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.4947,
+              "recall": 0.7231,
+              "f1": 0.5875,
+              "support": 65
+            },
+            "FALSE": {
+              "precision": 0.7313,
+              "recall": 0.5052,
+              "f1": 0.5976,
+              "support": 97
+            }
+          },
+          "recall_TRUE": 0.7231,
+          "recall_FALSE": 0.5052
+        },
+        "mDeBERTa-v3": {
+          "n": 162,
+          "accuracy": 0.642,
+          "macro_precision": 0.6462,
+          "macro_recall": 0.5741,
+          "macro_f1": 0.5475,
+          "weighted_f1": 0.5884,
+          "cohen_kappa": 0.166,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.6522,
+              "recall": 0.2308,
+              "f1": 0.3409,
+              "support": 65
+            },
+            "FALSE": {
+              "precision": 0.6403,
+              "recall": 0.9175,
+              "f1": 0.7542,
+              "support": 97
+            }
+          },
+          "recall_TRUE": 0.2308,
+          "recall_FALSE": 0.9175
+        },
+        "STACKER (final)": {
+          "n": 162,
+          "accuracy": 0.6914,
+          "macro_precision": 0.7177,
+          "macro_recall": 0.6331,
+          "macro_f1": 0.6253,
+          "weighted_f1": 0.6564,
+          "cohen_kappa": 0.2931,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.7586,
+              "recall": 0.3385,
+              "f1": 0.4681,
+              "support": 65
+            },
+            "FALSE": {
+              "precision": 0.6767,
+              "recall": 0.9278,
+              "f1": 0.7826,
+              "support": 97
+            }
+          },
+          "recall_TRUE": 0.3385,
+          "recall_FALSE": 0.9278
+        }
+      },
+      "submissions": {
+        "4-model-stacker": {
+          "MR_at": 0.449,
+          "acc_at": 0.5432,
+          "macroF1_at": 0.3973,
+          "MR_isAt": 0.6331,
+          "macroF1_isAt": 0.6253,
+          "global": 0.54105,
+          "global_F1": 0.5113
+        },
+        "ambig-route-isAt": {
+          "MR_at": 0.4514,
+          "acc_at": 0.5617,
+          "macroF1_at": 0.414,
+          "MR_isAt": 0.6742,
+          "macroF1_isAt": 0.6764,
+          "global": 0.5628,
+          "global_F1": 0.5452
+        },
+        "pure-gemma": {
+          "MR_at": 0.5058,
+          "acc_at": 0.642,
+          "macroF1_at": 0.4788,
+          "MR_isAt": 0.7407,
+          "macroF1_isAt": 0.7468,
+          "global": 0.6232500000000001,
+          "global_F1": 0.6128
+        },
+        "run1": {
+          "MR_at": 0.4745,
+          "acc_at": 0.5988,
+          "macroF1_at": 0.4406,
+          "MR_isAt": 0.7225,
+          "macroF1_isAt": 0.7231,
+          "global": 0.5985,
+          "global_F1": 0.58185
+        },
+        "run2": {
+          "MR_at": 0.4514,
+          "acc_at": 0.5617,
+          "macroF1_at": 0.414,
+          "MR_isAt": 0.5741,
+          "macroF1_isAt": 0.5475,
+          "global": 0.51275,
+          "global_F1": 0.48075
+        },
+        "run3": {
+          "MR_at": 0.4074,
+          "acc_at": 0.4938,
+          "macroF1_at": 0.3662,
+          "MR_isAt": 0.6141,
+          "macroF1_isAt": 0.5926,
+          "global": 0.51075,
+          "global_F1": 0.47940000000000005
+        },
+        "run4": {
+          "MR_at": 0.4514,
+          "acc_at": 0.5617,
+          "macroF1_at": 0.414,
+          "MR_isAt": 0.7225,
+          "macroF1_isAt": 0.7231,
+          "global": 0.5869500000000001,
+          "global_F1": 0.56855
+        },
+        "run5": {
+          "MR_at": 0.449,
+          "acc_at": 0.5432,
+          "macroF1_at": 0.3973,
+          "MR_isAt": 0.7225,
+          "macroF1_isAt": 0.7231,
+          "global": 0.58575,
+          "global_F1": 0.5602
+        },
+        "run6": {
+          "MR_at": 0.4745,
+          "acc_at": 0.5988,
+          "macroF1_at": 0.4406,
+          "MR_isAt": 0.7225,
+          "macroF1_isAt": 0.7231,
+          "global": 0.5985,
+          "global_F1": 0.58185
+        }
+      },
+      "gold_isAt": {
+        "FALSE": 97,
+        "TRUE": 65
+      }
+    },
+    "fr": {
+      "file": "HIPE-2026-v1.0-impresso-test-fr.jsonl",
+      "n": 238,
+      "gold_at": {
+        "FALSE": 134,
+        "TRUE": 85,
+        "PROBABLE": 19
+      },
+      "at_components": {
+        "RF (handcrafted)": {
+          "n": 238,
+          "accuracy": 0.5798,
+          "macro_precision": 0.4144,
+          "macro_recall": 0.3519,
+          "macro_f1": 0.285,
+          "weighted_f1": 0.4551,
+          "cohen_kappa": 0.0553,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.6667,
+              "recall": 0.0706,
+              "f1": 0.1277,
+              "support": 85
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 19
+            },
+            "FALSE": {
+              "precision": 0.5764,
+              "recall": 0.9851,
+              "f1": 0.7273,
+              "support": 134
+            }
+          },
+          "recall_TRUE": 0.0706,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.9851
+        },
+        "C4-SDov": {
+          "n": 238,
+          "accuracy": 0.5924,
+          "macro_precision": 0.4864,
+          "macro_recall": 0.3916,
+          "macro_f1": 0.3742,
+          "weighted_f1": 0.535,
+          "cohen_kappa": 0.1637,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.7826,
+              "recall": 0.2118,
+              "f1": 0.3333,
+              "support": 85
+            },
+            "PROBABLE": {
+              "precision": 0.0667,
+              "recall": 0.0526,
+              "f1": 0.0588,
+              "support": 19
+            },
+            "FALSE": {
+              "precision": 0.61,
+              "recall": 0.9104,
+              "f1": 0.7305,
+              "support": 134
+            }
+          },
+          "recall_TRUE": 0.2118,
+          "recall_PROBABLE": 0.0526,
+          "recall_FALSE": 0.9104
+        },
+        "OrdContM1": {
+          "n": 238,
+          "accuracy": 0.5756,
+          "macro_precision": 0.3709,
+          "macro_recall": 0.3666,
+          "macro_f1": 0.3355,
+          "weighted_f1": 0.5045,
+          "cohen_kappa": 0.0901,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5294,
+              "recall": 0.2118,
+              "f1": 0.3025,
+              "support": 85
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 19
+            },
+            "FALSE": {
+              "precision": 0.5833,
+              "recall": 0.8881,
+              "f1": 0.7041,
+              "support": 134
+            }
+          },
+          "recall_TRUE": 0.2118,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.8881
+        },
+        "Gemma 4 31B (PAB)": {
+          "n": 238,
+          "accuracy": 0.7857,
+          "macro_precision": 0.5398,
+          "macro_recall": 0.5828,
+          "macro_f1": 0.5484,
+          "weighted_f1": 0.7655,
+          "cohen_kappa": 0.6127,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.656,
+              "recall": 0.9647,
+              "f1": 0.781,
+              "support": 85
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 19
+            },
+            "FALSE": {
+              "precision": 0.9633,
+              "recall": 0.7836,
+              "f1": 0.8642,
+              "support": 134
+            }
+          },
+          "recall_TRUE": 0.9647,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.7836
+        },
+        "Llama 3.3 70B (PAB)": {
+          "n": 238,
+          "accuracy": 0.6723,
+          "macro_precision": 0.519,
+          "macro_recall": 0.5235,
+          "macro_f1": 0.4986,
+          "weighted_f1": 0.6682,
+          "cohen_kappa": 0.4362,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5746,
+              "recall": 0.9059,
+              "f1": 0.7032,
+              "support": 85
+            },
+            "PROBABLE": {
+              "precision": 0.0714,
+              "recall": 0.0526,
+              "f1": 0.0606,
+              "support": 19
+            },
+            "FALSE": {
+              "precision": 0.9111,
+              "recall": 0.6119,
+              "f1": 0.7321,
+              "support": 134
+            }
+          },
+          "recall_TRUE": 0.9059,
+          "recall_PROBABLE": 0.0526,
+          "recall_FALSE": 0.6119
+        },
+        "xlm-roberta-large": {
+          "n": 238,
+          "accuracy": 0.4496,
+          "macro_precision": 0.282,
+          "macro_recall": 0.3063,
+          "macro_f1": 0.2936,
+          "weighted_f1": 0.4312,
+          "cohen_kappa": -0.0638,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.3011,
+              "recall": 0.3294,
+              "f1": 0.3146,
+              "support": 85
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 19
+            },
+            "FALSE": {
+              "precision": 0.5448,
+              "recall": 0.5896,
+              "f1": 0.5663,
+              "support": 134
+            }
+          },
+          "recall_TRUE": 0.3294,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.5896
+        },
+        "mDeBERTa-v3": {
+          "n": 238,
+          "accuracy": 0.6008,
+          "macro_precision": 0.3804,
+          "macro_recall": 0.4045,
+          "macro_f1": 0.3872,
+          "weighted_f1": 0.5625,
+          "cohen_kappa": 0.1949,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5,
+              "recall": 0.4,
+              "f1": 0.4444,
+              "support": 85
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 19
+            },
+            "FALSE": {
+              "precision": 0.6412,
+              "recall": 0.8134,
+              "f1": 0.7171,
+              "support": 134
+            }
+          },
+          "recall_TRUE": 0.4,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.8134
+        },
+        "STACKER (final)": {
+          "n": 238,
+          "accuracy": 0.6681,
+          "macro_precision": 0.4958,
+          "macro_recall": 0.4357,
+          "macro_f1": 0.4158,
+          "weighted_f1": 0.6047,
+          "cohen_kappa": 0.287,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.8485,
+              "recall": 0.3294,
+              "f1": 0.4746,
+              "support": 85
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 19
+            },
+            "FALSE": {
+              "precision": 0.639,
+              "recall": 0.9776,
+              "f1": 0.7729,
+              "support": 134
+            }
+          },
+          "recall_TRUE": 0.3294,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.9776
+        }
+      },
+      "isAt_components": {
+        "RF isAt": {
+          "n": 238,
+          "accuracy": 0.6597,
+          "macro_precision": 0.3298,
+          "macro_recall": 0.5,
+          "macro_f1": 0.3975,
+          "weighted_f1": 0.5244,
+          "cohen_kappa": 0.0,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 81
+            },
+            "FALSE": {
+              "precision": 0.6597,
+              "recall": 1.0,
+              "f1": 0.7949,
+              "support": 157
+            }
+          },
+          "recall_TRUE": 0.0,
+          "recall_FALSE": 1.0
+        },
+        "RF isAt (calibrated)": {
+          "n": 238,
+          "accuracy": 0.5462,
+          "macro_precision": 0.4388,
+          "macro_recall": 0.4528,
+          "macro_f1": 0.4391,
+          "weighted_f1": 0.5174,
+          "cohen_kappa": -0.1029,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.2453,
+              "recall": 0.1605,
+              "f1": 0.194,
+              "support": 81
+            },
+            "FALSE": {
+              "precision": 0.6324,
+              "recall": 0.7452,
+              "f1": 0.6842,
+              "support": 157
+            }
+          },
+          "recall_TRUE": 0.1605,
+          "recall_FALSE": 0.7452
+        },
+        "C4 isAt": {
+          "n": 238,
+          "accuracy": 0.7143,
+          "macro_precision": 0.7258,
+          "macro_recall": 0.6012,
+          "macro_f1": 0.5928,
+          "weighted_f1": 0.6638,
+          "cohen_kappa": 0.2413,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.7407,
+              "recall": 0.2469,
+              "f1": 0.3704,
+              "support": 81
+            },
+            "FALSE": {
+              "precision": 0.7109,
+              "recall": 0.9554,
+              "f1": 0.8152,
+              "support": 157
+            }
+          },
+          "recall_TRUE": 0.2469,
+          "recall_FALSE": 0.9554
+        },
+        "Gemma isAt": {
+          "n": 238,
+          "accuracy": 0.7899,
+          "macro_precision": 0.7661,
+          "macro_recall": 0.7661,
+          "macro_f1": 0.7661,
+          "weighted_f1": 0.79,
+          "cohen_kappa": 0.5321,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.6914,
+              "recall": 0.6914,
+              "f1": 0.6914,
+              "support": 81
+            },
+            "FALSE": {
+              "precision": 0.8408,
+              "recall": 0.8408,
+              "f1": 0.8408,
+              "support": 157
+            }
+          },
+          "recall_TRUE": 0.6914,
+          "recall_FALSE": 0.8408
+        },
+        "Llama isAt": {
+          "n": 238,
+          "accuracy": 0.7689,
+          "macro_precision": 0.7627,
+          "macro_recall": 0.7919,
+          "macro_f1": 0.7611,
+          "weighted_f1": 0.7749,
+          "cohen_kappa": 0.5315,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.614,
+              "recall": 0.8642,
+              "f1": 0.7179,
+              "support": 81
+            },
+            "FALSE": {
+              "precision": 0.9113,
+              "recall": 0.7197,
+              "f1": 0.8043,
+              "support": 157
+            }
+          },
+          "recall_TRUE": 0.8642,
+          "recall_FALSE": 0.7197
+        },
+        "xlm-roberta-large": {
+          "n": 238,
+          "accuracy": 0.6345,
+          "macro_precision": 0.5977,
+          "macro_recall": 0.6004,
+          "macro_f1": 0.5987,
+          "weighted_f1": 0.6369,
+          "cohen_kappa": 0.1979,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.4651,
+              "recall": 0.4938,
+              "f1": 0.479,
+              "support": 81
+            },
+            "FALSE": {
+              "precision": 0.7303,
+              "recall": 0.707,
+              "f1": 0.7184,
+              "support": 157
+            }
+          },
+          "recall_TRUE": 0.4938,
+          "recall_FALSE": 0.707
+        },
+        "mDeBERTa-v3": {
+          "n": 238,
+          "accuracy": 0.6345,
+          "macro_precision": 0.5193,
+          "macro_recall": 0.5078,
+          "macro_f1": 0.4684,
+          "weighted_f1": 0.5633,
+          "cohen_kappa": 0.0188,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.375,
+              "recall": 0.1111,
+              "f1": 0.1714,
+              "support": 81
+            },
+            "FALSE": {
+              "precision": 0.6636,
+              "recall": 0.9045,
+              "f1": 0.7655,
+              "support": 157
+            }
+          },
+          "recall_TRUE": 0.1111,
+          "recall_FALSE": 0.9045
+        },
+        "STACKER (final)": {
+          "n": 238,
+          "accuracy": 0.7143,
+          "macro_precision": 0.7727,
+          "macro_recall": 0.5892,
+          "macro_f1": 0.5696,
+          "weighted_f1": 0.6492,
+          "cohen_kappa": 0.219,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.8421,
+              "recall": 0.1975,
+              "f1": 0.32,
+              "support": 81
+            },
+            "FALSE": {
+              "precision": 0.7032,
+              "recall": 0.9809,
+              "f1": 0.8191,
+              "support": 157
+            }
+          },
+          "recall_TRUE": 0.1975,
+          "recall_FALSE": 0.9809
+        }
+      },
+      "submissions": {
+        "4-model-stacker": {
+          "MR_at": 0.4357,
+          "acc_at": 0.6681,
+          "macroF1_at": 0.4158,
+          "MR_isAt": 0.5892,
+          "macroF1_isAt": 0.5696,
+          "global": 0.51245,
+          "global_F1": 0.4927
+        },
+        "ambig-route-isAt": {
+          "MR_at": 0.4045,
+          "acc_at": 0.6008,
+          "macroF1_at": 0.3872,
+          "MR_isAt": 0.6593,
+          "macroF1_isAt": 0.6691,
+          "global": 0.5319,
+          "global_F1": 0.52815
+        },
+        "pure-gemma": {
+          "MR_at": 0.5828,
+          "acc_at": 0.7857,
+          "macroF1_at": 0.5484,
+          "MR_isAt": 0.7661,
+          "macroF1_isAt": 0.7661,
+          "global": 0.67445,
+          "global_F1": 0.65725
+        },
+        "run1": {
+          "MR_at": 0.4772,
+          "acc_at": 0.6849,
+          "macroF1_at": 0.4618,
+          "MR_isAt": 0.8146,
+          "macroF1_isAt": 0.7954,
+          "global": 0.6459,
+          "global_F1": 0.6286
+        },
+        "run2": {
+          "MR_at": 0.4045,
+          "acc_at": 0.6008,
+          "macroF1_at": 0.3872,
+          "MR_isAt": 0.5078,
+          "macroF1_isAt": 0.4684,
+          "global": 0.45615000000000006,
+          "global_F1": 0.42779999999999996
+        },
+        "run3": {
+          "MR_at": 0.3463,
+          "acc_at": 0.5462,
+          "macroF1_at": 0.3143,
+          "MR_isAt": 0.6004,
+          "macroF1_isAt": 0.5987,
+          "global": 0.47335000000000005,
+          "global_F1": 0.4565
+        },
+        "run4": {
+          "MR_at": 0.4045,
+          "acc_at": 0.6008,
+          "macroF1_at": 0.3872,
+          "MR_isAt": 0.8146,
+          "macroF1_isAt": 0.7954,
+          "global": 0.60955,
+          "global_F1": 0.5912999999999999
+        },
+        "run5": {
+          "MR_at": 0.4357,
+          "acc_at": 0.6681,
+          "macroF1_at": 0.4158,
+          "MR_isAt": 0.8146,
+          "macroF1_isAt": 0.7954,
+          "global": 0.62515,
+          "global_F1": 0.6056
+        },
+        "run6": {
+          "MR_at": 0.4772,
+          "acc_at": 0.6849,
+          "macroF1_at": 0.4618,
+          "MR_isAt": 0.8146,
+          "macroF1_isAt": 0.7954,
+          "global": 0.6459,
+          "global_F1": 0.6286
+        }
+      },
+      "gold_isAt": {
+        "FALSE": 157,
+        "TRUE": 81
+      }
+    },
+    "surprise-fr": {
+      "file": "HIPE-2026-v1.0-surprise-test-fr.jsonl",
+      "n": 480,
+      "gold_at": {
+        "TRUE": 130,
+        "FALSE": 290,
+        "PROBABLE": 60
+      },
+      "at_components": {
+        "RF (handcrafted)": {
+          "n": 480,
+          "accuracy": 0.6021,
+          "macro_precision": 0.3889,
+          "macro_recall": 0.3776,
+          "macro_f1": 0.3591,
+          "weighted_f1": 0.5382,
+          "cohen_kappa": 0.1284,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.4603,
+              "recall": 0.2231,
+              "f1": 0.3005,
+              "support": 130
+            },
+            "PROBABLE": {
+              "precision": 0.0588,
+              "recall": 0.0167,
+              "f1": 0.026,
+              "support": 60
+            },
+            "FALSE": {
+              "precision": 0.6475,
+              "recall": 0.8931,
+              "f1": 0.7507,
+              "support": 290
+            }
+          },
+          "recall_TRUE": 0.2231,
+          "recall_PROBABLE": 0.0167,
+          "recall_FALSE": 0.8931
+        },
+        "C4-SDov": {
+          "n": 480,
+          "accuracy": 0.6125,
+          "macro_precision": 0.4445,
+          "macro_recall": 0.4049,
+          "macro_f1": 0.3959,
+          "weighted_f1": 0.5614,
+          "cohen_kappa": 0.1742,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.4368,
+              "recall": 0.2923,
+              "f1": 0.3502,
+              "support": 130
+            },
+            "PROBABLE": {
+              "precision": 0.2308,
+              "recall": 0.05,
+              "f1": 0.0822,
+              "support": 60
+            },
+            "FALSE": {
+              "precision": 0.6658,
+              "recall": 0.8724,
+              "f1": 0.7552,
+              "support": 290
+            }
+          },
+          "recall_TRUE": 0.2923,
+          "recall_PROBABLE": 0.05,
+          "recall_FALSE": 0.8724
+        },
+        "OrdContM1": {
+          "n": 480,
+          "accuracy": 0.5813,
+          "macro_precision": 0.3397,
+          "macro_recall": 0.3801,
+          "macro_f1": 0.3558,
+          "weighted_f1": 0.5292,
+          "cohen_kappa": 0.1158,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.375,
+              "recall": 0.3231,
+              "f1": 0.3471,
+              "support": 130
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 60
+            },
+            "FALSE": {
+              "precision": 0.644,
+              "recall": 0.8172,
+              "f1": 0.7204,
+              "support": 290
+            }
+          },
+          "recall_TRUE": 0.3231,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.8172
+        },
+        "Gemma 4 31B (PAB)": {
+          "n": 480,
+          "accuracy": 0.6312,
+          "macro_precision": 0.4961,
+          "macro_recall": 0.5352,
+          "macro_f1": 0.4632,
+          "weighted_f1": 0.6201,
+          "cohen_kappa": 0.3982,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.4526,
+              "recall": 0.9923,
+              "f1": 0.6217,
+              "support": 130
+            },
+            "PROBABLE": {
+              "precision": 0.0526,
+              "recall": 0.0167,
+              "f1": 0.0253,
+              "support": 60
+            },
+            "FALSE": {
+              "precision": 0.983,
+              "recall": 0.5966,
+              "f1": 0.7425,
+              "support": 290
+            }
+          },
+          "recall_TRUE": 0.9923,
+          "recall_PROBABLE": 0.0167,
+          "recall_FALSE": 0.5966
+        },
+        "Llama 3.3 70B (PAB)": {
+          "n": 480,
+          "accuracy": 0.5792,
+          "macro_precision": 0.4861,
+          "macro_recall": 0.511,
+          "macro_f1": 0.4445,
+          "weighted_f1": 0.5727,
+          "cohen_kappa": 0.3309,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.4437,
+              "recall": 0.9692,
+              "f1": 0.6087,
+              "support": 130
+            },
+            "PROBABLE": {
+              "precision": 0.0833,
+              "recall": 0.05,
+              "f1": 0.0625,
+              "support": 60
+            },
+            "FALSE": {
+              "precision": 0.9313,
+              "recall": 0.5138,
+              "f1": 0.6622,
+              "support": 290
+            }
+          },
+          "recall_TRUE": 0.9692,
+          "recall_PROBABLE": 0.05,
+          "recall_FALSE": 0.5138
+        },
+        "xlm-roberta-large": {
+          "n": 480,
+          "accuracy": 0.5583,
+          "macro_precision": 0.3136,
+          "macro_recall": 0.3505,
+          "macro_f1": 0.3248,
+          "weighted_f1": 0.4989,
+          "cohen_kappa": 0.0449,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.3226,
+              "recall": 0.2308,
+              "f1": 0.2691,
+              "support": 130
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 60
+            },
+            "FALSE": {
+              "precision": 0.6182,
+              "recall": 0.8207,
+              "f1": 0.7052,
+              "support": 290
+            }
+          },
+          "recall_TRUE": 0.2308,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.8207
+        },
+        "mDeBERTa-v3": {
+          "n": 480,
+          "accuracy": 0.6438,
+          "macro_precision": 0.4001,
+          "macro_recall": 0.4231,
+          "macro_f1": 0.4014,
+          "weighted_f1": 0.5828,
+          "cohen_kappa": 0.2256,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5275,
+              "recall": 0.3692,
+              "f1": 0.4344,
+              "support": 130
+            },
+            "PROBABLE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 60
+            },
+            "FALSE": {
+              "precision": 0.6727,
+              "recall": 0.9,
+              "f1": 0.7699,
+              "support": 290
+            }
+          },
+          "recall_TRUE": 0.3692,
+          "recall_PROBABLE": 0.0,
+          "recall_FALSE": 0.9
+        },
+        "STACKER (final)": {
+          "n": 480,
+          "accuracy": 0.6687,
+          "macro_precision": 0.4566,
+          "macro_recall": 0.4611,
+          "macro_f1": 0.4441,
+          "weighted_f1": 0.6236,
+          "cohen_kappa": 0.3185,
+          "per_class": {
+            "TRUE": {
+              "precision": 0.5299,
+              "recall": 0.4769,
+              "f1": 0.502,
+              "support": 130
+            },
+            "PROBABLE": {
+              "precision": 0.1111,
+              "recall": 0.0167,
+              "f1": 0.029,
+              "support": 60
+            },
+            "FALSE": {
+              "precision": 0.7288,
+              "recall": 0.8897,
+              "f1": 0.8012,
+              "support": 290
+            }
+          },
+          "recall_TRUE": 0.4769,
+          "recall_PROBABLE": 0.0167,
+          "recall_FALSE": 0.8897
+        }
+      },
+      "isAt_components": {},
+      "submissions": {
+        "4-model-stacker": {
+          "MR_at": 0.4611,
+          "acc_at": 0.6687,
+          "macroF1_at": 0.4441
+        },
+        "ambig-route-isAt": {
+          "MR_at": 0.4231,
+          "acc_at": 0.6438,
+          "macroF1_at": 0.4014
+        },
+        "pure-gemma": {
+          "MR_at": 0.5352,
+          "acc_at": 0.6312,
+          "macroF1_at": 0.4632
+        },
+        "run1": {
+          "MR_at": 0.4705,
+          "acc_at": 0.6604,
+          "macroF1_at": 0.4437
+        },
+        "run2": {
+          "MR_at": 0.4231,
+          "acc_at": 0.6438,
+          "macroF1_at": 0.4014
+        },
+        "run3": {
+          "MR_at": 0.3986,
+          "acc_at": 0.6375,
+          "macroF1_at": 0.3786
+        },
+        "run4": {
+          "MR_at": 0.4231,
+          "acc_at": 0.6438,
+          "macroF1_at": 0.4014
+        },
+        "run5": {
+          "MR_at": 0.4611,
+          "acc_at": 0.6687,
+          "macroF1_at": 0.4441
+        },
+        "run6": {
+          "MR_at": 0.4705,
+          "acc_at": 0.6604,
+          "macroF1_at": 0.4437
+        }
+      }
+    }
+  }
+}
